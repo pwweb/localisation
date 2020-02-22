@@ -75,7 +75,7 @@ class Localisation
      *
      * @param string $locale (Optional) Locale to be used for language retrieval.
      *
-     * @return LanguageContract A language object
+     * @return Language A language object
      */
     public static function currentLanguage(string $locale = ''): Language
     {
