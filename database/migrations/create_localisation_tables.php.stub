@@ -1,0 +1,133 @@
+<?php
+
+/**
+ * CreateLocalisationTables Migration
+ *
+ * Standard migration for the Localisation Models.
+ *
+ * @package   PWWeb\Localisation
+ * @author    Frank Pillukeit <clients@pw-websolutions.com>
+ * @copyright 2020 pw-websolutions.com
+ * @license   http://www.opensource.org/licenses/mit-license.html  MIT License
+ */
+
+use Illuminate\Support\Facades\Schema;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Database\Migrations\Migration;
+
+use PWWeb\Localisation\Models\Country;
+use PWWeb\Localisation\Models\Currency;
+use PWWeb\Localisation\Models\Language;
+use PWWeb\Localisation\Database\Seeders\CountrySeeder;
+use PWWeb\Localisation\Database\Seeders\CurrencySeeder;
+use PWWeb\Localisation\Database\Seeders\LanguageSeeder;
+
+class CreateLocalisationTables extends Migration
+{
+    /**
+     * Run the migrations.
+     *
+     * @return void
+     */
+    public function up()
+    {
+        $tableNames = config('localisation.table_names');
+        $columnNames = config('localisation.column_names');
+
+        Schema::create(
+            $tableNames['countries'],
+            function (Blueprint $table) {
+                $table->bigIncrements('id');
+                $table->string('name');
+                $table->string('iso', 2)->unique();
+                $table->string('ioc', 3)->unique()->nullable();
+                $table->tinyInteger('active');
+                $table->timestamps();
+
+                $table->index(['name', 'iso']);
+                $table->index(['name', 'ioc']);
+            }
+        );
+
+        Artisan::call('db:seed', [
+            '--force' => true,
+            '--class' => CountrySeeder::class,
+        ]);
+
+        Schema::create(
+            $tableNames['currencies'],
+            function (Blueprint $table) {
+                $table->bigIncrements('id');
+                $table->string('name');
+                $table->char('iso', 3);
+                $table->integer('numeric_code');
+                $table->char('entity_code', 5);
+                $table->boolean('active', true);
+                $table->boolean('standard', false);
+                $table->timestamps();
+            }
+        );
+
+        Artisan::call('db:seed', [
+            '--force' => true,
+            '--class' => CurrencySeeder::class,
+        ]);
+
+        Schema::create(
+            $tableNames['languages'],
+            function (Blueprint $table) {
+                $table->bigIncrements('id');
+                $table->string('name');
+                $table->char('locale', 5);
+                $table->char('abbreviation', 10);
+                $table->boolean('installed', 1);
+                $table->boolean('active', 1);
+                $table->boolean('standard', 0);
+                $table->timestamps();
+            }
+        );
+
+        Artisan::call('db:seed', [
+            '--force' => true,
+            '--class' => LanguageSeeder::class,
+        ]);
+
+        Schema::create(
+            $tableNames['country_has_language'],
+            function (Blueprint $table) use ($tableNames) {
+                $table->unsignedBigInteger('country_id');
+                $table->unsignedBigInteger('language_id');
+
+                $table->foreign('country_id')
+                    ->references('id')
+                    ->on($tableNames['countries'])
+                    ->onDelete('cascade');
+
+                $table->foreign('language_id')
+                    ->references('id')
+                    ->on($tableNames['languages'])
+                    ->onDelete('cascade');
+
+                $table->primary(['country_id', 'language_id'], 'country_has_language_country_id_language_id_primary');
+            }
+        );
+
+        app('cache')
+            ->store(config('localisation.cache.store') != 'default' ? config('localisation.cache.store') : null)
+            ->forget(config('localisation.cache.key'));
+    }
+
+    /**
+     * Reverse the migrations.
+     *
+     * @return void
+     */
+    public function down()
+    {
+        $tableNames = config('localisation.table_names');
+
+        Schema::dropIfExists($tableNames['countries']);
+        Schema::dropIfExists($tableNames['currencies']);
+        Schema::dropIfExists($tableNames['languages']);
+    }
+}
