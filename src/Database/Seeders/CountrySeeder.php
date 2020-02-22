@@ -28,10 +28,11 @@ class CountrySeeder extends Seeder
      */
     public function run()
     {
+        // Initializing variables.
         $createdAt = date('Y-m-d H:i:s');
-
         $countries = [];
 
+        // Definition of default countries.
         $countries[] = ['iso' => 'AF', 'ioc' => 'AFG', 'name' => 'Afghanistan', 'active' => 0];
         $countries[] = ['iso' => 'AL', 'ioc' => 'ALB', 'name' => 'Albania', 'active' => 0];
         $countries[] = ['iso' => 'DZ', 'ioc' => 'ALG', 'name' => 'Algeria', 'active' => 0];

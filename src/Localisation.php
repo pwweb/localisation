@@ -77,13 +77,13 @@ class Localisation
      *
      * @return LanguageContract A language object
      */
-    public static function currentLanguage(string $locale = ''): LanguageContract
+    public static function currentLanguage(string $locale = ''): Language
     {
         $fallbackLocale = config('app.fallback_locale');
 
         if ($locale === '') {
             $locale = app()->getLocale();
-        } else if ($locale === $fallbackLocale) {
+        } elseif ($locale === $fallbackLocale) {
             $locale = 'en-gb';
         } else {
             $locale = $fallbackLocale . '-' . $fallbackLocale;

@@ -28,8 +28,11 @@ class CurrencySeeder extends Seeder
      */
     public function run()
     {
-        $createdAt = date('Y-m-d H:i:s');
+        // Initializing variables.
+        $createdAt  = date('Y-m-d H:i:s');
+        $currencies = [];
 
+        // Definition of default currencies.
         $currencies[] = ['name' => 'Australian Dollar', 'iso' => 'AUD','numeric_code' => '036','active' => '1','entity_code' => 'A$','standard' => '0'];
         $currencies[] = ['name' => 'Bulgarian Lev', 'iso' => 'BGN','numeric_code' => '975','active' => '0','entity_code' => 'lev','standard' => '0'];
         $currencies[] = ['name' => 'Brazilian Real', 'iso' => 'BRL','numeric_code' => '986','active' => '0','entity_code' => 'R$','standard' => '0'];

@@ -28,8 +28,11 @@ class LanguageSeeder extends Seeder
      */
     public function run()
     {
+        // Initializing variables.
         $createdAt = date('Y-m-d H:i:s');
+        $languages = [];
 
+        // Definition of default languages.
         $languages[] = ['name' => 'English', 'locale' => 'en-gb', 'abbreviation' => 'EN', 'installed' => '1', 'active' => '1','standard' => '0'];
         $languages[] = ['name' => 'German', 'locale' => 'de-de', 'abbreviation' => 'DE', 'installed' => '1', 'active' => '1','standard' => '0'];
 

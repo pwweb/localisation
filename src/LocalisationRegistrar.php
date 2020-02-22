@@ -14,6 +14,7 @@
 namespace PWWeb\Localisation;
 
 use Illuminate\Cache\CacheManager;
+use Illuminate\Contracts\Cache\Repository;
 use Illuminate\Support\Collection;
 
 use PWWeb\Localisation\Contracts\Country;
@@ -25,7 +26,7 @@ class LocalisationRegistrar
     /**
      * The cache repository.
      *
-     * @var \Illuminate\Contracts\Cache\Repository
+     * @var Repository
      */
     protected $cache;
 
@@ -121,9 +122,9 @@ class LocalisationRegistrar
     /**
      * Retrieve the cache store from the configuration of the package.
      *
-     * @return IlluminateContractsCacheRepository [description]
+     * @return Repository Cache store
      */
-    protected function getCacheStoreFromConfig(): \Illuminate\Contracts\Cache\Repository
+    protected function getCacheStoreFromConfig(): Repository
     {
         // the 'default' fallback here is from the localisation.php config file, where 'default' means to use config(cache.default)
         $cacheDriver = config('localisation.cache.store', 'default');
