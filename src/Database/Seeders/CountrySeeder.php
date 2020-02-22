@@ -30,6 +30,8 @@ class CountrySeeder extends Seeder
     {
         $createdAt = date('Y-m-d H:i:s');
 
+        $countries = [];
+
         $countries[] = ['iso' => 'AF', 'ioc' => 'AFG', 'name' => 'Afghanistan', 'active' => 0];
         $countries[] = ['iso' => 'AL', 'ioc' => 'ALB', 'name' => 'Albania', 'active' => 0];
         $countries[] = ['iso' => 'DZ', 'ioc' => 'ALG', 'name' => 'Algeria', 'active' => 0];
