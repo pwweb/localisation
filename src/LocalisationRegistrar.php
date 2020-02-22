@@ -238,11 +238,11 @@ class LocalisationRegistrar
     /**
      * Set the instance of the language class.
      *
-     * @param Language $languageClass The language class to be used.
+     * @param string $languageClass The language class to be used.
      *
      * @return object
      */
-    public function setLanguageClass(Language $languageClass)
+    public function setLanguageClass(string $languageClass)
     {
         $this->languageClass = $languageClass;
 
