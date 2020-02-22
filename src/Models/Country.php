@@ -20,6 +20,11 @@ use PWWeb\Localisation\Contracts\Country as CountryContract;
 
 class Country extends Model implements CountryContract
 {
+    /**
+     * Constructor
+     *
+     * @param array $attributes Additional attributes for model initialisation.
+     */
     public function __construct(array $attributes = [])
     {
         parent::__construct($attributes);
@@ -29,6 +34,8 @@ class Country extends Model implements CountryContract
 
     /**
      * A country can have multiple languages.
+     *
+     * @return HasMany Collection of languages used in the country.
      */
     public function languages(): HasMany
     {

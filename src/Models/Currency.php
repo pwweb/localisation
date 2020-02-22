@@ -20,6 +20,11 @@ use PWWeb\Localisation\Contracts\Currency as CountryContract;
 
 class Currency extends Model implements CountryContract
 {
+    /**
+     * Constructor
+     *
+     * @param array $attributes Additional attributes for model initialisation.
+     */
     public function __construct(array $attributes = [])
     {
         parent::__construct($attributes);

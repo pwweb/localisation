@@ -1,5 +1,16 @@
 <?php
 
+/**
+ * PWWeb\Localisation
+ *
+ * Localisation Master Class.
+ *
+ * @package   PWWeb\Localisation
+ * @author    Frank Pillukeit <clients@pw-websolutions.com>
+ * @copyright 2020 pw-websolutions.com
+ * @license   http://www.opensource.org/licenses/mit-license.html  MIT License
+ */
+
 namespace PWWeb\Localisation;
 
 use Illuminate\Database\Eloquent\Collection;
@@ -28,17 +39,20 @@ class Localisation
     /**
      * True when this is a Lumen application.
      *
-     * @var bool
+     * @var boolean
      */
     protected $lumen = false;
 
     /**
-     * @param Application $app
+     * Constructor
+     *
+     * @param Application $app Laravel application for further use.
      */
     public function __construct($app = null)
     {
-        if (!$app) {
-            $app = app();   //Fallback when $app is not given
+        if ($app === null) {
+            $app = app();
+            //Fallback when $app is not given
         }
 
         $this->app = $app;
@@ -46,21 +60,33 @@ class Localisation
         $this->lumen = Str::contains($this->version, 'Lumen');
     }
 
+    /**
+     * Retrieves all active languages.
+     *
+     * @return Collection A collection of active languages.
+     */
     public static function languages(): Collection
     {
         return Language::where('active', 1)->get();
     }
 
-    public static function currentLanguage(string $locale = '')
+    /**
+     * Determines the currently selected locale.
+     *
+     * @param string $locale (Optional) Locale to be used for language retrieval.
+     *
+     * @return LanguageContract A language object
+     */
+    public static function currentLanguage(string $locale = ''): LanguageContract
     {
         $fallbackLocale = config('app.fallback_locale');
 
         if ($locale === '') {
             $locale = app()->getLocale();
-        } elseif ($locale === $fallbackLocale) {
+        } else if ($locale === $fallbackLocale) {
             $locale = 'en-gb';
         } else {
-            $locale = $fallbackLocale.'-'.$fallbackLocale;
+            $locale = $fallbackLocale . '-' . $fallbackLocale;
         }
 
         try {
@@ -72,6 +98,11 @@ class Localisation
         return $current;
     }
 
+    /**
+     * Renders a language selector / switcher according to view file.
+     *
+     * @return Renderable Language selector / switcher markup.
+     */
     public static function languageSelector(): Renderable
     {
         $languages = self::languages();

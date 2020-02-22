@@ -1,5 +1,16 @@
 <?php
 
+/**
+ * PWWeb\Localisation
+ *
+ * Localisation Registrar.
+ *
+ * @package   PWWeb\Localisation
+ * @author    Frank Pillukeit <clients@pw-websolutions.com>
+ * @copyright 2020 pw-websolutions.com
+ * @license   http://www.opensource.org/licenses/mit-license.html  MIT License
+ */
+
 namespace PWWeb\Localisation;
 
 use Illuminate\Cache\CacheManager;
@@ -11,37 +22,76 @@ use PWWeb\Localisation\Contracts\Language;
 
 class LocalisationRegistrar
 {
-    /** @var \Illuminate\Contracts\Cache\Repository */
+    /**
+     * The cache repository.
+     *
+     * @var \Illuminate\Contracts\Cache\Repository
+     */
     protected $cache;
 
-    /** @var \Illuminate\Cache\CacheManager */
+    /**
+     * The cache manager object.
+     *
+     * @var \Illuminate\Cache\CacheManager
+     */
     protected $cacheManager;
 
-    /** @var string */
+    /**
+     * The country class used for the package.
+     * Can be either original value or overwritten for custom use.
+     *
+     * @var string
+     */
     protected $countryClass;
 
-    /** @var string */
+    /**
+     * The currency class used for the package.
+     * Can be either original value or overwritten for custom use.
+     *
+     * @var string
+     */
     protected $currencyClass;
 
-    /** @var string */
+    /**
+     * The language class used for the package.
+     * Can be either original value or overwritten for custom use.
+     *
+     * @var string
+     */
     protected $languageClass;
 
-    /** @var \Illuminate\Support\Collection */
+    /**
+     * The set of languages available in the cache.
+     *
+     * @var \Illuminate\Support\Collection
+     */
     protected $languages;
 
-    /** @var DateInterval|int */
+    /**
+     * The cache expiration time.
+     *
+     * @var DateInterval|integer
+     */
     public static $cacheExpirationTime;
 
-    /** @var string */
+    /**
+     * The cache key.
+     *
+     * @var string
+     */
     public static $cacheKey;
 
-    /** @var string */
+    /**
+     * The cache model key.
+     *
+     * @var string
+     */
     public static $cacheModelKey;
 
     /**
      * PermissionRegistrar constructor.
      *
-     * @param \Illuminate\Cache\CacheManager $cacheManager
+     * @param \Illuminate\Cache\CacheManager $cacheManager The cache manager object
      */
     public function __construct(CacheManager $cacheManager)
     {
@@ -53,6 +103,11 @@ class LocalisationRegistrar
         $this->initializeCache();
     }
 
+    /**
+     * Initialize the cache for the package.
+     *
+     * @return void
+     */
     protected function initializeCache()
     {
         self::$cacheExpirationTime = config('localisation.cache.expiration_time', config('localisation.cache_expiration_time'));
@@ -63,6 +118,11 @@ class LocalisationRegistrar
         $this->cache = $this->getCacheStoreFromConfig();
     }
 
+    /**
+     * Retrieve the cache store from the configuration of the package.
+     *
+     * @return IlluminateContractsCacheRepository [description]
+     */
     protected function getCacheStoreFromConfig(): \Illuminate\Contracts\Cache\Repository
     {
         // the 'default' fallback here is from the localisation.php config file, where 'default' means to use config(cache.default)
@@ -74,7 +134,7 @@ class LocalisationRegistrar
         }
 
         // if an undefined cache store is specified, fallback to 'array' which is Laravel's closest equiv to 'none'
-        if (! \array_key_exists($cacheDriver, config('cache.stores'))) {
+        if (\array_key_exists($cacheDriver, config('cache.stores')) === false) {
             $cacheDriver = 'array';
         }
 
@@ -84,21 +144,17 @@ class LocalisationRegistrar
     /**
      * Register the languages check method
      *
-     * @return bool
+     * @return boolean
      */
     public function registerLanguages(): bool
     {
-/*        app(Gate::class)->before(function (Authorizable $user, string $ability) {
-            if (method_exists($user, 'checkPermissionTo')) {
-                return $user->checkPermissionTo($ability) ?: null;
-            }
-        });
-*/
         return true;
     }
 
     /**
      * Flush the cache.
+     *
+     * @return boolean
      */
     public function forgetCachedLanguages()
     {
@@ -111,6 +167,8 @@ class LocalisationRegistrar
      * Clear class languages.
      * This is only intended to be called by the LocalisationServiceProvider on boot,
      * so that long-running instances like Swoole don't keep old data in memory.
+     *
+     * @return void
      */
     public function clearClassLanguages()
     {
@@ -120,18 +178,22 @@ class LocalisationRegistrar
     /**
      * Get the languages based on the passed params.
      *
-     * @param array $params
+     * @param array $params Additional parameters for query.
      *
      * @return \Illuminate\Support\Collection
      */
     public function getLanguages(array $params = []): Collection
     {
         if ($this->languages === null) {
-            $this->languages = $this->cache->remember(self::$cacheKey, self::$cacheExpirationTime, function () {
-                return $this->getLanguageClass()
+            $this->languages = $this->cache->remember(
+                self::$cacheKey,
+                self::$cacheExpirationTime,
+                function () {
+                    return $this->getLanguageClass()
                     //->with('countries')
-                    ->get();
-            });
+                        ->get();
+                }
+            );
         }
 
         $languages = clone $this->languages;
@@ -173,7 +235,14 @@ class LocalisationRegistrar
         return app($this->languageClass);
     }
 
-    public function setLanguageClass($languageClass)
+    /**
+     * Set the instance of the language class.
+     *
+     * @param Language $languageClass The language class to be used.
+     *
+     * @return object
+     */
+    public function setLanguageClass(Language $languageClass)
     {
         $this->languageClass = $languageClass;
 

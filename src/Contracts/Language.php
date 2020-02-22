@@ -1,5 +1,16 @@
 <?php
 
+/**
+ * PWWeb\Localisation\Contracts
+ *
+ * Localisation Contract for Language Model.
+ *
+ * @package   PWWeb\Localisation
+ * @author    Frank Pillukeit <clients@pw-websolutions.com>
+ * @copyright 2020 pw-websolutions.com
+ * @license   http://www.opensource.org/licenses/mit-license.html  MIT License
+ */
+
 namespace PWWeb\Localisation\Contracts;
 
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
@@ -16,7 +27,7 @@ interface Language
     /**
      * Find a Language by its name.
      *
-     * @param string $name
+     * @param string $name Language name to be used to retrieve the language.
      *
      * @throws \PWWeb\Localisation\Exceptions\LanguageDoesNotExist
      *
@@ -27,7 +38,7 @@ interface Language
     /**
      * Find a Language by its id.
      *
-     * @param int $id
+     * @param int $id ID to be used to retrieve the language.
      *
      * @throws \PWWeb\Localisation\Exceptions\LanguageDoesNotExist
      *
@@ -38,20 +49,11 @@ interface Language
     /**
      * Find a Language by its locale, e.g. en-gb.
      *
-     * @param int $id
+     * @param int $locale Locale to be used to retrieve the language.
      *
      * @throws \PWWeb\Localisation\Exceptions\LanguageDoesNotExist
      *
      * @return Language
      */
     public static function findByLocale(string $locale): self;
-
-    /**
-     * Find or Create a Language by its name.
-     *
-     * @param string $name
-     *
-     * @return Language
-     */
-    public static function findOrCreate(string $name): self;
 }

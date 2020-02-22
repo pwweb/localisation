@@ -23,6 +23,11 @@ use PWWeb\Localisation\Exceptions\LanguageDoesNotExist;
 
 class Language extends Model implements LanguageContract
 {
+    /**
+     * Constructor
+     *
+     * @param array $attributes Additional attributes for model initialisation.
+     */
     public function __construct(array $attributes = [])
     {
         parent::__construct($attributes);
@@ -32,6 +37,8 @@ class Language extends Model implements LanguageContract
 
     /**
      * A language can be applied to countries.
+     *
+     * @return BelongsToMany Countries the language belongs to.
      */
     public function countries(): BelongsToMany
     {
@@ -46,7 +53,7 @@ class Language extends Model implements LanguageContract
     /**
      * Find a language by its name.
      *
-     * @param string $name
+     * @param string $name Language name to be used to retrieve the language.
      *
      * @throws \PWWeb\Localisation\Exceptions\LanguageDoesNotExist
      *
@@ -66,7 +73,7 @@ class Language extends Model implements LanguageContract
     /**
      * Find a language by its id.
      *
-     * @param int $id
+     * @param int $id ID to be used to retrieve the language.
      *
      * @throws \PWWeb\Localisation\Exceptions\LanguageDoesNotExist
      *
@@ -86,7 +93,7 @@ class Language extends Model implements LanguageContract
     /**
      * Find a language by its locale, e.g. en-gb.
      *
-     * @param int $id
+     * @param string $locale Locale to be used to retrieve the language.
      *
      * @throws \PWWeb\Localisation\Exceptions\LanguageDoesNotExist
      *
@@ -106,25 +113,11 @@ class Language extends Model implements LanguageContract
     }
 
     /**
-     * Find or create language by its name.
-     *
-     * @param string $name
-     *
-     * @return \PWWeb\Localisation\Contracts\Language
-     */
-    public static function findOrCreate(string $name): LanguageContract
-    {
-        $language = static::getLanguages(['name' => $name])->first();
-
-        if ($language === null) {
-            return static::query()->create(['name' => $name]);
-        }
-
-        return $language;
-    }
-
-    /**
      * Get the current cached languages.
+     *
+     * @param array $params Additional parameters for the database query.
+     *
+     * @return Collection Collection of languages.
      */
     protected static function getLanguages(array $params = []): Collection
     {

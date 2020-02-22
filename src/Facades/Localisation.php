@@ -8,6 +8,8 @@ class Localisation extends BaseFacade
 {
     /**
      * Get the registered name of the component.
+     *
+     * @return string Name of the facade.
      */
     public static function getFacadeAccessor()
     {
