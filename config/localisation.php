@@ -1,8 +1,29 @@
 <?php
 
 return [
-
     'models' => [
+        /*
+         *
+         */
+
+        'address' => PWWeb\Localisation\Models\Address::class,
+
+        /*
+         *
+         */
+
+        'address_type' => PWWeb\Localisation\Models\Address\Type::class,
+
+        /*
+         * When using the "HasPermissions" trait from this package, we need to know which
+         * Eloquent model should be used to retrieve your permissions. Of course, it
+         * is often just the "Country" model but you may use whatever you like.
+         *
+         * The model you want to use as a Country model needs to implement the
+         * `PWWeb\Localisation\Contracts\Country` contract.
+         */
+
+        'country' => PWWeb\Localisation\Models\Country::class,
 
         /*
          * When using the "HasPermissions" trait from this package, we need to know which
@@ -36,10 +57,24 @@ return [
          */
 
         'currency' => PWWeb\Localisation\Models\Currency::class,
-
     ],
 
     'table_names' => [
+        /*
+         * When using the "HasRoles" trait from this package, we need to know which
+         * table should be used to retrieve your roles. We have chosen a basic
+         * default value but you may easily change it to any table you like.
+         */
+
+        'addresses' => 'system_addresses',
+
+        /*
+         * When using the "HasRoles" trait from this package, we need to know which
+         * table should be used to retrieve your roles. We have chosen a basic
+         * default value but you may easily change it to any table you like.
+         */
+
+        'address_types' => 'system_address_types',
 
         /*
          * When using the "HasRoles" trait from this package, we need to know which
@@ -72,10 +107,29 @@ return [
          */
 
         'country_has_language' => 'system_localisation_country_languages',
+
+        /*
+         * When using the "HasPermissions" trait from this package, we need to know which
+         * table should be used to retrieve your models permissions. We have chosen a
+         * basic default value but you may easily change it to any table you like.
+         */
+
+        'model_has_address' => 'system_model_has_address',
+    ],
+
+    'column_names' => [
+        /*
+         * Change this if you want to name the related model primary key other than
+         * `model_id`.
+         *
+         * For example, this would be nice if your primary keys are all UUIDs. In
+         * that case, name this `model_uuid`.
+         */
+
+        'model_morph_key' => 'model_id',
     ],
 
     'cache' => [
-
         /*
          * By default all permissions are cached for 24 hours to speed up performance.
          * When permissions or roles are updated the cache is flushed automatically.
@@ -87,7 +141,7 @@ return [
          * The cache key used to store all permissions.
          */
 
-        'key' => 'spatie.permission.cache',
+        'key' => 'pwweb.localisation.cache',
 
         /*
          * When checking for a permission against a model by passing a Permission

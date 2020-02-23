@@ -1,23 +1,17 @@
 <?php
 
 /**
- * CreateLocalisationTables Migration
+ * CreateLocalisationTables Migration.
  *
  * Standard migration for the Localisation Models.
  *
- * @package   PWWeb\Localisation
  * @author    Frank Pillukeit <clients@pw-websolutions.com>
  * @copyright 2020 pw-websolutions.com
  * @license   http://www.opensource.org/licenses/mit-license.html  MIT License
  */
-
-use Illuminate\Support\Facades\Schema;
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
-
-use PWWeb\Localisation\Models\Country;
-use PWWeb\Localisation\Models\Currency;
-use PWWeb\Localisation\Models\Language;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
 use PWWeb\Localisation\Database\Seeders\CountrySeeder;
 use PWWeb\Localisation\Database\Seeders\CurrencySeeder;
 use PWWeb\Localisation\Database\Seeders\LanguageSeeder;
@@ -112,8 +106,58 @@ class CreateLocalisationTables extends Migration
             }
         );
 
+        Schema::create(
+            $tableNames['address_types'],
+            function (Blueprint $table) {
+                $table->bigIncrements('id');
+                $table->string('name');
+                $table->tinyInteger('global')->default(0);
+                $table->timestamps();
+            }
+        );
+
+        Schema::create(
+            $tableNames['addresses'],
+            function (Blueprint $table) use ($tableNames) {
+                $table->bigIncrements('id');
+                $table->unsignedBigInteger('country_id');
+                $table->unsignedBigInteger('type_id');
+                $table->string('street', 60)->nullable();
+                $table->string('street2', 60)->nullable();
+                $table->string('city', 60)->nullable();
+                $table->string('state', 60)->nullable();
+                $table->string('postcode', 10)->nullable();
+                $table->float('lat', 10, 6)->nullable();
+                $table->float('lng', 10, 6)->nullable();
+                $table->timestamps();
+
+                // Add foreign keys
+                $table->foreign('country_id')->references('id')->on($tableNames['countries']);
+                $table->foreign('type_id')->references('id')->on($tableNames['address_types']);
+            }
+        );
+
+        Schema::create(
+            $tableNames['model_has_address'],
+            function (Blueprint $table) use ($tableNames, $columnNames) {
+                $table->unsignedBigInteger('address_id');
+
+                $table->string('model_type');
+                $table->unsignedBigInteger($columnNames['model_morph_key']);
+                $table->index([$columnNames['model_morph_key'], 'model_type'], 'model_has_address_model_id_model_type_index');
+
+                $table->foreign('address_id')
+                ->references('id')
+                ->on($tableNames['addresses'])
+                ->onDelete('cascade');
+
+                $table->primary(['address_id', $columnNames['model_morph_key'], 'model_type'],
+                    'model_has_address_address_model_type_primary');
+            }
+        );
+
         app('cache')
-            ->store(config('localisation.cache.store') != 'default' ? config('localisation.cache.store') : null)
+            ->store('default' != config('localisation.cache.store') ? config('localisation.cache.store') : null)
             ->forget(config('localisation.cache.key'));
     }
 

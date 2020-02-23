@@ -1,11 +1,10 @@
 <?php
 
 /**
- * PWWeb\Localisation
+ * PWWeb\Localisation.
  *
  * Localisation Registrar.
  *
- * @package   PWWeb\Localisation
  * @author    Frank Pillukeit <clients@pw-websolutions.com>
  * @copyright 2020 pw-websolutions.com
  * @license   http://www.opensource.org/licenses/mit-license.html  MIT License
@@ -16,7 +15,7 @@ namespace PWWeb\Localisation;
 use Illuminate\Cache\CacheManager;
 use Illuminate\Contracts\Cache\Repository;
 use Illuminate\Support\Collection;
-
+use PWWeb\Localisation\Contracts\Address;
 use PWWeb\Localisation\Contracts\Country;
 use PWWeb\Localisation\Contracts\Currency;
 use PWWeb\Localisation\Contracts\Language;
@@ -36,6 +35,14 @@ class LocalisationRegistrar
      * @var \Illuminate\Cache\CacheManager
      */
     protected $cacheManager;
+
+    /**
+     * The address class used for the package.
+     * Can be either original value or overwritten for custom use.
+     *
+     * @var string
+     */
+    protected $addressClass;
 
     /**
      * The country class used for the package.
@@ -62,6 +69,13 @@ class LocalisationRegistrar
     protected $languageClass;
 
     /**
+     * The set of addresses available in the cache.
+     *
+     * @var \Illuminate\Support\Collection
+     */
+    protected $addresses;
+
+    /**
      * The set of languages available in the cache.
      *
      * @var \Illuminate\Support\Collection
@@ -71,7 +85,7 @@ class LocalisationRegistrar
     /**
      * The cache expiration time.
      *
-     * @var DateInterval|integer
+     * @var DateInterval|int
      */
     public static $cacheExpirationTime;
 
@@ -96,7 +110,8 @@ class LocalisationRegistrar
      */
     public function __construct(CacheManager $cacheManager)
     {
-        $this->countryClass  = config('localisation.models.country');
+        $this->addressClass = config('localisation.models.address');
+        $this->countryClass = config('localisation.models.country');
         $this->currencyClass = config('localisation.models.currency');
         $this->languageClass = config('localisation.models.language');
 
@@ -130,12 +145,12 @@ class LocalisationRegistrar
         $cacheDriver = config('localisation.cache.store', 'default');
 
         // when 'default' is specified, no action is required since we already have the default instance
-        if ($cacheDriver === 'default') {
+        if ('default' === $cacheDriver) {
             return $this->cacheManager->store();
         }
 
         // if an undefined cache store is specified, fallback to 'array' which is Laravel's closest equiv to 'none'
-        if (\array_key_exists($cacheDriver, config('cache.stores')) === false) {
+        if (false === \array_key_exists($cacheDriver, config('cache.stores'))) {
             $cacheDriver = 'array';
         }
 
@@ -143,9 +158,7 @@ class LocalisationRegistrar
     }
 
     /**
-     * Register the languages check method
-     *
-     * @return boolean
+     * Register the languages check method.
      */
     public function registerLanguages(): bool
     {
@@ -155,7 +168,19 @@ class LocalisationRegistrar
     /**
      * Flush the cache.
      *
-     * @return boolean
+     * @return bool
+     */
+    public function forgetCachedAddresses()
+    {
+        $this->addresses = null;
+
+        return $this->cache->forget(self::$cacheKey);
+    }
+
+    /**
+     * Flush the cache.
+     *
+     * @return bool
      */
     public function forgetCachedLanguages()
     {
@@ -177,15 +202,41 @@ class LocalisationRegistrar
     }
 
     /**
+     * Get the addresses based on the passed params.
+     *
+     * @param array $params additional parameters for query
+     */
+    public function getAddresses(array $params = []): Collection
+    {
+        if (null === $this->addresses) {
+            $this->addresses = $this->cache->remember(
+                self::$cacheKey.'.addresses',
+                self::$cacheExpirationTime,
+                function () {
+                    return $this->getAddressClass()
+                    //->with('countries')
+                        ->get();
+                }
+            );
+        }
+
+        $addresses = clone $this->addresses;
+
+        foreach ($params as $attr => $value) {
+            $addresses = $addresses->where($attr, $value);
+        }
+
+        return $addresses;
+    }
+
+    /**
      * Get the languages based on the passed params.
      *
-     * @param array $params Additional parameters for query.
-     *
-     * @return \Illuminate\Support\Collection
+     * @param array $params additional parameters for query
      */
     public function getLanguages(array $params = []): Collection
     {
-        if ($this->languages === null) {
+        if (null === $this->languages) {
             $this->languages = $this->cache->remember(
                 self::$cacheKey,
                 self::$cacheExpirationTime,
@@ -207,9 +258,17 @@ class LocalisationRegistrar
     }
 
     /**
-     * Get an instance of the country class.
+     * Get an instance of the address class.
      *
-     * @return \PWWeb\Localisation\Contracts\Country
+     * @return PWWeb\Localisation\Contract\Address
+     */
+    public function getAddressClass(): Address
+    {
+        return app($this->addressClass);
+    }
+
+    /**
+     * Get an instance of the country class.
      */
     public function getCountryClass(): Country
     {
@@ -218,8 +277,6 @@ class LocalisationRegistrar
 
     /**
      * Get an instance of the currency class.
-     *
-     * @return \PWWeb\Localisation\Contracts\Currency
      */
     public function getCurrencyClass(): Currency
     {
@@ -228,8 +285,6 @@ class LocalisationRegistrar
 
     /**
      * Get an instance of the language class.
-     *
-     * @return \PWWeb\Localisation\Contracts\Language
      */
     public function getLanguageClass(): Language
     {
@@ -237,9 +292,23 @@ class LocalisationRegistrar
     }
 
     /**
+     * Set the instance of the address class.
+     *
+     * @param string $addressClass the address class to be used
+     *
+     * @return object
+     */
+    public function setAddressClass(string $addressClass)
+    {
+        $this->addressClass = $addressClass;
+
+        return $this;
+    }
+
+    /**
      * Set the instance of the language class.
      *
-     * @param string $languageClass The language class to be used.
+     * @param string $languageClass the language class to be used
      *
      * @return object
      */
@@ -252,8 +321,6 @@ class LocalisationRegistrar
 
     /**
      * Get the instance of the Cache Store.
-     *
-     * @return \Illuminate\Contracts\Cache\Store
      */
     public function getCacheStore(): \Illuminate\Contracts\Cache\Store
     {
