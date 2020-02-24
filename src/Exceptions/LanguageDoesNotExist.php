@@ -1,11 +1,10 @@
 <?php
 
 /**
- * PWWeb\Localisation\Exceptions
+ * PWWeb\Localisation\Exceptions.
  *
- * Localisation Registrar.
+ * Language does not exist exception.
  *
- * @package   PWWeb\Localisation
  * @author    Frank Pillukeit <clients@pw-websolutions.com>
  * @copyright 2020 pw-websolutions.com
  * @license   http://www.opensource.org/licenses/mit-license.html  MIT License
@@ -20,7 +19,7 @@ class LanguageDoesNotExist extends InvalidArgumentException
     /**
      * Creates an exception with an error message based on the language name or locale.
      *
-     * @param string $languageName The language name or locale.
+     * @param string $languageName the language name or locale
      *
      * @return static
      */
@@ -32,7 +31,7 @@ class LanguageDoesNotExist extends InvalidArgumentException
     /**
      * Creates an exception with an error message based on the language ID.
      *
-     * @param int $languageId The language ID which does not exist in the database.
+     * @param int $languageId the language ID which does not exist in the database
      *
      * @return static
      */
