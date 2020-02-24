@@ -83,7 +83,7 @@ class Localisation
 
         if ($locale === '') {
             $locale = app()->getLocale();
-        } elseif ($locale === $fallbackLocale) {
+        } else if ($locale === $fallbackLocale) {
             $locale = 'en-gb';
         } else {
             $locale = $fallbackLocale . '-' . $fallbackLocale;

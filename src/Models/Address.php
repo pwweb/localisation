@@ -15,6 +15,7 @@ namespace PWWeb\Localisation\Models;
 
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use PWWeb\Localisation\Contracts\Address as AddressContract;
 use PWWeb\Localisation\LocalisationRegistrar;
 use PWWeb\Localisation\Models\Address\Type;
@@ -42,12 +43,18 @@ class Address extends Model implements AddressContract
         $this->setTable(config('localisation.table_names.addresses'));
     }
 
-    public function type()
+    /**
+     * An address can be of only one type (e.g. private, work, etc).
+     */
+    public function type(): BelongsTo
     {
         return $this->belongsTo(Address\Type::class);
     }
 
-    public function country()
+    /**
+     * An address belongs to a country.
+     */
+    public function country(): BelongsTo
     {
         return $this->belongsTo(Country::class);
     }

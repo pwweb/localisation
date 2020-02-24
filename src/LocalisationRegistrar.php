@@ -85,7 +85,7 @@ class LocalisationRegistrar
     /**
      * The cache expiration time.
      *
-     * @var DateInterval|int
+     * @var DateInterval|integer
      */
     public static $cacheExpirationTime;
 
@@ -210,7 +210,7 @@ class LocalisationRegistrar
     {
         if (null === $this->addresses) {
             $this->addresses = $this->cache->remember(
-                self::$cacheKey.'.addresses',
+                self::$cacheKey . '.addresses',
                 self::$cacheExpirationTime,
                 function () {
                     return $this->getAddressClass()

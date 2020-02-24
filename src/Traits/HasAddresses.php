@@ -26,9 +26,12 @@ trait HasAddresses
      */
     private $addressClass;
 
-    public function getAddressClass()
+    /**
+     * Retrieve and return the address class to be used.
+     */
+    public function getAddressClass(): string
     {
-        if (! isset($this->addressClass)) {
+        if (false === isset($this->addressClass)) {
             $this->addressClass = app(LocalisationRegistrar::class)->getAddressClass();
         }
 
@@ -52,7 +55,7 @@ trait HasAddresses
     /**
      * Assign the given address(es) to the model.
      *
-     * @param array|string|\PWWeb\Localisation\Contracts\Address ...$addresses
+     * @param array|string|\PWWeb\Localisation\Contracts\Address ...$addresses One or multiple addresses to be added to the user.
      *
      * @return $this
      */
@@ -60,22 +63,26 @@ trait HasAddresses
     {
         $addresses = collect($addresses)
             ->flatten()
-            ->map(function ($address) {
-                if (empty($address)) {
-                    return false;
-                }
+            ->map(
+                function ($address) {
+                    if (true === empty($address)) {
+                        return false;
+                    }
 
-                return $this->getStoredAddress($address);
-            })
-            ->filter(function ($address) {
-                return $address instanceof Address;
-            })
+                    return $this->getStoredAddress($address);
+                }
+            )
+            ->filter(
+                function ($address) {
+                    return $address instanceof Address;
+                }
+            )
             ->map->id
             ->all();
 
         $model = $this->getModel();
 
-        if ($model->exists) {
+        if (true === $model->exists) {
             $this->addresses()->sync($addresses, false);
             $model->load('addresses');
         } else {
@@ -90,7 +97,8 @@ trait HasAddresses
                     $object->addresses()->sync($addresses, false);
                     $object->load('addresses');
                     $modelLastFiredOn = $object;
-                });
+                }
+            );
         }
 
         //$this->forgetCachedAddresses();
@@ -98,16 +106,21 @@ trait HasAddresses
         return $this;
     }
 
+    /**
+     * Get a stored address from the cache.
+     *
+     * @param int|string $address Address to be retrieved from cache
+     */
     protected function getStoredAddress($address): Address
     {
         $addressClass = $this->getAddressClass();
 
-        if (is_numeric($address)) {
-            return $addressClass->findById($address, $this->getDefaultGuardName());
+        if (true === is_numeric($address)) {
+            return $addressClass->findById($address);
         }
 
-        if (is_string($address)) {
-            return $addressClass->findByName($address, $this->getDefaultGuardName());
+        if (true === is_string($address)) {
+            return $addressClass->findByName($address);
         }
 
         return $address;
