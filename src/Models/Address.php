@@ -40,7 +40,7 @@ class Address extends Model implements AddressContract
     {
         parent::__construct($attributes);
 
-        $this->setTable(config('localisation.table_names.addresses'));
+        $this->setTable(config('pwweb.localisation.table_names.addresses'));
     }
 
     /**

@@ -111,11 +111,11 @@ class LocalisationRegistrar
      */
     public function __construct(CacheManager $cacheManager)
     {
-        $this->addressClass = config('localisation.models.address');
-        $this->addressTypeClass = config('localisation.models.address_type');
-        $this->countryClass = config('localisation.models.country');
-        $this->currencyClass = config('localisation.models.currency');
-        $this->languageClass = config('localisation.models.language');
+        $this->addressClass = config('pwweb.localisation.models.address');
+        $this->addressTypeClass = config('pwweb.localisation.models.address_type');
+        $this->countryClass = config('pwweb.localisation.models.country');
+        $this->currencyClass = config('pwweb.localisation.models.currency');
+        $this->languageClass = config('pwweb.localisation.models.language');
 
         $this->cacheManager = $cacheManager;
         $this->initializeCache();
@@ -128,10 +128,10 @@ class LocalisationRegistrar
      */
     protected function initializeCache()
     {
-        self::$cacheExpirationTime = config('localisation.cache.expiration_time', config('localisation.cache_expiration_time'));
+        self::$cacheExpirationTime = config('pwweb.localisation.cache.expiration_time', config('pwweb.localisation.cache_expiration_time'));
 
-        self::$cacheKey = config('localisation.cache.key');
-        self::$cacheModelKey = config('localisation.cache.model_key');
+        self::$cacheKey = config('pwweb.localisation.cache.key');
+        self::$cacheModelKey = config('pwweb.localisation.cache.model_key');
 
         $this->cache = $this->getCacheStoreFromConfig();
     }
@@ -144,7 +144,7 @@ class LocalisationRegistrar
     protected function getCacheStoreFromConfig(): Repository
     {
         // the 'default' fallback here is from the localisation.php config file, where 'default' means to use config(cache.default)
-        $cacheDriver = config('localisation.cache.store', 'default');
+        $cacheDriver = config('pwweb.localisation.cache.store', 'default');
 
         // when 'default' is specified, no action is required since we already have the default instance
         if ('default' === $cacheDriver) {

@@ -43,10 +43,10 @@ trait HasAddresses
     public function addresses(): MorphToMany
     {
         return $this->morphToMany(
-            config('localisation.models.address'),
+            config('pwweb.localisation.models.address'),
             'model',
-            config('localisation.table_names.model_has_address'),
-            config('localisation.column_names.model_morph_key'),
+            config('pwweb.localisation.table_names.model_has_address'),
+            config('pwweb.localisation.column_names.model_morph_key'),
             'address_id'
         );
     }

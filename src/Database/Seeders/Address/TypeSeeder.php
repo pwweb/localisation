@@ -37,7 +37,7 @@ class TypeSeeder extends Seeder
             $types[$id] = array_merge($type, ['created_at' => $createdAt, 'updated_at' => $createdAt]);
         }
 
-        $tableNames = config('localisation.table_names');
+        $tableNames = config('pwweb.localisation.table_names');
 
         DB::table($tableNames['address_types'])->insert($types);
     }

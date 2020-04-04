@@ -35,7 +35,7 @@ class Type extends Model implements AddressTypeContract
     {
         parent::__construct($attributes);
 
-        $this->setTable(config('localisation.table_names.address_types'));
+        $this->setTable(config('pwweb.localisation.table_names.address_types'));
     }
 
     public function getNameAttribute($value)

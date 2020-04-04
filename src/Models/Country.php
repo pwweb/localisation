@@ -27,7 +27,7 @@ class Country extends Model implements CountryContract
     {
         parent::__construct($attributes);
 
-        $this->setTable(config('localisation.table_names.countries'));
+        $this->setTable(config('pwweb.localisation.table_names.countries'));
     }
 
     /**
@@ -38,8 +38,8 @@ class Country extends Model implements CountryContract
     public function languages(): HasMany
     {
         return $this->hasMany(
-            config('localisation.models.languages'),
-            config('localisation.table_names.country_has_language'),
+            config('pwweb.localisation.models.languages'),
+            config('pwweb.localisation.table_names.country_has_language'),
             'country_id',
             'language_id'
         );

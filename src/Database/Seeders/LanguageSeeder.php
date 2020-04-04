@@ -36,7 +36,7 @@ class LanguageSeeder extends Seeder
             $languages[$id] = array_merge($language, ['created_at' => $createdAt, 'updated_at' => $createdAt]);
         }
 
-        $tableNames = config('localisation.table_names');
+        $tableNames = config('pwweb.localisation.table_names');
 
         DB::table($tableNames['languages'])->insert($languages);
     }

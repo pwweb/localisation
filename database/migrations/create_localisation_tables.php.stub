@@ -26,8 +26,8 @@ class CreateLocalisationTables extends Migration
      */
     public function up()
     {
-        $tableNames = config('localisation.table_names');
-        $columnNames = config('localisation.column_names');
+        $tableNames = config('pwweb.localisation.table_names');
+        $columnNames = config('pwweb.localisation.column_names');
 
         Schema::create(
             $tableNames['countries'],
@@ -164,8 +164,8 @@ class CreateLocalisationTables extends Migration
         );
 
         app('cache')
-            ->store('default' != config('localisation.cache.store') ? config('localisation.cache.store') : null)
-            ->forget(config('localisation.cache.key'));
+            ->store('default' != config('pwweb.localisation.cache.store') ? config('pwweb.localisation.cache.store') : null)
+            ->forget(config('pwweb.localisation.cache.key'));
     }
 
     /**
@@ -175,7 +175,7 @@ class CreateLocalisationTables extends Migration
      */
     public function down()
     {
-        $tableNames = config('localisation.table_names');
+        $tableNames = config('pwweb.localisation.table_names');
 
         Schema::dropIfExists($tableNames['countries']);
         Schema::dropIfExists($tableNames['currencies']);

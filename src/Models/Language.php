@@ -30,7 +30,7 @@ class Language extends Model implements LanguageContract
     {
         parent::__construct($attributes);
 
-        $this->setTable(config('localisation.table_names.languages'));
+        $this->setTable(config('pwweb.localisation.table_names.languages'));
     }
 
     /**
@@ -41,8 +41,8 @@ class Language extends Model implements LanguageContract
     public function countries(): BelongsToMany
     {
         return $this->belongsToMany(
-            config('localisation.models.countries'),
-            config('localisation.table_names.country_has_language'),
+            config('pwweb.localisation.models.countries'),
+            config('pwweb.localisation.table_names.country_has_language'),
             'language_id',
             'country_id'
         );

@@ -26,6 +26,6 @@ class Currency extends Model implements CountryContract
     {
         parent::__construct($attributes);
 
-        $this->setTable(config('localisation.table_names.currencies'));
+        $this->setTable(config('pwweb.localisation.table_names.currencies'));
     }
 }

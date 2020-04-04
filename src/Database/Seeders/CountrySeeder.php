@@ -273,7 +273,7 @@ class CountrySeeder extends Seeder
             $countries[$id] = array_merge($country, ['created_at' => $createdAt, 'updated_at' => $createdAt]);
         }
 
-        $tableNames = config('localisation.table_names');
+        $tableNames = config('pwweb.localisation.table_names');
 
         DB::table($tableNames['countries'])->insert($countries);
     }

@@ -68,7 +68,7 @@ class CurrencySeeder extends Seeder
             $currencies[$id] = array_merge($currency, ['created_at' => $createdAt, 'updated_at' => $createdAt]);
         }
 
-        $tableNames = config('localisation.table_names');
+        $tableNames = config('pwweb.localisation.table_names');
 
         DB::table($tableNames['currencies'])->insert($currencies);
     }

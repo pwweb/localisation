@@ -31,7 +31,7 @@ class LocalisationServiceProvider extends ServiceProvider
     {
         $this->mergeConfigFrom(
             __DIR__.'/../config/localisation.php',
-            'localisation'
+            'pwweb.localisation'
         );
 
         // Register controllers.
@@ -57,7 +57,7 @@ class LocalisationServiceProvider extends ServiceProvider
             // function not available and 'publish' not relevant in Lumen
             $this->publishes(
                 [
-                __DIR__.'/../config/localisation.php' => config_path('localisation.php'),
+                __DIR__.'/../config/localisation.php' => config_path('pwweb/localisation.php'),
                 ],
                 'pwweb.localisation.config'
             );
@@ -113,7 +113,7 @@ class LocalisationServiceProvider extends ServiceProvider
      */
     protected function registerModelBindings()
     {
-        $config = $this->app->config['localisation.models'];
+        $config = $this->app->config['pwweb.localisation.models'];
 
         $this->app->bind(CountryContract::class, $config['country']);
         $this->app->bind(LanguageContract::class, $config['language']);
