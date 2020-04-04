@@ -1,21 +1,20 @@
 <?php
 
-namespace PWWeb\Localisation\Traits;
-
-/*
- * PWWeb\Localisation\Traits HasAddresses
+/**
+ * PWWEB\Localisation\Traits HasAddresses.
  *
  * HasAddresses trait for use with other models.
  *
- * @package   PWWeb\Localisation
  * @author    Frank Pillukeit <clients@pw-websolutions.com>
  * @copyright 2020 pw-websolutions.com
  * @license   http://www.opensource.org/licenses/mit-license.html  MIT License
  */
 
+namespace PWWEB\Localisation\Traits;
+
 use Illuminate\Database\Eloquent\Relations\MorphToMany;
-use PWWeb\Localisation\LocalisationRegistrar;
-use PWWeb\Localisation\Models\Address;
+use PWWEB\Localisation\LocalisationRegistrar;
+use PWWEB\Localisation\Models\Address;
 
 trait HasAddresses
 {
