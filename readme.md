@@ -29,6 +29,35 @@ $ php artisan migrate
 
 In progress.
 
+## FAQs
+
+During install via composer you get the following messages:
+```php
+ ErrorException  : Trying to access array offset on value of type null
+
+  at /var/www/vendor/pwweb/localisation/src/LocalisationServiceProvider.php:107
+    103|     protected function registerModelBindings()
+    104|     {
+    105|         $config = $this->app->config['localisation.models'];
+    106|
+  > 107|         $this->app->bind(CountryContract::class, $config['country']);
+    108|         $this->app->bind(LanguageContract::class, $config['language']);
+    109|         $this->app->bind(CurrencyContract::class, $config['currency']);
+    110|     }
+    111|
+
+  Exception trace:
+
+  1   Illuminate\Foundation\Bootstrap\HandleExceptions::handleError("Trying to access array offset on value of type null", "/var/www/vendor/pwweb/localisation/src/LocalisationServiceProvider.php", [])
+      /var/www/vendor/pwweb/localisation/src/LocalisationServiceProvider.php:107
+
+  2   PWWeb\Localisation\LocalisationServiceProvider::registerModelBindings()
+      /var/www/vendor/pwweb/localisation/src/LocalisationServiceProvider.php:81
+
+  Please use the argument -v to see more details.
+```
+This is due to the command `php artisan config:cache` has been run. We suggest you delete the cache file `bootstrap/cache/config.php` and then run `composer dump-autoload` to be sure.
+
 ## Change log
 
 Please see the [changelog](changelog.md) for more information on what has changed recently.
