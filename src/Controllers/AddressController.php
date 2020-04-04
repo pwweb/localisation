@@ -9,7 +9,7 @@ use PWWEB\Localisation\Models\Country;
 class AddressController extends Controller
 {
     /**
-     * Show the localisation dashboard.
+     * Show a list of addresses.
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
@@ -17,6 +17,11 @@ class AddressController extends Controller
     {
     }
 
+    /**
+     * Show the address form for creation.
+     *
+     * @return \Illuminate\Contracts\Support\Renderable
+     */
     public function create()
     {
         $types = Type::all();
@@ -25,6 +30,11 @@ class AddressController extends Controller
         return view('localisation::address.add', compact('types', 'countries'));
     }
 
+    /**
+     * Store an address.
+     *
+     * @return \Illuminate\Contracts\Support\Renderable
+     */
     public function store()
     {
     }

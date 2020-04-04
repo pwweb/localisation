@@ -35,6 +35,8 @@ class Address extends Model implements AddressContract
      * Constructor.
      *
      * @param array $attributes additional attributes for model initialisation
+     *
+     * @return void
      */
     public function __construct(array $attributes = [])
     {
@@ -45,6 +47,8 @@ class Address extends Model implements AddressContract
 
     /**
      * An address can be of only one type (e.g. private, work, etc).
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function type(): BelongsTo
     {
@@ -53,6 +57,8 @@ class Address extends Model implements AddressContract
 
     /**
      * An address belongs to a country.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function country(): BelongsTo
     {
@@ -64,7 +70,9 @@ class Address extends Model implements AddressContract
      *
      * @param int $id ID to be used to retrieve the address
      *
-     * @throws \PWWeb\Localisation\Exceptions\AddressDoesNotExist
+     * @throws \PWWEB\Localisation\Exceptions\AddressDoesNotExist
+     *
+     * @return \PWWEB\Localisation\Contracts\Address
      */
     public static function findById(int $id): AddressContract
     {
@@ -82,7 +90,9 @@ class Address extends Model implements AddressContract
      *
      * @param string $type Address type to be used to retrieve the address
      *
-     * @throws \PWWeb\Localisation\Exceptions\AddressDoesNotExist
+     * @throws \PWWEB\Localisation\Exceptions\AddressDoesNotExist
+     *
+     * @return \PWWEB\Localisation\Contracts\Address
      */
     public static function findByType(string $type): AddressContract
     {

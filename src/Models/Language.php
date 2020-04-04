@@ -25,6 +25,8 @@ class Language extends Model implements LanguageContract
      * Constructor.
      *
      * @param array $attributes additional attributes for model initialisation
+     *
+     * @return void
      */
     public function __construct(array $attributes = [])
     {
@@ -53,7 +55,9 @@ class Language extends Model implements LanguageContract
      *
      * @param string $name language name to be used to retrieve the language
      *
-     * @throws \PWWeb\Localisation\Exceptions\LanguageDoesNotExist
+     * @throws \PWWEB\Localisation\Exceptions\LanguageDoesNotExist
+     *
+     * @return \PWWEB\Localisation\Contracts\Language
      */
     public static function findByName(string $name): LanguageContract
     {
@@ -71,7 +75,9 @@ class Language extends Model implements LanguageContract
      *
      * @param int $id ID to be used to retrieve the language
      *
-     * @throws \PWWeb\Localisation\Exceptions\LanguageDoesNotExist
+     * @throws \PWWEB\Localisation\Exceptions\LanguageDoesNotExist
+     *
+     * @return \PWWEB\Localisation\Contracts\Language
      */
     public static function findById(int $id): LanguageContract
     {
@@ -89,7 +95,9 @@ class Language extends Model implements LanguageContract
      *
      * @param string $locale locale to be used to retrieve the language
      *
-     * @throws \PWWeb\Localisation\Exceptions\LanguageDoesNotExist
+     * @throws \PWWEB\Localisation\Exceptions\LanguageDoesNotExist
+     *
+     * @return \PWWEB\Localisation\Contracts\Language
      */
     public static function findByLocale(string $locale): LanguageContract
     {
@@ -116,6 +124,13 @@ class Language extends Model implements LanguageContract
             ->getLanguages($params);
     }
 
+    /**
+     * Obtain the available locales.
+     *
+     * @param array $params Set of additional params for querying.
+     *
+     * @return array
+     */
     protected static function getLocales(array $params = []): array
     {
         $locales = [];

@@ -11,6 +11,8 @@ class LanguageController extends Controller
     /**
      * Switch the locale.
      *
+     * @param string $locale Locale that should be switched to
+     *
      * @return \Illuminate\Contracts\Support\Renderable
      */
     public function switch($locale)

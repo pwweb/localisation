@@ -18,6 +18,8 @@ interface Language
 {
     /**
      * A language can be applied to countries.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      */
     public function countries(): BelongsToMany;
 

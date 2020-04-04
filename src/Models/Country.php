@@ -22,6 +22,8 @@ class Country extends Model implements CountryContract
      * Constructor.
      *
      * @param array $attributes additional attributes for model initialisation
+     *
+     * @return void
      */
     public function __construct(array $attributes = [])
     {
@@ -33,7 +35,7 @@ class Country extends Model implements CountryContract
     /**
      * A country can have multiple languages.
      *
-     * @return HasMany collection of languages used in the country
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany collection of languages used in the country
      */
     public function languages(): HasMany
     {
@@ -45,12 +47,19 @@ class Country extends Model implements CountryContract
         );
     }
 
+    /**
+     * Obtain a localised country name.
+     *
+     * @param string $value Original value.
+     *
+     * @return string Localised country name.
+     */
     public function getNameAttribute($value)
     {
         if (null === $value || '' === $value) {
             return '';
         }
 
-        return __('pwweb::localization.'.$value);
+        return __('pwweb::localization.' . $value);
     }
 }

@@ -86,7 +86,7 @@ class LocalisationRegistrar
     /**
      * The cache expiration time.
      *
-     * @var DateInterval|int
+     * @var DateInterval|integer
      */
     public static $cacheExpirationTime;
 
@@ -161,6 +161,8 @@ class LocalisationRegistrar
 
     /**
      * Register the languages check method.
+     *
+     * @return bool
      */
     public function registerLanguages(): bool
     {
@@ -207,12 +209,14 @@ class LocalisationRegistrar
      * Get the addresses based on the passed params.
      *
      * @param array $params additional parameters for query
+     *
+     * @return \Illuminate\Support\Collection
      */
     public function getAddresses(array $params = []): Collection
     {
         if (null === $this->addresses) {
             $this->addresses = $this->cache->remember(
-                self::$cacheKey.'.addresses',
+                self::$cacheKey . '.addresses',
                 self::$cacheExpirationTime,
                 function () {
                     return $this->getAddressClass()
@@ -236,6 +240,8 @@ class LocalisationRegistrar
      * Get the languages based on the passed params.
      *
      * @param array $params additional parameters for query
+     *
+     * @return \Illuminate\Support\Collection
      */
     public function getLanguages(array $params = []): Collection
     {
@@ -340,6 +346,8 @@ class LocalisationRegistrar
 
     /**
      * Get the instance of the Cache Store.
+     *
+     * @return \Illuminate\Contracts\Cache\Store
      */
     public function getCacheStore(): \Illuminate\Contracts\Cache\Store
     {

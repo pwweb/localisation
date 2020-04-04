@@ -27,6 +27,8 @@ trait HasAddresses
 
     /**
      * Retrieve and return the address class to be used.
+     *
+     * @return string
      */
     public function getAddressClass(): string
     {
@@ -39,6 +41,8 @@ trait HasAddresses
 
     /**
      * A model may have multiple addresses.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\MorphToMany
      */
     public function addresses(): MorphToMany
     {
@@ -56,7 +60,7 @@ trait HasAddresses
      *
      * @param array|string|\PWWeb\Localisation\Contracts\Address ...$addresses One or multiple addresses to be added to the user.
      *
-     * @return $this
+     * @return mixed
      */
     public function assignAddress(...$addresses)
     {
@@ -100,7 +104,7 @@ trait HasAddresses
             );
         }
 
-        //$this->forgetCachedAddresses();
+        // TEMP: $this->forgetCachedAddresses();
 
         return $this;
     }
@@ -109,6 +113,8 @@ trait HasAddresses
      * Get a stored address from the cache.
      *
      * @param int|string $address Address to be retrieved from cache
+     *
+     * @return \PWWeb\Localisation\Contracts\Address
      */
     protected function getStoredAddress($address): Address
     {

@@ -38,12 +38,19 @@ class Type extends Model implements AddressTypeContract
         $this->setTable(config('pwweb.localisation.table_names.address_types'));
     }
 
+    /**
+     * Obtain the localised name of a country.
+     *
+     * @param string $value Original value of the country
+     *
+     * @return string
+     */
     public function getNameAttribute($value)
     {
         if (null === $value || '' === $value) {
             return '';
         }
 
-        return __('pwweb::localization.'.$value);
+        return __('pwweb::localization.' . $value);
     }
 }
