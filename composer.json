@@ -20,21 +20,21 @@
     },
     "autoload": {
         "psr-4": {
-            "PWWeb\\Localisation\\": "src/"
+            "PWWEB\\Localisation\\": "src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "PWWeb\\Localisation\\Tests\\": "tests"
+            "PWWEB\\Localisation\\Tests\\": "tests"
         }
     },
     "extra": {
         "laravel": {
             "providers": [
-                "PWWeb\\Localisation\\LocalisationServiceProvider"
+                "PWWEB\\Localisation\\LocalisationServiceProvider"
             ],
             "aliases": {
-                "Localisation": "PWWeb\\Localisation\\Facades\\Localisation"
+                "Localisation": "PWWEB\\Localisation\\Facades\\Localisation"
             }
         }
     }
