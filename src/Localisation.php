@@ -15,7 +15,7 @@ namespace PWWEB\Localisation;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Support\Str;
-use PWWEB\Localisation\Contracts\Language;
+use PWWEB\Localisation\Contracts\Language as LanguageContract;
 use PWWEB\Localisation\Models\Language;
 
 class Localisation
@@ -81,10 +81,10 @@ class Localisation
 
         if ('' === $locale) {
             $locale = app()->getLocale();
-        } else if ($locale === $fallbackLocale) {
+        } elseif ($locale === $fallbackLocale) {
             $locale = 'en-GB';
         } else {
-            $locale = $fallbackLocale . '-' . strtoupper($fallbackLocale);
+            $locale = $fallbackLocale.'-'.strtoupper($fallbackLocale);
         }
 
         try {
