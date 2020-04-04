@@ -16,6 +16,7 @@ use Illuminate\Cache\CacheManager;
 use Illuminate\Contracts\Cache\Repository;
 use Illuminate\Support\Collection;
 use PWWeb\Localisation\Contracts\Address;
+use PWWeb\Localisation\Contracts\Address\Type as AddressType;
 use PWWeb\Localisation\Contracts\Country;
 use PWWeb\Localisation\Contracts\Currency;
 use PWWeb\Localisation\Contracts\Language;
@@ -85,7 +86,7 @@ class LocalisationRegistrar
     /**
      * The cache expiration time.
      *
-     * @var DateInterval|integer
+     * @var DateInterval|int
      */
     public static $cacheExpirationTime;
 
@@ -111,6 +112,7 @@ class LocalisationRegistrar
     public function __construct(CacheManager $cacheManager)
     {
         $this->addressClass = config('localisation.models.address');
+        $this->addressTypeClass = config('localisation.models.address_type');
         $this->countryClass = config('localisation.models.country');
         $this->currencyClass = config('localisation.models.currency');
         $this->languageClass = config('localisation.models.language');
@@ -210,11 +212,11 @@ class LocalisationRegistrar
     {
         if (null === $this->addresses) {
             $this->addresses = $this->cache->remember(
-                self::$cacheKey . '.addresses',
+                self::$cacheKey.'.addresses',
                 self::$cacheExpirationTime,
                 function () {
                     return $this->getAddressClass()
-                    //->with('countries')
+                        //->with('system_address_types')
                         ->get();
                 }
             );
@@ -223,6 +225,7 @@ class LocalisationRegistrar
         $addresses = clone $this->addresses;
 
         foreach ($params as $attr => $value) {
+            $attr = 'type' === $attr ? 'type.name' : $attr;
             $addresses = $addresses->where($attr, $value);
         }
 
@@ -268,7 +271,19 @@ class LocalisationRegistrar
     }
 
     /**
+     * Get an instance of the address class.
+     *
+     * @return PWWeb\Localisation\Contract\Address\Type
+     */
+    public function getAddressTypeClass(): AddressType
+    {
+        return app($this->addressTypeClass);
+    }
+
+    /**
      * Get an instance of the country class.
+     *
+     * @return PWWeb\Localisation\Contract\Country
      */
     public function getCountryClass(): Country
     {
@@ -277,6 +292,8 @@ class LocalisationRegistrar
 
     /**
      * Get an instance of the currency class.
+     *
+     * @return PWWeb\Localisation\Contract\Currency
      */
     public function getCurrencyClass(): Currency
     {
@@ -285,6 +302,8 @@ class LocalisationRegistrar
 
     /**
      * Get an instance of the language class.
+     *
+     * @return PWWeb\Localisation\Contract\Language
      */
     public function getLanguageClass(): Language
     {

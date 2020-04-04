@@ -1,11 +1,10 @@
 <?php
 
 /**
- * PWWeb\Localisation\Database\Seeders\Country Seeder
+ * PWWeb\Localisation\Database\Seeders\Country Seeder.
  *
  * Standard seeder for the Country Model.
  *
- * @package   PWWeb\Localisation
  * @author    Frank Pillukeit <clients@pw-websolutions.com>
  * @copyright 2020 pw-websolutions.com
  * @license   http://www.opensource.org/licenses/mit-license.html  MIT License
@@ -15,9 +14,6 @@ namespace PWWeb\Localisation\Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Str;
-
-use PWWeb\Localisation\Models\Country;
 
 class CountrySeeder extends Seeder
 {
@@ -158,7 +154,6 @@ class CountrySeeder extends Seeder
         $countries[] = ['iso' => 'LT', 'ioc' => 'LTU', 'name' => 'Lithuania', 'active' => 0];
         $countries[] = ['iso' => 'LU', 'ioc' => 'LUX', 'name' => 'Luxembourg', 'active' => 0];
         $countries[] = ['iso' => 'MO', 'ioc' => 'MAC', 'name' => 'Macao', 'active' => 0];
-        $countries[] = ['iso' => 'MK', 'ioc' => null, 'name' => 'Macedonia, The Former Yogoslav Republic of', 'active' => 0];
         $countries[] = ['iso' => 'MG', 'ioc' => 'MAD', 'name' => 'Madagascar', 'active' => 0];
         $countries[] = ['iso' => 'MW', 'ioc' => 'MAW', 'name' => 'Malawi', 'active' => 0];
         $countries[] = ['iso' => 'MY', 'ioc' => 'MAL', 'name' => 'Malaysia', 'active' => 0];
@@ -191,6 +186,7 @@ class CountrySeeder extends Seeder
         $countries[] = ['iso' => 'NG', 'ioc' => 'NGR', 'name' => 'Nigeria', 'active' => 0];
         $countries[] = ['iso' => 'NU', 'ioc' => null, 'name' => 'Niue', 'active' => 0];
         $countries[] = ['iso' => 'NF', 'ioc' => null, 'name' => 'Norfolk Island', 'active' => 0];
+        $countries[] = ['iso' => 'MK', 'ioc' => 'MKD', 'name' => 'North Macedonia', 'active' => 0];
         $countries[] = ['iso' => 'MP', 'ioc' => null, 'name' => 'Northern Mariana Islands', 'active' => 0];
         $countries[] = ['iso' => 'NO', 'ioc' => 'NOR', 'name' => 'Norway', 'active' => 0];
         $countries[] = ['iso' => 'OM', 'ioc' => 'OMA', 'name' => 'Oman', 'active' => 0];
@@ -202,7 +198,7 @@ class CountrySeeder extends Seeder
         $countries[] = ['iso' => 'PY', 'ioc' => 'PAR', 'name' => 'Paraguay', 'active' => 0];
         $countries[] = ['iso' => 'PE', 'ioc' => 'PER', 'name' => 'Peru', 'active' => 0];
         $countries[] = ['iso' => 'PH', 'ioc' => 'PHI', 'name' => 'Philippines', 'active' => 0];
-        $countries[] = ['iso' => 'PN', 'ioc' => null, 'name' => 'Pitcairn', 'active' => 0];
+        $countries[] = ['iso' => 'PN', 'ioc' => null, 'name' => 'Pitcairn Islands', 'active' => 0];
         $countries[] = ['iso' => 'PL', 'ioc' => 'POL', 'name' => 'Poland', 'active' => 0];
         $countries[] = ['iso' => 'PT', 'ioc' => 'POR', 'name' => 'Portugal', 'active' => 0];
         $countries[] = ['iso' => 'PR', 'ioc' => 'PUR', 'name' => 'Puerto Rico', 'active' => 0];

@@ -79,6 +79,24 @@ class Address extends Model implements AddressContract
     }
 
     /**
+     * Find an address by its type.
+     *
+     * @param string $type Address type to be used to retrieve the address
+     *
+     * @throws \PWWeb\Localisation\Exceptions\AddressDoesNotExist
+     */
+    public static function findByType(string $type): AddressContract
+    {
+        $address = static::getAddresses(['type' => $type])->first();
+
+        if (null === $address) {
+            throw AddressDoesNotExist::withType($type);
+        }
+
+        return $address;
+    }
+
+    /**
      * Get the current cached addresses.
      *
      * @param array $params additional parameters for the database query

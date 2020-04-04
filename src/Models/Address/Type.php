@@ -14,8 +14,9 @@
 namespace PWWeb\Localisation\Models\Address;
 
 use Illuminate\Database\Eloquent\Model;
+use PWWeb\Localisation\Contracts\Address\Type as AddressTypeContract;
 
-class Type extends Model
+class Type extends Model implements AddressTypeContract
 {
     /**
      * The attributes that are mass assignable.
@@ -36,5 +37,14 @@ class Type extends Model
         parent::__construct($attributes);
 
         $this->setTable(config('localisation.table_names.address_types'));
+    }
+
+    public function getNameAttribute($value)
+    {
+        if (null === $value || '' === $value) {
+            return '';
+        }
+
+        return __('pwweb::localization.'.$value);
     }
 }

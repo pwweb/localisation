@@ -39,4 +39,16 @@ class AddressDoesNotExist extends InvalidArgumentException
     {
         return new static("There is no [address] with id `{$addressId}`.");
     }
+
+    /**
+     * Creates an exception with an error message based on the address type name.
+     *
+     * @param string $addressType The address type name which does not exist in the database
+     *
+     * @return static
+     */
+    public static function withType(string $addressType)
+    {
+        return new static("There is no [address] with type `{$addressType}`.");
+    }
 }

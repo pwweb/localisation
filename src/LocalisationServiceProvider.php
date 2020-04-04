@@ -1,11 +1,10 @@
 <?php
 
 /**
- * PWWeb\Localisation
+ * PWWeb\Localisation.
  *
  * Localisation Service Provider.
  *
- * @package   PWWeb\Localisation
  * @author    Frank Pillukeit <clients@pw-websolutions.com>
  * @copyright 2020 pw-websolutions.com
  * @license   http://www.opensource.org/licenses/mit-license.html  MIT License
@@ -17,10 +16,9 @@ use Illuminate\Filesystem\Filesystem;
 use Illuminate\Foundation\AliasLoader;
 use Illuminate\Support\Collection;
 use Illuminate\Support\ServiceProvider;
-
 use PWWeb\Localisation\Contracts\Country as CountryContract;
-use PWWeb\Localisation\Contracts\Language as LanguageContract;
 use PWWeb\Localisation\Contracts\Currency as CurrencyContract;
+use PWWeb\Localisation\Contracts\Language as LanguageContract;
 
 class LocalisationServiceProvider extends ServiceProvider
 {
@@ -32,7 +30,7 @@ class LocalisationServiceProvider extends ServiceProvider
     public function register()
     {
         $this->mergeConfigFrom(
-            __DIR__ . '/../config/localisation.php',
+            __DIR__.'/../config/localisation.php',
             'localisation'
         );
 
@@ -40,35 +38,46 @@ class LocalisationServiceProvider extends ServiceProvider
         $this->app->make('PWWeb\Localisation\Controllers\IndexController');
 
         // Register views.
-        $this->loadViewsFrom(__DIR__ . '/../resources/views', 'localisation');
+        $this->loadViewsFrom(__DIR__.'/resources/views', 'localisation');
     }
 
     /**
      * Boostrap the services of the package.
      *
-     * @param LocalisationRegistrar $localisationLoader The localisation registrar.
-     * @param Filesystem            $filesystem         Laravel filesystem object for file handling.
+     * @param LocalisationRegistrar $localisationLoader the localisation registrar
+     * @param Filesystem            $filesystem         laravel filesystem object for file handling
      *
      * @return void
      */
     public function boot(LocalisationRegistrar $localisationLoader, Filesystem $filesystem)
     {
-        include __DIR__ . '/../routes/web.php';
+        include __DIR__.'/../routes/web.php';
 
-        if (function_exists('config_path') === true) {
+        if (true === function_exists('config_path')) {
             // function not available and 'publish' not relevant in Lumen
             $this->publishes(
                 [
-                __DIR__ . '/../config/localisation.php' => config_path('localisation.php'),
+                __DIR__.'/../config/localisation.php' => config_path('localisation.php'),
                 ],
                 'config'
             );
 
             $this->publishes(
                 [
-                __DIR__ . '/../database/migrations/create_localisation_tables.php.stub' => $this->getMigrationFileName($filesystem),
+                __DIR__.'/../database/migrations/create_localisation_tables.php.stub' => $this->getMigrationFileName($filesystem),
                 ],
                 'migrations'
+            );
+
+            $this->publishes([
+                __DIR__.'/resources/lang' => resource_path('lang/vendor/pwweb'),
+            ]);
+
+            $this->publishes(
+                [
+                    __DIR__.'/resources/views' => base_path('resources/views/vendor/localisation'),
+                ],
+                'views'
             );
         }
 
@@ -77,6 +86,8 @@ class LocalisationServiceProvider extends ServiceProvider
             Commands\CacheReset::class,
             ]
         );
+
+        $this->loadTranslationsFrom(realpath(__DIR__.'/resources/lang'), 'pwweb');
 
         $this->registerModelBindings();
 
@@ -112,20 +123,20 @@ class LocalisationServiceProvider extends ServiceProvider
     /**
      * Returns existing migration file if found, else uses the current timestamp.
      *
-     * @param Filesystem $filesystem Filesystem object for file handling.
+     * @param Filesystem $filesystem filesystem object for file handling
      *
-     * @return string Migration filename.
+     * @return string migration filename
      */
     protected function getMigrationFileName(Filesystem $filesystem): string
     {
         $timestamp = date('Y_m_d_His', mktime(0, 0, 0, 1, 1, 2020));
 
-        return Collection::make($this->app->databasePath() . DIRECTORY_SEPARATOR . 'migrations' . DIRECTORY_SEPARATOR)
+        return Collection::make($this->app->databasePath().DIRECTORY_SEPARATOR.'migrations'.DIRECTORY_SEPARATOR)
             ->flatMap(
                 function ($path) use ($filesystem) {
-                    return $filesystem->glob($path . '*_create_localisation_tables.php');
+                    return $filesystem->glob($path.'*_create_localisation_tables.php');
                 }
-            )->push($this->app->databasePath() . "/migrations/{$timestamp}_create_localisation_tables.php")
+            )->push($this->app->databasePath()."/migrations/{$timestamp}_create_localisation_tables.php")
             ->first();
     }
 }

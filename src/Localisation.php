@@ -1,11 +1,10 @@
 <?php
 
 /**
- * PWWeb\Localisation
+ * PWWeb\Localisation.
  *
  * Localisation Master Class.
  *
- * @package   PWWeb\Localisation
  * @author    Frank Pillukeit <clients@pw-websolutions.com>
  * @copyright 2020 pw-websolutions.com
  * @license   http://www.opensource.org/licenses/mit-license.html  MIT License
@@ -13,11 +12,9 @@
 
 namespace PWWeb\Localisation;
 
-use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Contracts\Support\Renderable;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Support\Str;
-
-use PWWeb\Exceptions\LanguageDoesNotExist;
 use PWWeb\Localisation\Models\Language;
 
 class Localisation
@@ -39,18 +36,18 @@ class Localisation
     /**
      * True when this is a Lumen application.
      *
-     * @var boolean
+     * @var bool
      */
     protected $lumen = false;
 
     /**
-     * Constructor
+     * Constructor.
      *
-     * @param Application $app Laravel application for further use.
+     * @param Application $app laravel application for further use
      */
     public function __construct($app = null)
     {
-        if ($app === null) {
+        if (null === $app) {
             $app = app();
             //Fallback when $app is not given
         }
@@ -63,7 +60,7 @@ class Localisation
     /**
      * Retrieves all active languages.
      *
-     * @return Collection A collection of active languages.
+     * @return Collection a collection of active languages
      */
     public static function languages(): Collection
     {
@@ -73,7 +70,7 @@ class Localisation
     /**
      * Determines the currently selected locale.
      *
-     * @param string $locale (Optional) Locale to be used for language retrieval.
+     * @param string $locale (Optional) Locale to be used for language retrieval
      *
      * @return Language A language object
      */
@@ -81,12 +78,12 @@ class Localisation
     {
         $fallbackLocale = config('app.fallback_locale');
 
-        if ($locale === '') {
+        if ('' === $locale) {
             $locale = app()->getLocale();
-        } else if ($locale === $fallbackLocale) {
-            $locale = 'en-gb';
+        } elseif ($locale === $fallbackLocale) {
+            $locale = 'en-GB';
         } else {
-            $locale = $fallbackLocale . '-' . $fallbackLocale;
+            $locale = $fallbackLocale.'-'.strtoupper($fallbackLocale);
         }
 
         try {
@@ -101,12 +98,12 @@ class Localisation
     /**
      * Renders a language selector / switcher according to view file.
      *
-     * @return Renderable Language selector / switcher markup.
+     * @return Renderable language selector / switcher markup
      */
     public static function languageSelector(): Renderable
     {
         $languages = self::languages();
-        $current   = self::currentLanguage();
+        $current = self::currentLanguage();
 
         return view('localisation::atoms.languageselector', compact('languages', 'current'));
     }
