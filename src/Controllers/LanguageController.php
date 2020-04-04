@@ -1,10 +1,10 @@
 <?php
 
-namespace PWWeb\Localisation\Controllers;
+namespace PWWEB\Localisation\Controllers;
 
 use App\Http\Controllers\Controller;
-use PWWeb\Localisation\Middleware\Locale;
-use PWWeb\Localisation\Models\Language;
+use PWWEB\Localisation\Middleware\Locale;
+use PWWEB\Localisation\Models\Language;
 
 class LanguageController extends Controller
 {

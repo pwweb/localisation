@@ -1,7 +1,7 @@
 <?php
 
 /**
- * PWWeb\Localisation\Database\Seeders\Country Seeder.
+ * PWWEB\Localisation\Database\Seeders\Country Seeder.
  *
  * Standard seeder for the Country Model.
  *
@@ -10,7 +10,7 @@
  * @license   http://www.opensource.org/licenses/mit-license.html  MIT License
  */
 
-namespace PWWeb\Localisation\Database\Seeders;
+namespace PWWEB\Localisation\Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;

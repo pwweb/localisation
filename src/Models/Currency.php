@@ -1,29 +1,26 @@
 <?php
 
 /**
- * PWWeb\Localisation\Models\Currency Model
+ * PWWEB\Localisation\Models\Currency Model.
  *
  * Standard Currency Model.
  *
- * @package   PWWeb\Localisation
  * @author    Frank Pillukeit <clients@pw-websolutions.com>
  * @copyright 2020 pw-websolutions.com
  * @license   http://www.opensource.org/licenses/mit-license.html  MIT License
  */
 
-namespace PWWeb\Localisation\Models;
+namespace PWWEB\Localisation\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
-
-use PWWeb\Localisation\Contracts\Currency as CountryContract;
+use PWWEB\Localisation\Contracts\Currency as CountryContract;
 
 class Currency extends Model implements CountryContract
 {
     /**
-     * Constructor
+     * Constructor.
      *
-     * @param array $attributes Additional attributes for model initialisation.
+     * @param array $attributes additional attributes for model initialisation
      */
     public function __construct(array $attributes = [])
     {

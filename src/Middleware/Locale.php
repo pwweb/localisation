@@ -1,6 +1,6 @@
 <?php
 
-namespace PWWeb\Localisation\Middleware;
+namespace PWWEB\Localisation\Middleware;
 
 use Closure;
 use Illuminate\Contracts\Session\Session;

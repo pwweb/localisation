@@ -1,10 +1,10 @@
 <?php
 
-namespace PWWeb\Localisation\Controllers;
+namespace PWWEB\Localisation\Controllers;
 
 use App\Http\Controllers\Controller;
-use PWWeb\Localisation\Models\Address\Type;
-use PWWeb\Localisation\Models\Country;
+use PWWEB\Localisation\Models\Address\Type;
+use PWWEB\Localisation\Models\Country;
 
 class AddressController extends Controller
 {

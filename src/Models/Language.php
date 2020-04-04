@@ -1,7 +1,7 @@
 <?php
 
 /**
- * PWWeb\Localisation\Models\Language Model.
+ * PWWEB\Localisation\Models\Language Model.
  *
  * Standard Language Model.
  *
@@ -10,14 +10,14 @@
  * @license   http://www.opensource.org/licenses/mit-license.html  MIT License
  */
 
-namespace PWWeb\Localisation\Models;
+namespace PWWEB\Localisation\Models;
 
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
-use PWWeb\Localisation\Contracts\Language as LanguageContract;
-use PWWeb\Localisation\Exceptions\LanguageDoesNotExist;
-use PWWeb\Localisation\LocalisationRegistrar;
+use PWWEB\Localisation\Contracts\Language as LanguageContract;
+use PWWEB\Localisation\Exceptions\LanguageDoesNotExist;
+use PWWEB\Localisation\LocalisationRegistrar;
 
 class Language extends Model implements LanguageContract
 {

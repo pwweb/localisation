@@ -1,20 +1,19 @@
 <?php
 
 /*
- * PWWeb\Localisation\Models\Address\Type Model
+ * PWWEB\Localisation\Models\Address\Type Model
  *
  * Standard Address Type Model.
  *
- * @package   PWWeb\Localisation
  * @author    Frank Pillukeit <clients@pw-websolutions.com>
  * @copyright 2020 pw-websolutions.com
  * @license   http://www.opensource.org/licenses/mit-license.html  MIT License
  */
 
-namespace PWWeb\Localisation\Models\Address;
+namespace PWWEB\Localisation\Models\Address;
 
 use Illuminate\Database\Eloquent\Model;
-use PWWeb\Localisation\Contracts\Address\Type as AddressTypeContract;
+use PWWEB\Localisation\Contracts\Address\Type as AddressTypeContract;
 
 class Type extends Model implements AddressTypeContract
 {

@@ -1,6 +1,6 @@
 <?php
 
-namespace PWWeb\Localisation\Contracts;
+namespace PWWEB\Localisation\Contracts;
 
 interface Address
 {

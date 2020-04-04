@@ -12,10 +12,10 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
-use PWWeb\Localisation\Database\Seeders\Address\TypeSeeder as AddressTypeSeeder;
-use PWWeb\Localisation\Database\Seeders\CountrySeeder;
-use PWWeb\Localisation\Database\Seeders\CurrencySeeder;
-use PWWeb\Localisation\Database\Seeders\LanguageSeeder;
+use PWWEB\Localisation\Database\Seeders\Address\TypeSeeder as AddressTypeSeeder;
+use PWWEB\Localisation\Database\Seeders\CountrySeeder;
+use PWWEB\Localisation\Database\Seeders\CurrencySeeder;
+use PWWEB\Localisation\Database\Seeders\LanguageSeeder;
 
 class CreateLocalisationTables extends Migration
 {

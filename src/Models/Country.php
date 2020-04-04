@@ -1,7 +1,7 @@
 <?php
 
 /**
- * PWWeb\Localisation\Models\Country Model.
+ * PWWEB\Localisation\Models\Country Model.
  *
  * Standard Country Model.
  *
@@ -10,11 +10,11 @@
  * @license   http://www.opensource.org/licenses/mit-license.html  MIT License
  */
 
-namespace PWWeb\Localisation\Models;
+namespace PWWEB\Localisation\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
-use PWWeb\Localisation\Contracts\Country as CountryContract;
+use PWWEB\Localisation\Contracts\Country as CountryContract;
 
 class Country extends Model implements CountryContract
 {

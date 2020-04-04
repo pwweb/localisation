@@ -1,11 +1,10 @@
 <?php
 
-/*
- * PWWeb\Localisation\Models\Address Model
+/**
+ * PWWEB\Localisation\Models\Address Model.
  *
  * Standard Address Model.
  *
- * @package   PWWeb\Localisation
  * @author    Frank Pillukeit <clients@pw-websolutions.com>
  * @copyright 2020 pw-websolutions.com
  * @license   http://www.opensource.org/licenses/mit-license.html  MIT License
@@ -16,10 +15,10 @@ namespace PWWeb\Localisation\Models;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use PWWeb\Localisation\Contracts\Address as AddressContract;
-use PWWeb\Localisation\Exceptions\AddressDoesNotExist;
-use PWWeb\Localisation\LocalisationRegistrar;
-use PWWeb\Localisation\Models\Address\Type;
+use PWWEB\Localisation\Contracts\Address as AddressContract;
+use PWWEB\Localisation\Exceptions\AddressDoesNotExist;
+use PWWEB\Localisation\LocalisationRegistrar;
+use PWWEB\Localisation\Models\Address\Type;
 
 class Address extends Model implements AddressContract
 {

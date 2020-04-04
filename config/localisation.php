@@ -6,24 +6,13 @@ return [
          *
          */
 
-        'address' => PWWeb\Localisation\Models\Address::class,
+        'address' => PWWEB\Localisation\Models\Address::class,
 
         /*
          *
          */
 
-        'address_type' => PWWeb\Localisation\Models\Address\Type::class,
-
-        /*
-         * When using the "HasPermissions" trait from this package, we need to know which
-         * Eloquent model should be used to retrieve your permissions. Of course, it
-         * is often just the "Country" model but you may use whatever you like.
-         *
-         * The model you want to use as a Country model needs to implement the
-         * `PWWeb\Localisation\Contracts\Country` contract.
-         */
-
-        'country' => PWWeb\Localisation\Models\Country::class,
+        'address_type' => PWWEB\Localisation\Models\Address\Type::class,
 
         /*
          * When using the "HasPermissions" trait from this package, we need to know which
@@ -34,7 +23,18 @@ return [
          * `PWWeb\Localisation\Contracts\Country` contract.
          */
 
-        'country' => PWWeb\Localisation\Models\Country::class,
+        'country' => PWWEB\Localisation\Models\Country::class,
+
+        /*
+         * When using the "HasPermissions" trait from this package, we need to know which
+         * Eloquent model should be used to retrieve your permissions. Of course, it
+         * is often just the "Country" model but you may use whatever you like.
+         *
+         * The model you want to use as a Country model needs to implement the
+         * `PWWeb\Localisation\Contracts\Country` contract.
+         */
+
+        'country' => PWWEB\Localisation\Models\Country::class,
 
         /*
          * When using the "HasRoles" trait from this package, we need to know which
@@ -45,7 +45,7 @@ return [
          * `PWWeb\Localisation\Contracts\Language` contract.
          */
 
-        'language' => PWWeb\Localisation\Models\Language::class,
+        'language' => PWWEB\Localisation\Models\Language::class,
 
         /*
          * When using the "HasRoles" trait from this package, we need to know which
@@ -56,7 +56,7 @@ return [
          * `PWWeb\Localisation\Contracts\Currency` contract.
          */
 
-        'currency' => PWWeb\Localisation\Models\Currency::class,
+        'currency' => PWWEB\Localisation\Models\Currency::class,
     ],
 
     'table_names' => [

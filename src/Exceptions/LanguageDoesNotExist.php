@@ -1,7 +1,7 @@
 <?php
 
 /**
- * PWWeb\Localisation\Exceptions.
+ * PWWEB\Localisation\Exceptions.
  *
  * Language does not exist exception.
  *
@@ -10,7 +10,7 @@
  * @license   http://www.opensource.org/licenses/mit-license.html  MIT License
  */
 
-namespace PWWeb\Localisation\Exceptions;
+namespace PWWEB\Localisation\Exceptions;
 
 use InvalidArgumentException;
 

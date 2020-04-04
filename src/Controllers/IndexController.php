@@ -1,13 +1,11 @@
 <?php
-namespace PWWeb\Localisation\Controllers;
 
-use Illuminate\Http\Request;
-use App\Http\Requests;
+namespace PWWEB\Localisation\Controllers;
+
 use App\Http\Controllers\Controller;
-
-use PWWeb\Localisation\Models\Country;
-use PWWeb\Localisation\Models\Currency;
-use PWWeb\Localisation\Models\Language;
+use PWWEB\Localisation\Models\Country;
+use PWWEB\Localisation\Models\Currency;
+use PWWEB\Localisation\Models\Language;
 
 class IndexController extends Controller
 {

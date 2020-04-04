@@ -1,21 +1,19 @@
 <?php
 
 /**
- * PWWeb\Localisation\Commands
+ * PWWEB\Localisation\Commands.
  *
  * Definition of the cache reset artisan command.
  *
- * @package   PWWeb\Localisation
  * @author    Frank Pillukeit <clients@pw-websolutions.com>
  * @copyright 2020 pw-websolutions.com
  * @license   http://www.opensource.org/licenses/mit-license.html  MIT License
  */
 
-namespace PWWeb\Localisation\Commands;
+namespace PWWEB\Localisation\Commands;
 
 use Illuminate\Console\Command;
-
-use PWWeb\Localisation\LocalisationRegistrar;
+use PWWEB\Localisation\LocalisationRegistrar;
 
 class CacheReset extends Command
 {
@@ -40,7 +38,7 @@ class CacheReset extends Command
      */
     public function handle()
     {
-        if (app(LocalisationRegistrar::class)->forgetCachedLanguages() === true) {
+        if (true === app(LocalisationRegistrar::class)->forgetCachedLanguages()) {
             $this->info('Language cache flushed.');
         } else {
             $this->error('Unable to flush cache.');

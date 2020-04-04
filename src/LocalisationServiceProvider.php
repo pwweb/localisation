@@ -1,7 +1,7 @@
 <?php
 
 /**
- * PWWeb\Localisation.
+ * PWWEB\Localisation.
  *
  * Localisation Service Provider.
  *
@@ -10,7 +10,7 @@
  * @license   http://www.opensource.org/licenses/mit-license.html  MIT License
  */
 
-namespace PWWeb\Localisation;
+namespace PWWEB\Localisation;
 
 use Illuminate\Filesystem\Filesystem;
 use Illuminate\Foundation\AliasLoader;
