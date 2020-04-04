@@ -46,6 +46,14 @@ class LocalisationRegistrar
     protected $addressClass;
 
     /**
+     * The address type class used for the package.
+     * Can be either original value or overwritten for custom use.
+     *
+     * @var string
+     */
+    protected $addressTypeClass;
+
+    /**
      * The country class used for the package.
      * Can be either original value or overwritten for custom use.
      *
@@ -216,10 +224,10 @@ class LocalisationRegistrar
     {
         if (null === $this->addresses) {
             $this->addresses = $this->cache->remember(
-                self::$cacheKey . '.addresses',
+                self::$cacheKey.'.addresses',
                 self::$cacheExpirationTime,
                 function () {
-                    return $this->getAddressClass()
+                    return $this->getAddressModel()
                         //->with('system_address_types')
                         ->get();
                 }
@@ -271,7 +279,7 @@ class LocalisationRegistrar
      *
      * @return PWWeb\Localisation\Contract\Address
      */
-    public function getAddressClass(): Address
+    public function getAddressModel(): Address
     {
         return app($this->addressClass);
     }

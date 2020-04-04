@@ -52,7 +52,7 @@ class Country extends Model implements CountryContract
      *
      * @param string $value Original value.
      *
-     * @return string Localised country name.
+     * @return string|array Localised country name.
      */
     public function getNameAttribute($value)
     {
@@ -60,6 +60,6 @@ class Country extends Model implements CountryContract
             return '';
         }
 
-        return __('pwweb::localization.' . $value);
+        return __('pwweb::localization.'.$value);
     }
 }

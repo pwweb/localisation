@@ -13,7 +13,7 @@ class LanguageController extends Controller
      *
      * @param string $locale Locale that should be switched to
      *
-     * @return \Illuminate\Contracts\Support\Renderable
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function switch($locale)
     {

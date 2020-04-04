@@ -15,7 +15,8 @@ namespace PWWEB\Localisation;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Support\Str;
-use PWWeb\Localisation\Models\Language;
+use PWWEB\Localisation\Contracts\Language;
+use PWWEB\Localisation\Models\Language;
 
 class Localisation
 {
@@ -43,7 +44,7 @@ class Localisation
     /**
      * Constructor.
      *
-     * @param Application $app laravel application for further use
+     * @param \Illuminate\Foundation\Application $app laravel application for further use
      */
     public function __construct($app = null)
     {
@@ -60,7 +61,7 @@ class Localisation
     /**
      * Retrieves all active languages.
      *
-     * @return Collection a collection of active languages
+     * @return \Illuminate\Database\Eloquent\Collection a collection of active languages
      */
     public static function languages(): Collection
     {
@@ -72,18 +73,18 @@ class Localisation
      *
      * @param string $locale (Optional) Locale to be used for language retrieval
      *
-     * @return Language A language object
+     * @return \PWWEB\Localisation\Contracts\Language A language object
      */
-    public static function currentLanguage(string $locale = ''): Language
+    public static function currentLanguage(string $locale = ''): LanguageContract
     {
         $fallbackLocale = config('app.fallback_locale');
 
         if ('' === $locale) {
             $locale = app()->getLocale();
-        } else if ($locale === $fallbackLocale) {
+        } elseif ($locale === $fallbackLocale) {
             $locale = 'en-GB';
         } else {
-            $locale = $fallbackLocale . '-' . strtoupper($fallbackLocale);
+            $locale = $fallbackLocale.'-'.strtoupper($fallbackLocale);
         }
 
         try {
@@ -98,7 +99,7 @@ class Localisation
     /**
      * Renders a language selector / switcher according to view file.
      *
-     * @return Renderable language selector / switcher markup
+     * @return \Illuminate\Contracts\Support\Renderable language selector / switcher markup
      */
     public static function languageSelector(): Renderable
     {
