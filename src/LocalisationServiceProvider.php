@@ -59,14 +59,14 @@ class LocalisationServiceProvider extends ServiceProvider
                 [
                 __DIR__.'/../config/localisation.php' => config_path('localisation.php'),
                 ],
-                'config'
+                'pwweb.localisation.config'
             );
 
             $this->publishes(
                 [
                 __DIR__.'/../database/migrations/create_localisation_tables.php.stub' => $this->getMigrationFileName($filesystem),
                 ],
-                'migrations'
+                'pwweb.localisation.migrations'
             );
 
             $this->publishes([
