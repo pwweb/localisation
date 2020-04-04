@@ -10,7 +10,7 @@
  * @license   http://www.opensource.org/licenses/mit-license.html  MIT License
  */
 
-namespace PWWEBPWWEB\Localisation\Database\Seeders;
+namespace PWWEB\Localisation\Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;

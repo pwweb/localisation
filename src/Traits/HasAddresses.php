@@ -114,7 +114,7 @@ trait HasAddresses
      *
      * @param int|string $address Address to be retrieved from cache
      *
-     * @return \PWWeb\Localisation\Contracts\Address
+     * @return \PWWEB\Localisation\Contracts\Address
      */
     protected function getStoredAddress($address): Address
     {

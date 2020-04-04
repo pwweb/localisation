@@ -1,7 +1,7 @@
 <?php
 
 /**
- * PWWEBPWWEB\Localisation\Database\Seeders\Address\Type Seeder.
+ * PWWEB\Localisation\Database\Seeders\Address\Type Seeder.
  *
  * Standard seeder for the Address Types Model.
  *
@@ -10,7 +10,7 @@
  * @license   http://www.opensource.org/licenses/mit-license.html  MIT License
  */
 
-namespace v\Localisation\Database\Seeders\Address;
+namespace PWWEB\Localisation\Database\Seeders\Address;
 
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;

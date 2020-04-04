@@ -15,11 +15,11 @@ namespace PWWEB\Localisation;
 use Illuminate\Cache\CacheManager;
 use Illuminate\Contracts\Cache\Repository;
 use Illuminate\Support\Collection;
-use PWWeb\Localisation\Contracts\Address;
-use PWWeb\Localisation\Contracts\Address\Type as AddressType;
-use PWWeb\Localisation\Contracts\Country;
-use PWWeb\Localisation\Contracts\Currency;
-use PWWeb\Localisation\Contracts\Language;
+use PWWEB\Localisation\Contracts\Address;
+use PWWEB\Localisation\Contracts\Address\Type as AddressType;
+use PWWEB\Localisation\Contracts\Country;
+use PWWEB\Localisation\Contracts\Currency;
+use PWWEB\Localisation\Contracts\Language;
 
 class LocalisationRegistrar
 {
@@ -277,7 +277,7 @@ class LocalisationRegistrar
     /**
      * Get an instance of the address class.
      *
-     * @return PWWeb\Localisation\Contract\Address
+     * @return PWWEB\Localisation\Contract\Address
      */
     public function getAddressModel(): Address
     {
@@ -287,7 +287,7 @@ class LocalisationRegistrar
     /**
      * Get an instance of the address class.
      *
-     * @return PWWeb\Localisation\Contract\Address\Type
+     * @return PWWEB\Localisation\Contract\Address\Type
      */
     public function getAddressTypeClass(): AddressType
     {
@@ -297,7 +297,7 @@ class LocalisationRegistrar
     /**
      * Get an instance of the country class.
      *
-     * @return PWWeb\Localisation\Contract\Country
+     * @return PWWEB\Localisation\Contract\Country
      */
     public function getCountryClass(): Country
     {
@@ -307,7 +307,7 @@ class LocalisationRegistrar
     /**
      * Get an instance of the currency class.
      *
-     * @return PWWeb\Localisation\Contract\Currency
+     * @return PWWEB\Localisation\Contract\Currency
      */
     public function getCurrencyClass(): Currency
     {
@@ -317,7 +317,7 @@ class LocalisationRegistrar
     /**
      * Get an instance of the language class.
      *
-     * @return PWWeb\Localisation\Contract\Language
+     * @return PWWEB\Localisation\Contract\Language
      */
     public function getLanguageClass(): Language
     {
