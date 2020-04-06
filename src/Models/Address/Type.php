@@ -1,29 +1,71 @@
 <?php
 
-/*
- * PWWEB\Localisation\Models\Address\Type Model
+namespace PWWEB\Localisation\Models\Address;
+
+use Eloquent as Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
+use PWWEB\Localisation\Contracts\Address\Type as AddressTypeContract;
+
+/**
+ * PWWEB\Localisation\Models\Address\Type Model.
  *
  * Standard Address Type Model.
  *
- * @author    Frank Pillukeit <clients@pw-websolutions.com>
+ * @package   pwweb/localisation
+ * @author    Frank Pillukeit <frank.pillukeit@pw-websolutions.com>
+ * @author    Richard Browne <richard.browne@pw-websolutions.com>
  * @copyright 2020 pw-websolutions.com
  * @license   http://www.opensource.org/licenses/mit-license.html  MIT License
+ * @property  \Illuminate\Database\Eloquent\Collection systemAddresses
+ * @property  string name
+ * @property  boolean global
  */
-
-namespace PWWEB\Localisation\Models\Address;
-
-use Illuminate\Database\Eloquent\Model;
-use PWWEB\Localisation\Contracts\Address\Type as AddressTypeContract;
 
 class Type extends Model implements AddressTypeContract
 {
+    use SoftDeletes;
+
+    const CREATED_AT = 'created_at';
+    const UPDATED_AT = 'updated_at';
+
     /**
-     * The attributes that are mass assignable.
+     * The attributes that should be casted to Carbon dates.
      *
      * @var array
      */
-    protected $fillable = [
+    protected $dates = [
+        'deleted_at'
+    ];
+
+    /**
+     * The attributes that can be filled.
+     *
+     * @var array
+     */
+    public $fillable = [
         'name',
+        'global'
+    ];
+
+    /**
+     * The attributes that should be casted to native types.
+     *
+     * @var array
+     */
+    protected $casts = [
+        'id' => 'integer',
+        'name' => 'string',
+        'global' => 'boolean'
+    ];
+
+    /**
+     * Validation rules.
+     *
+     * @var array
+     */
+    public static $rules = [
+        'name' => 'string|required',
+        'global' => 'boolean|required'
     ];
 
     /**
@@ -39,6 +81,16 @@ class Type extends Model implements AddressTypeContract
     }
 
     /**
+     * Accessor for linked model.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     **/
+    public function addresses()
+    {
+        return $this->hasMany(\PWWEB\Localisation\Models\Address::class, 'type_id');
+    }
+
+    /**
      * Obtain the localised name of a country.
      *
      * @param string $value Original value of the country
@@ -51,6 +103,6 @@ class Type extends Model implements AddressTypeContract
             return '';
         }
 
-        return __('pwweb::localization.' . $value);
+        return __('pwweb::localisation.'.$value);
     }
 }
