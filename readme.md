@@ -8,7 +8,7 @@
 [![Total Downloads][ico-downloads]][link-downloads]
 [![Build Status][ico-travis]][link-travis] -->
 
-**Artomator**: Custom commands making life easier. Take a look at [contributing.md](contributing.md) to see a to do list.
+**Localisation**: C3PO for Laravel. Take a look at [contributing.md](contributing.md) to see a to do list.
 
 ## Installation
 
@@ -18,16 +18,68 @@ Via Composer run the following:
 # Install the package.
 $ composer require pwweb/localisation
 
-# Publish config and migration.
+# Publish config, migration, languages and controllers.
+# Note: Indinvidual publishing tags are avvailable, see chapter Customizing.
 $ php artisan vendor:publish --provider="PWWeb\Localisation\LocalisationServiceProvider"
 
 # Run migrations
 $ php artisan migrate
 ```
 
+## Configuration
+
+### Customizing
+The package provides the following tags for publishing individual components for customizing:
+
+|Tag|Description|
+|---|---|
+|```pwweb.localisation.config```|Publish the configuration files to e.g. adjust database table names.|
+|```pwweb.localisation.migrations```|Publish the migration file(s) to make alterations to the database tables.|
+|```pwweb.localisation.language```|Publish the language files to make adjustments to the translation strings.|
+|```pwweb.localisation.views```|Publish the view files to make adjustments to the overall structure of the views.|
+
+### Default and Fallback Language
+It is recommended to change your ```app.php``` to use both the [ISO-639-1 ISO Language Code][link-iso-639] as well as the [ISO-3166 ISO Country Code][link-iso-3166]. This can be achieved by changing the following two variables:
+
+```php
+<?php
+
+return [
+    ...
+    'locale' => 'en-GB',
+    'fallback_locale' => 'en-GB',
+    ...
+];
+```
+
 ## Usage
 
-In progress.
+### Addresses
+The package provides a ```trait HasAddresses``` which can be used to allow models to be associated with addresses.
+
+```php
+<?php
+
+namespace Path\To;
+
+use Illuminate\Database\Eloquent\Model;
+use PWWEB\Localisation\Traits\HasAddresses;
+
+class MyModel extends Model
+{
+    use HasAddresses;
+}
+
+```
+### Language Switcher
+The localisation package provides a language switcher that can easily be added to blade templates as follows (note: the ```<div>``` is exemplary):
+```html
+...
+<div class="anyContainer">
+    {{ Localisation::languageSelector() }}
+</div>
+...
+```
 
 ## FAQs
 
@@ -91,3 +143,5 @@ Copyright &copy; pw-websolutions.com. Please see the [license file][link-licencs
 [link-contributors]: ../../contributors
 [link-issues]: https://github.com/pwweb/localisation/issues
 [link-licencse]: https://opensource.org/licenses/MIT
+[link-iso-639]: https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes
+[link-iso-3166]: https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2
