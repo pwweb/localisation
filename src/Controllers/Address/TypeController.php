@@ -83,9 +83,9 @@ class TypeController extends AppBaseController
      *
      * @param int $id
      *
-     * @return \Illuminate\View\View
+     * @return \Illuminate\View\View | \Illuminate\Http\RedirectResponse
      */
-    public function show($id) : View
+    public function show($id)
     {
         $type = $this->typeRepository->find($id);
 
@@ -103,9 +103,9 @@ class TypeController extends AppBaseController
      *
      * @param int $id
      *
-     * @return \Illuminate\View\View
+     * @return \Illuminate\View\View | \Illuminate\Http\RedirectResponse
      */
-    public function edit($id) : View
+    public function edit($id)
     {
         $type = $this->typeRepository->find($id);
 
