@@ -4,11 +4,12 @@ namespace PWWEB\Localisation\Controllers\Address;
 
 use App\Http\Controllers\AppBaseController;
 use Flash;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\View\View;
 use PWWEB\Localisation\Repositories\Address\TypeRepository;
 use PWWEB\Localisation\Requests\Address\CreateTypeRequest;
 use PWWEB\Localisation\Requests\Address\UpdateTypeRequest;
-use Response;
 
 /**
  * App\Http\Controllers\Pwweb\Localisation\Models\Address\TypeController TypeController.
@@ -37,9 +38,9 @@ class TypeController extends AppBaseController
      *
      * @param Request $request
      *
-     * @return Response
+     * @return \Illuminate\View\View
      */
-    public function index(Request $request)
+    public function index(Request $request) : View
     {
         $types = $this->typeRepository->all();
 
@@ -50,9 +51,9 @@ class TypeController extends AppBaseController
     /**
      * Show the form for creating a new Type.
      *
-     * @return Response
+     * @return \Illuminate\View\View
      */
-    public function create()
+    public function create() : View
     {
         return view('localisation::address.type.create');
     }
@@ -62,9 +63,9 @@ class TypeController extends AppBaseController
      *
      * @param CreateTypeRequest $request
      *
-     * @return Response
+     * @return \Illuminate\Http\RedirectResponse
      */
-    public function store(CreateTypeRequest $request)
+    public function store(CreateTypeRequest $request) : RedirectResponse
     {
         $input = $request->all();
 
@@ -80,9 +81,9 @@ class TypeController extends AppBaseController
      *
      * @param int $id
      *
-     * @return Response
+     * @return \Illuminate\View\View
      */
-    public function show($id)
+    public function show($id) : View
     {
         $type = $this->typeRepository->find($id);
 
@@ -100,9 +101,9 @@ class TypeController extends AppBaseController
      *
      * @param int $id
      *
-     * @return Response
+     * @return \Illuminate\View\View
      */
-    public function edit($id)
+    public function edit($id) : View
     {
         $type = $this->typeRepository->find($id);
 
@@ -121,9 +122,9 @@ class TypeController extends AppBaseController
      * @param int $id
      * @param UpdateTypeRequest $request
      *
-     * @return Response
+     * @return \Illuminate\Http\RedirectResponse
      */
-    public function update(UpdateTypeRequest $request, $id)
+    public function update(UpdateTypeRequest $request, $id) : RedirectResponse
     {
         $type = $this->typeRepository->find($id);
 
@@ -147,9 +148,9 @@ class TypeController extends AppBaseController
      *
      * @throws \Exception
      *
-     * @return Response
+     * @return \Illuminate\Http\RedirectResponse
      */
-    public function destroy($id)
+    public function destroy($id) : RedirectResponse
     {
         $type = $this->typeRepository->find($id);
 
