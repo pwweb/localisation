@@ -16,7 +16,7 @@ use PWWEB\Localisation\Models\Address\Type;
  * @author    Richard Browne <richard.browne@pw-websolutions.com>
  * @copyright 2020 pw-websolutions.com
  * @license   http://www.opensource.org/licenses/mit-license.html  MIT License
-*/
+ */
 class CreateTypeRequest extends FormRequest
 {
 

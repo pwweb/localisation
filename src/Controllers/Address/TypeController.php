@@ -22,10 +22,12 @@ use PWWEB\Localisation\Requests\Address\UpdateTypeRequest;
  * @author    Richard Browne <richard.browne@pw-websolutions.com>
  * @copyright 2020 pw-websolutions.com
  * @license   http://www.opensource.org/licenses/mit-license.html  MIT License
-*/
+ */
 class TypeController extends AppBaseController
 {
-    /** @var  TypeRepository */
+    /**
+     * @var TypeRepository
+     */
     private $typeRepository;
 
     public function __construct(TypeRepository $typeRepo)
@@ -119,7 +121,7 @@ class TypeController extends AppBaseController
     /**
      * Update the specified Type in storage.
      *
-     * @param int $id
+     * @param int               $id
      * @param UpdateTypeRequest $request
      *
      * @return \Illuminate\Http\RedirectResponse

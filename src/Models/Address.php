@@ -15,19 +15,19 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @author    Richard Browne <richard.browne@pw-websolutions.com
  * @copyright 2020 pw-websolutions.com
  * @license   http://www.opensource.org/licenses/mit-license.html  MIT License
- * @property \PWWEB\Localisation\Models\SystemLocalisationCountry country
- * @property \PWWEB\Localisation\Models\SystemAddressType type
- * @property \PWWEB\Localisation\Models\SystemModelHasAddress systemModelHasAddress
- * @property integer country_id
- * @property integer type_id
- * @property string street
- * @property string street2
- * @property string city
- * @property string state
- * @property string postcode
- * @property number lat
- * @property number lng
- * @property boolean primary
+ * @property  \PWWEB\Localisation\Models\SystemLocalisationCountry country
+ * @property  \PWWEB\Localisation\Models\SystemAddressType type
+ * @property  \PWWEB\Localisation\Models\SystemModelHasAddress systemModelHasAddress
+ * @property  integer country_id
+ * @property  integer type_id
+ * @property  string street
+ * @property  string street2
+ * @property  string city
+ * @property  string state
+ * @property  string postcode
+ * @property  number lat
+ * @property  number lng
+ * @property  boolean primary
  */
 
 class Address extends Model
