@@ -2,9 +2,9 @@
     <table class="table table-striped" id="types-table">
         <thead>
             <tr>
-                <th>Name</th>
-                <th>Global</th>
-                <th colspan="3">Action</th>
+                <th>@lang("pwweb::localisation.Name")</th>
+                <th>@lang("pwweb::localisation.Global")</th>
+                <th colspan="3">@lang("pwweb::localisation.Action")</th>
             </tr>
         </thead>
         <tbody>

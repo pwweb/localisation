@@ -113,6 +113,7 @@ class CreateLocalisationTables extends Migration
                 $table->bigIncrements('id');
                 $table->string('name');
                 $table->tinyInteger('global')->default(0);
+                $table->softDeletes();
                 $table->timestamps();
             }
         );
@@ -136,6 +137,7 @@ class CreateLocalisationTables extends Migration
                 $table->float('lat', 10, 6)->nullable();
                 $table->float('lng', 10, 6)->nullable();
                 $table->boolean('primary');
+                $table->softDeletes();
                 $table->timestamps();
 
                 // Add foreign keys
@@ -158,8 +160,10 @@ class CreateLocalisationTables extends Migration
                 ->on($tableNames['addresses'])
                 ->onDelete('cascade');
 
-                $table->primary(['address_id', $columnNames['model_morph_key'], 'model_type'],
-                    'model_has_address_address_model_type_primary');
+                $table->primary(
+                    ['address_id', $columnNames['model_morph_key'], 'model_type'],
+                    'model_has_address_address_model_type_primary'
+                );
             }
         );
 

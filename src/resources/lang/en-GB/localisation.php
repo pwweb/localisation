@@ -3,7 +3,7 @@
 return [
     /*
     |--------------------------------------------------------------------------
-    | Localization Language File
+    | Localisation Language File
     |--------------------------------------------------------------------------
     |
     | The following language lines are used by the localization package.
@@ -13,15 +13,37 @@ return [
     */
 
     // General.
+    'Action'              => 'Action',
+    'Address type'        => 'Address type',
+    'Address types'       => 'Address types',
+    'Address'             => 'Address',
     'Addresses'           => 'Addresses',
     'Add address'         => 'Add address',
     'Add your addresses.' => 'Add your addresses.',
+    'Are you sure?'       => 'Are you sure?',
+    'back'                => 'back',
+    'cancel'              => 'cancel',
     'City'                => 'City',
     'Country'             => 'Country',
+    'create'              => 'create',
+    'Create address'      => 'Create address',
+    'Create address type' => 'Create address type',
+    'detail'              => 'Detail',
+    'details'             => 'Details',
+    'edit'                => 'edit',
+    'Edit address'        => 'Edit address',
+    'Edit address type'   => 'Edit address type',
+    'Global'              => 'Global',
     'home'                => 'Private',
+    'Latitude'            => 'Latitude',
+    'Longitude'           => 'Longitude',
+    'Name'                => 'Name',
     'other'               => 'Other',
     'Please select'       => 'Please select',
     'Postcode'            => 'Postcode',
+    'Primary'             => 'Primary',
+    'Save address'        => 'Save address',
+    'Save address type'   => 'Save address type',
     'State'               => 'State',
     'Street'              => 'Street',
     'Street 2'            => 'Street 2',

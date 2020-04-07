@@ -2,7 +2,7 @@
 
 @section('content')
     <ol class="breadcrumb">
-        <li class="breadcrumb-item">@lang("pwweb::localisation.Address type")</li>
+        <li class="breadcrumb-item">@lang("pwweb::localisation.Addresses")</li>
     </ol>
     <div class="container-fluid">
         <div class="animated fadeIn">
@@ -12,14 +12,14 @@
                      <div class="card">
                          <div class="card-header">
                              <i class="fa fa-align-justify"></i>
-                             @lang("pwweb::localisation.Address types")
-                             <a class="pull-right" href="{{ route('localisation.address.type.create') }}"><i class="fa fa-plus-square fa-lg"></i></a>
+                             @lang("pwweb::localisation.Addresses")
+                             <a class="pull-right" href="{{ route('localisation.address.create') }}"><i class="fa fa-plus-square fa-lg"></i></a>
                          </div>
                          <div class="card-body">
-                            @include('localisation::address.type.table')
-                            <div class="pull-right mr-3">
+                             @include('localisation::address.table')
+                              <div class="pull-right mr-3">
 
-                            </div>
+                              </div>
                          </div>
                      </div>
                   </div>

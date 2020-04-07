@@ -1,34 +1,90 @@
 <?php
 
+namespace PWWEB\Localisation\Models;
+
+use Eloquent as Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
+
 /**
  * PWWEB\Localisation\Models\Address Model.
  *
  * Standard Address Model.
  *
- * @author    Frank Pillukeit <clients@pw-websolutions.com>
+ * @package   pwweb/localisation
+ * @author    Frank Pillukeit <frank.pillukeit@pw-websolutions.com>
+ * @author    Richard Browne <richard.browne@pw-websolutions.com
  * @copyright 2020 pw-websolutions.com
  * @license   http://www.opensource.org/licenses/mit-license.html  MIT License
+ * @property \PWWEB\Localisation\Models\SystemLocalisationCountry country
+ * @property \PWWEB\Localisation\Models\SystemAddressType type
+ * @property \PWWEB\Localisation\Models\SystemModelHasAddress systemModelHasAddress
+ * @property integer country_id
+ * @property integer type_id
+ * @property string street
+ * @property string street2
+ * @property string city
+ * @property string state
+ * @property string postcode
+ * @property number lat
+ * @property number lng
+ * @property boolean primary
  */
 
-namespace PWWEB\Localisation\Models;
-
-use Illuminate\Database\Eloquent\Collection;
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use PWWEB\Localisation\Contracts\Address as AddressContract;
-use PWWEB\Localisation\Exceptions\AddressDoesNotExist;
-use PWWEB\Localisation\LocalisationRegistrar;
-use PWWEB\Localisation\Models\Address\Type;
-
-class Address extends Model implements AddressContract
+class Address extends Model
 {
+    use SoftDeletes;
+
+    public $table = 'system_addresses';
+
+    const CREATED_AT = 'created_at';
+    const UPDATED_AT = 'updated_at';
+
+
+    protected $dates = ['deleted_at'];
+
+
+
+    public $fillable = [
+        'country_id',
+        'type_id',
+        'street',
+        'street2',
+        'city',
+        'state',
+        'postcode',
+        'lat',
+        'lng',
+        'primary'
+    ];
+
     /**
-     * The attributes that are mass assignable.
+     * The attributes that should be casted to native types.
      *
      * @var array
      */
-    protected $fillable = [
-        'street', 'street2', 'city', 'state', 'postcode', 'country_id', 'type_id', 'lat', 'lng',
+    protected $casts = [
+        'id' => 'integer',
+        'country_id' => 'integer',
+        'type_id' => 'integer',
+        'street' => 'string',
+        'street2' => 'string',
+        'city' => 'string',
+        'state' => 'string',
+        'postcode' => 'string',
+        'lat' => 'float',
+        'lng' => 'float',
+        'primary' => 'boolean'
+    ];
+
+    /**
+     * Validation rules.
+     *
+     * @var array
+     */
+    public static $rules = [
+        'country_id' => 'required',
+        'type_id' => 'required',
+        'primary' => 'required'
     ];
 
     /**
@@ -46,23 +102,27 @@ class Address extends Model implements AddressContract
     }
 
     /**
-     * An address can be of only one type (e.g. private, work, etc).
-     *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     */
-    public function type(): BelongsTo
+     **/
+    public function country()
     {
-        return $this->belongsTo(Address\Type::class);
+        return $this->belongsTo(\App\Models\Pwweb\Localisation\Models\SystemLocalisationCountry::class, 'country_id');
     }
 
     /**
-     * An address belongs to a country.
-     *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     */
-    public function country(): BelongsTo
+     **/
+    public function type()
     {
-        return $this->belongsTo(Country::class);
+        return $this->belongsTo(\App\Models\Pwweb\Localisation\Models\SystemAddressType::class, 'type_id');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     **/
+    public function systemModelHasAddress()
+    {
+        return $this->hasOne(\App\Models\Pwweb\Localisation\Models\SystemModelHasAddress::class);
     }
 
     /**

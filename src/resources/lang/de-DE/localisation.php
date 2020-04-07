@@ -3,7 +3,7 @@
 return [
     /*
     |--------------------------------------------------------------------------
-    | Localization Language File
+    | Localisation Language File
     |--------------------------------------------------------------------------
     |
     | The following language lines are used by the localization package.
@@ -13,15 +13,37 @@ return [
     */
 
     // General.
+    'Action'              => 'Aktion',
+    'Address type'        => 'Addressart',
+    'Address types'       => 'Addressarten',
+    'Address'             => 'Adresse',
     'Addresses'           => 'Adressen',
     'Add address'         => 'Adresse anlegen',
     'Add your addresses.' => 'Füge deine Adressen hinzu.',
+    'Are you sure?'       => 'Sind Sie sicher?',
+    'back'                => 'zurück',
+    'cancel'              => 'abbrechen',
     'City'                => 'Stadt',
     'Country'             => 'Land',
+    'create'              => 'anlegen',
+    'Create address'      => 'Adresse anlegen',
+    'Create address type' => 'Adressart anlegen',
+    'detail'              => 'Detail',
+    'details'             => 'Details',
+    'edit'                => 'bearbeiten',
+    'Edit address'        => 'Adresse bearbeiten',
+    'Edit address type'   => 'Adressart bearbeiten',
+    'Global'              => 'Global',
     'home'                => 'Privat',
+    'Latitude'            => 'Breitengrad',
+    'Longitude'           => 'Längengrad',
+    'Name'                => 'Name',
     'other'               => 'Andere',
     'Please select'       => 'Bitte auswählen',
     'Postcode'            => 'Postleitzahl',
+    'Primary'             => 'Hauptadresse',
+    'Save address'        => 'Addresse speichern',
+    'Save address type'   => 'Addressart speichern',
     'State'               => 'Bundesland',
     'Street'              => 'Strasse',
     'Street 2'            => 'Strasse 2',
