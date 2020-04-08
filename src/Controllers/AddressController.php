@@ -9,7 +9,6 @@ use PWWEB\Localisation\Repositories\Address\TypeRepository;
 use PWWEB\Localisation\Repositories\AddressRepository;
 use PWWEB\Localisation\Requests\CreateAddressRequest;
 use PWWEB\Localisation\Requests\UpdateAddressRequest;
-use Response;
 
 /**
  * PWWEB\Localisation\Controllers\AddressController AddressController.
@@ -56,7 +55,7 @@ class AddressController extends AppBaseController
      *
      * @param Request $request
      *
-     * @return Response
+     * @return \Illuminate\View\View
      */
     public function index(Request $request)
     {
@@ -69,7 +68,7 @@ class AddressController extends AppBaseController
     /**
      * Show the form for creating a new Address.
      *
-     * @return Response
+     * @return \Illuminate\View\View
      */
     public function create()
     {
@@ -84,7 +83,7 @@ class AddressController extends AppBaseController
      *
      * @param CreateAddressRequest $request
      *
-     * @return Response
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function store(CreateAddressRequest $request)
     {
@@ -102,7 +101,7 @@ class AddressController extends AppBaseController
      *
      * @param int $id
      *
-     * @return Response
+     * @return \Illuminate\View\View|\Illuminate\Http\RedirectResponse
      */
     public function show($id)
     {
@@ -122,7 +121,7 @@ class AddressController extends AppBaseController
      *
      * @param int $id
      *
-     * @return Response
+     * @return \Illuminate\View\View|\Illuminate\Http\RedirectResponse
      */
     public function edit($id)
     {
@@ -147,7 +146,7 @@ class AddressController extends AppBaseController
      * @param int                  $id
      * @param UpdateAddressRequest $request
      *
-     * @return Response
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function update($id, UpdateAddressRequest $request)
     {
@@ -173,7 +172,7 @@ class AddressController extends AppBaseController
      *
      * @throws \Exception
      *
-     * @return Response
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function destroy($id)
     {

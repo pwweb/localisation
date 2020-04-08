@@ -15,11 +15,11 @@ namespace PWWEB\Localisation;
 use Illuminate\Cache\CacheManager;
 use Illuminate\Contracts\Cache\Repository;
 use Illuminate\Support\Collection;
-use PWWEB\Localisation\Contracts\Address;
-use PWWEB\Localisation\Contracts\Address\Type as AddressType;
-use PWWEB\Localisation\Contracts\Country;
-use PWWEB\Localisation\Contracts\Currency;
-use PWWEB\Localisation\Contracts\Language;
+use PWWEB\Localisation\Contracts\Address as AddressContract;
+use PWWEB\Localisation\Contracts\Address\Type as AddressTypeContract;
+use PWWEB\Localisation\Contracts\Country as CountryContract;
+use PWWEB\Localisation\Contracts\Currency as CurrencyContract;
+use PWWEB\Localisation\Contracts\Language as LanguageContract;
 
 class LocalisationRegistrar
 {
@@ -277,13 +277,13 @@ class LocalisationRegistrar
     /**
      * Get an instance of the address class.
      *
-     * @return PWWEB\Localisation\Contract\Address
+     * @return PWWEB\Localisation\Contract\Address|null
      */
-    public function getAddressModel(): Address
+    public function getAddressModel(): AddressContract
     {
         $addressModel = app($this->addressClass);
 
-        if ($addressModel instanceof Address) {
+        if ($addressModel instanceof AddressContract) {
             return $addressModel;
         }
 
@@ -291,15 +291,15 @@ class LocalisationRegistrar
     }
 
     /**
-     * Get an instance of the address class.
+     * Get an instance of the address type class.
      *
-     * @return PWWEB\Localisation\Contract\Address\Type
+     * @return PWWEB\Localisation\Contract\Address\Type|null
      */
-    public function getAddressTypeClass(): AddressType
+    public function getAddressTypeClass(): AddressTypeContract
     {
         $addressTypeModel = app($this->addressTypeClass);
 
-        if ($addressTypeModel instanceof AddressType) {
+        if ($addressTypeModel instanceof AddressTypeContract) {
             return $addressTypeModel;
         }
 
@@ -309,13 +309,13 @@ class LocalisationRegistrar
     /**
      * Get an instance of the country class.
      *
-     * @return PWWEB\Localisation\Contract\Country
+     * @return PWWEB\Localisation\Contract\Country|null
      */
-    public function getCountryClass(): Country
+    public function getCountryClass(): CountryContract
     {
         $countryModel = app($this->countryClass);
 
-        if ($countryModel instanceof Country) {
+        if ($countryModel instanceof CountryContract) {
             return $countryModel;
         }
 
@@ -325,13 +325,13 @@ class LocalisationRegistrar
     /**
      * Get an instance of the currency class.
      *
-     * @return PWWEB\Localisation\Contract\Currency
+     * @return PWWEB\Localisation\Contract\Currency|null
      */
-    public function getCurrencyClass(): Currency
+    public function getCurrencyClass(): CurrencyContract
     {
         $currencyModel = app($this->currencyClass);
 
-        if ($currencyModel instanceof Currency) {
+        if ($currencyModel instanceof CurrencyContract) {
             return $currencyModel;
         }
 
@@ -341,13 +341,13 @@ class LocalisationRegistrar
     /**
      * Get an instance of the language class.
      *
-     * @return PWWEB\Localisation\Contract\Language
+     * @return PWWEB\Localisation\Contract\Language|null
      */
-    public function getLanguageClass(): Language
+    public function getLanguageClass(): LanguageContract
     {
         $languageModel = app($this->languageClass);
 
-        if ($languageModel instanceof Language) {
+        if ($languageModel instanceof LanguageContract) {
             return $languageModel;
         }
 
