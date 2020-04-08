@@ -26,12 +26,25 @@ use Response;
 class AddressController extends AppBaseController
 {
     /**
-     * [private description].
+     * Repository of addresses to be used throughout the controller.
      *
-     * @var [type]
+     * @var \PWWEB\Localisation\Repositories\AddressRepository
      */
     private $addressRepository;
 
+    /**
+     * Repository of address types to be used throughout the controller.
+     *
+     * @var \PWWEB\Localisation\Repositories\Address\TypeRepository
+     */
+    private $typeRepository;
+
+    /**
+     * Constructor for the address controller.
+     *
+     * @param AddressRepository $addressRepo [description]
+     * @param TypeRepository $typeRepo [description]
+     */
     public function __construct(AddressRepository $addressRepo, TypeRepository $typeRepo)
     {
         $this->addressRepository = $addressRepo;
