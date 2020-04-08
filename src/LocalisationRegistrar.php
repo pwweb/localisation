@@ -224,7 +224,7 @@ class LocalisationRegistrar
     {
         if (null === $this->addresses) {
             $this->addresses = $this->cache->remember(
-                self::$cacheKey . '.addresses',
+                self::$cacheKey.'.addresses',
                 self::$cacheExpirationTime,
                 function () {
                     return $this->getAddressModel()
@@ -281,7 +281,13 @@ class LocalisationRegistrar
      */
     public function getAddressModel(): Address
     {
-        return app($this->addressClass);
+        $addressModel = app($this->addressClass);
+
+        if ($addressModel instanceof Address) {
+            return $addressModel;
+        }
+
+        return null;
     }
 
     /**
@@ -291,7 +297,13 @@ class LocalisationRegistrar
      */
     public function getAddressTypeClass(): AddressType
     {
-        return app($this->addressTypeClass);
+        $addressTypeModel = app($this->addressTypeClass);
+
+        if ($addressTypeModel instanceof AddressType) {
+            return $addressTypeModel;
+        }
+
+        return null;
     }
 
     /**
@@ -301,7 +313,13 @@ class LocalisationRegistrar
      */
     public function getCountryClass(): Country
     {
-        return app($this->countryClass);
+        $countryModel = app($this->countryClass);
+
+        if ($countryModel instanceof Country) {
+            return $countryModel;
+        }
+
+        return null;
     }
 
     /**
@@ -311,7 +329,13 @@ class LocalisationRegistrar
      */
     public function getCurrencyClass(): Currency
     {
-        return app($this->currencyClass);
+        $currencyModel = app($this->currencyClass);
+
+        if ($currencyModel instanceof Currency) {
+            return $currencyModel;
+        }
+
+        return null;
     }
 
     /**
@@ -321,7 +345,13 @@ class LocalisationRegistrar
      */
     public function getLanguageClass(): Language
     {
-        return app($this->languageClass);
+        $languageModel = app($this->languageClass);
+
+        if ($languageModel instanceof Language) {
+            return $languageModel;
+        }
+
+        return null;
     }
 
     /**

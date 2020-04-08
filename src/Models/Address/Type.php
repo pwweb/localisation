@@ -95,7 +95,7 @@ class Type extends Model implements AddressTypeContract
      *
      * @param string $value Original value of the country
      *
-     * @return string
+     * @return string|array
      */
     public function getNameAttribute($value)
     {
@@ -103,6 +103,6 @@ class Type extends Model implements AddressTypeContract
             return '';
         }
 
-        return __('pwweb::localisation.' . $value);
+        return __('pwweb::localisation.'.$value);
     }
 }
