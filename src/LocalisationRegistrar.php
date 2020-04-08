@@ -277,7 +277,7 @@ class LocalisationRegistrar
     /**
      * Get an instance of the address class.
      *
-     * @return AddressContract|null
+     * @return \PWWEB\Localisation\Contracts\Address|null
      */
     public function getAddressModel(): AddressContract
     {
@@ -293,7 +293,7 @@ class LocalisationRegistrar
     /**
      * Get an instance of the address type class.
      *
-     * @return \PWWEB\Localisation\Contract\Address\Type|null
+     * @return \PWWEB\Localisation\Contracts\Address\Type|null
      */
     public function getAddressTypeClass(): AddressTypeContract
     {
@@ -309,7 +309,7 @@ class LocalisationRegistrar
     /**
      * Get an instance of the country class.
      *
-     * @return \PWWEB\Localisation\Contract\Country|null
+     * @return \PWWEB\Localisation\Contracts\Country|null
      */
     public function getCountryClass(): CountryContract
     {
@@ -325,7 +325,7 @@ class LocalisationRegistrar
     /**
      * Get an instance of the currency class.
      *
-     * @return \PWWEB\Localisation\Contract\Currency|null
+     * @return \PWWEB\Localisation\Contracts\Currency|null
      */
     public function getCurrencyClass(): CurrencyContract
     {
@@ -341,7 +341,7 @@ class LocalisationRegistrar
     /**
      * Get an instance of the language class.
      *
-     * @return \PWWEB\Localisation\Contract\Language|null
+     * @return \PWWEB\Localisation\Contracts\Language|null
      */
     public function getLanguageClass(): LanguageContract
     {
