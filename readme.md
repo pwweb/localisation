@@ -8,7 +8,7 @@
 [![Total Downloads][ico-downloads]][link-downloads]
 [![Build Status][ico-travis]][link-travis] -->
 
-**Localisation**: C3PO for Laravel. Take a look at [contributing.md](contributing.md) to see a to do list.
+**Localisation**: C3P0 for Laravel. Take a look at [contributing.md](contributing.md) to see a to do list.
 
 ## Installation
 
@@ -19,8 +19,8 @@ Via Composer run the following:
 $ composer require pwweb/localisation
 
 # Publish config, migration, languages and controllers.
-# Note: Indinvidual publishing tags are avvailable, see chapter Customizing.
-$ php artisan vendor:publish --provider="PWWeb\Localisation\LocalisationServiceProvider"
+# Note: Individual publishing tags are available, see chapter Customizing.
+$ php artisan vendor:publish --provider="PWWEB\Localisation\LocalisationServiceProvider"
 
 # Run migrations
 $ php artisan migrate

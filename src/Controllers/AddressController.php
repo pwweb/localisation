@@ -2,7 +2,7 @@
 
 namespace PWWEB\Localisation\Controllers;
 
-use App\Http\Controllers\AppBaseController;
+use App\Http\Controllers\Controller;
 use Flash;
 use Illuminate\Http\Request;
 use PWWEB\Localisation\Repositories\Address\TypeRepository;
@@ -22,7 +22,7 @@ use PWWEB\Localisation\Requests\UpdateAddressRequest;
  * @copyright 2020 pw-websolutions.com
  * @license   http://www.opensource.org/licenses/mit-license.html  MIT License
  */
-class AddressController extends AppBaseController
+class AddressController extends Controller
 {
     /**
      * Repository of addresses to be used throughout the controller.

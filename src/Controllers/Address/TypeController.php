@@ -2,7 +2,7 @@
 
 namespace PWWEB\Localisation\Controllers\Address;
 
-use App\Http\Controllers\AppBaseController;
+use App\Http\Controllers\Controller;
 use Flash;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -23,7 +23,7 @@ use PWWEB\Localisation\Requests\Address\UpdateTypeRequest;
  * @copyright 2020 pw-websolutions.com
  * @license   http://www.opensource.org/licenses/mit-license.html  MIT License
  */
-class TypeController extends AppBaseController
+class TypeController extends Controller
 {
     /**
      * @var TypeRepository
