@@ -60,6 +60,6 @@ class Country extends Model implements CountryContract
             return '';
         }
 
-        return __('pwweb::localization.'.$value);
+        return __('pwweb::localization.' . $value);
     }
 }

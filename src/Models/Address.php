@@ -34,16 +34,23 @@ class Address extends Model
 {
     use SoftDeletes;
 
-    public $table = 'system_addresses';
-
     const CREATED_AT = 'created_at';
     const UPDATED_AT = 'updated_at';
 
+    /**
+     * The attributes that should be casted to Carbon dates.
+     *
+     * @var string[]
+     */
+    protected $dates = [
+        'deleted_at'
+    ];
 
-    protected $dates = ['deleted_at'];
-
-
-
+    /**
+     * The attributes that can be filled.
+     *
+     * @var string[]
+     */
     public $fillable = [
         'country_id',
         'type_id',
@@ -102,6 +109,8 @@ class Address extends Model
     }
 
     /**
+     * Accessor for linked Country model.
+     *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      **/
     public function country()
@@ -110,6 +119,8 @@ class Address extends Model
     }
 
     /**
+     * Accessor for linked Address type model.
+     *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      **/
     public function type()

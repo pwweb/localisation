@@ -42,7 +42,7 @@ class AddressController extends Controller
      * Constructor for the address controller.
      *
      * @param AddressRepository $addressRepo [description]
-     * @param TypeRepository $typeRepo [description]
+     * @param TypeRepository    $typeRepo    [description]
      */
     public function __construct(AddressRepository $addressRepo, TypeRepository $typeRepo)
     {

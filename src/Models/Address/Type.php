@@ -31,7 +31,7 @@ class Type extends Model implements AddressTypeContract
     /**
      * The attributes that should be casted to Carbon dates.
      *
-     * @var array
+     * @var string[]
      */
     protected $dates = [
         'deleted_at'
@@ -40,7 +40,7 @@ class Type extends Model implements AddressTypeContract
     /**
      * The attributes that can be filled.
      *
-     * @var array
+     * @var string[]
      */
     public $fillable = [
         'name',
@@ -81,7 +81,7 @@ class Type extends Model implements AddressTypeContract
     }
 
     /**
-     * Accessor for linked model.
+     * Accessor for linked Address model.
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      **/

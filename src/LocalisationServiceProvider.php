@@ -30,7 +30,7 @@ class LocalisationServiceProvider extends ServiceProvider
     public function register()
     {
         $this->mergeConfigFrom(
-            __DIR__.'/../config/localisation.php',
+            __DIR__ . '/../config/localisation.php',
             'pwweb.localisation'
         );
 
@@ -38,7 +38,7 @@ class LocalisationServiceProvider extends ServiceProvider
         $this->app->make('PWWEB\Localisation\Controllers\IndexController');
 
         // Register views.
-        $this->loadViewsFrom(__DIR__.'/resources/views', 'localisation');
+        $this->loadViewsFrom(__DIR__ . '/resources/views', 'localisation');
     }
 
     /**
@@ -51,34 +51,34 @@ class LocalisationServiceProvider extends ServiceProvider
      */
     public function boot(LocalisationRegistrar $localisationLoader, Filesystem $filesystem)
     {
-        include __DIR__.'/../routes/web.php';
+        include __DIR__ . '/../routes/web.php';
 
         if (true === function_exists('config_path')) {
             // function not available and 'publish' not relevant in Lumen
             $this->publishes(
                 [
-                    __DIR__.'/../config/localisation.php' => config_path('pwweb/localisation.php'),
+                    __DIR__ . '/../config/localisation.php' => config_path('pwweb/localisation.php'),
                 ],
                 'pwweb.localisation.config'
             );
 
             $this->publishes(
                 [
-                    __DIR__.'/../database/migrations/create_localisation_tables.php.stub' => $this->getMigrationFileName($filesystem),
+                    __DIR__ . '/../database/migrations/create_localisation_tables.php.stub' => $this->getMigrationFileName($filesystem),
                 ],
                 'pwweb.localisation.migrations'
             );
 
             $this->publishes(
                 [
-                    __DIR__.'/resources/lang' => resource_path('lang/vendor/pwweb'),
+                    __DIR__ . '/resources/lang' => resource_path('lang/vendor/pwweb'),
                 ],
                 'pwweb.localisation.language'
             );
 
             $this->publishes(
                 [
-                    __DIR__.'/resources/views' => base_path('resources/views/vendor/localisation'),
+                    __DIR__ . '/resources/views' => base_path('resources/views/vendor/localisation'),
                 ],
                 'pwweb.localisation.views'
             );
@@ -90,7 +90,7 @@ class LocalisationServiceProvider extends ServiceProvider
             ]
         );
 
-        $this->loadTranslationsFrom(realpath(__DIR__.'/resources/lang'), 'pwweb');
+        $this->loadTranslationsFrom(realpath(__DIR__ . '/resources/lang'), 'pwweb');
         // dd(app()->getLocale());
         // echo '<pre>';
         // print_r($this->app['translator']);
@@ -140,12 +140,12 @@ class LocalisationServiceProvider extends ServiceProvider
     {
         $timestamp = date('Y_m_d_His', mktime(0, 0, 0, 1, 1, 2020));
 
-        return Collection::make($this->app->databasePath().DIRECTORY_SEPARATOR.'migrations'.DIRECTORY_SEPARATOR)
+        return Collection::make($this->app->databasePath() . DIRECTORY_SEPARATOR . 'migrations' . DIRECTORY_SEPARATOR)
             ->flatMap(
                 function ($path) use ($filesystem) {
-                    return $filesystem->glob($path.'*_create_localisation_tables.php');
+                    return $filesystem->glob($path . '*_create_localisation_tables.php');
                 }
-            )->push($this->app->databasePath()."/migrations/{$timestamp}_create_localisation_tables.php")
+            )->push($this->app->databasePath() . "/migrations/{$timestamp}_create_localisation_tables.php")
             ->first();
     }
 }
