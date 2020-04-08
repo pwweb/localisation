@@ -25,6 +25,8 @@ $ php artisan vendor:publish --provider="PWWEB\Localisation\LocalisationServiceP
 # Run migrations
 $ php artisan migrate
 ```
+## Pre-requisites
+The package assumes a standard Laravel installation if the bundled default contollers for the entities are to be used. The bundled controllers extend from  `App\Http\Controllers\Controller`. If other, custom base controllers are used as part of the installation, refer to [Customizing](Customizing).
 
 ## Configuration
 
@@ -39,7 +41,7 @@ The package provides the following tags for publishing individual components for
 |```pwweb.localisation.views```|Publish the view files to make adjustments to the overall structure of the views.|
 
 ### Default and Fallback Language
-It is recommended to change your ```app.php``` to use both the [ISO-639-1 ISO Language Code][link-iso-639] as well as the [ISO-3166 ISO Country Code][link-iso-3166]. This can be achieved by changing the following two variables:
+It is recommended to change your `app.php` to use both the [ISO-639-1 ISO Language Code][link-iso-639] as well as the [ISO-3166 ISO Country Code][link-iso-3166]. This can be achieved by changing the following two variables:
 
 ```php
 <?php
