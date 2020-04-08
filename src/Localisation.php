@@ -81,10 +81,10 @@ class Localisation
 
         if ('' === $locale) {
             $locale = app()->getLocale();
-        } else if ($locale === $fallbackLocale) {
+        } elseif ($locale === $fallbackLocale) {
             $locale = 'en-GB';
         } else {
-            $locale = $fallbackLocale . '-' . strtoupper($fallbackLocale);
+            $locale = $fallbackLocale.'-'.strtoupper($fallbackLocale);
         }
 
         try {
