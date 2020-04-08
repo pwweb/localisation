@@ -91,10 +91,7 @@ class LocalisationServiceProvider extends ServiceProvider
         );
 
         $this->loadTranslationsFrom(realpath(__DIR__ . '/resources/lang'), 'pwweb');
-        // dd(app()->getLocale());
-        // echo '<pre>';
-        // print_r($this->app['translator']);
-        // echo '</pre>';
+
         $this->registerModelBindings();
 
         $localisationLoader->clearClassLanguages();
@@ -122,7 +119,7 @@ class LocalisationServiceProvider extends ServiceProvider
      */
     protected function registerModelBindings()
     {
-        $config = $this->app->config['pwweb.localisation.models'];
+        $config = config('pwweb.localisation.models');
 
         $this->app->bind(CountryContract::class, $config['country']);
         $this->app->bind(LanguageContract::class, $config['language']);
