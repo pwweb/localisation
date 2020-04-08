@@ -9,13 +9,13 @@ use PWWEB\Localisation\Models\Language;
 class LanguageController extends Controller
 {
     /**
-     * Switch the locale.
+     * Change the locale.
      *
-     * @param string $locale Locale that should be switched to
+     * @param string $locale Locale that should be changed to
      *
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function switch($locale)
+    public function change($locale)
     {
         $locales = (array) Language::getLocales();
 
