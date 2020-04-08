@@ -224,7 +224,7 @@ class LocalisationRegistrar
     {
         if (null === $this->addresses) {
             $this->addresses = $this->cache->remember(
-                self::$cacheKey . '.addresses',
+                self::$cacheKey.'.addresses',
                 self::$cacheExpirationTime,
                 function () {
                     return $this->getAddressModel()
@@ -277,7 +277,7 @@ class LocalisationRegistrar
     /**
      * Get an instance of the address class.
      *
-     * @return PWWEB\Localisation\Contract\Address|null
+     * @return AddressContract|null
      */
     public function getAddressModel(): AddressContract
     {
@@ -293,7 +293,7 @@ class LocalisationRegistrar
     /**
      * Get an instance of the address type class.
      *
-     * @return PWWEB\Localisation\Contract\Address\Type|null
+     * @return \PWWEB\Localisation\Contract\Address\Type|null
      */
     public function getAddressTypeClass(): AddressTypeContract
     {
@@ -309,7 +309,7 @@ class LocalisationRegistrar
     /**
      * Get an instance of the country class.
      *
-     * @return PWWEB\Localisation\Contract\Country|null
+     * @return \PWWEB\Localisation\Contract\Country|null
      */
     public function getCountryClass(): CountryContract
     {
@@ -325,7 +325,7 @@ class LocalisationRegistrar
     /**
      * Get an instance of the currency class.
      *
-     * @return PWWEB\Localisation\Contract\Currency|null
+     * @return \PWWEB\Localisation\Contract\Currency|null
      */
     public function getCurrencyClass(): CurrencyContract
     {
@@ -341,7 +341,7 @@ class LocalisationRegistrar
     /**
      * Get an instance of the language class.
      *
-     * @return PWWEB\Localisation\Contract\Language|null
+     * @return \PWWEB\Localisation\Contract\Language|null
      */
     public function getLanguageClass(): LanguageContract
     {

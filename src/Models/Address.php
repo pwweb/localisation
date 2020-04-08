@@ -115,7 +115,7 @@ class Address extends Model
      **/
     public function country()
     {
-        return $this->belongsTo(\App\Models\Pwweb\Localisation\Models\SystemLocalisationCountry::class, 'country_id');
+        return $this->belongsTo(\PWWEB\Localisation\Models\Country::class, 'country_id');
     }
 
     /**
@@ -125,21 +125,15 @@ class Address extends Model
      **/
     public function type()
     {
-        return $this->belongsTo(\App\Models\Pwweb\Localisation\Models\SystemAddressType::class, 'type_id');
-    }
-
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasOne
-     **/
-    public function systemModelHasAddress()
-    {
-        return $this->hasOne(\App\Models\Pwweb\Localisation\Models\SystemModelHasAddress::class);
+        return $this->belongsTo(\PWWEB\Localisation\Models\Address\Type::class, 'type_id');
     }
 
     /**
      * Find an address by its id.
      *
      * @param int $id ID to be used to retrieve the address
+     *
+     * @todo Refactor. This needs to go into the repository.
      *
      * @throws \PWWEB\Localisation\Exceptions\AddressDoesNotExist
      *
@@ -160,6 +154,8 @@ class Address extends Model
      * Find an address by its type.
      *
      * @param string $type Address type to be used to retrieve the address
+     *
+     * @todo Refactor. This needs to go into the repository.
      *
      * @throws \PWWEB\Localisation\Exceptions\AddressDoesNotExist
      *
