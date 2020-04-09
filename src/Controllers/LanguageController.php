@@ -2,13 +2,12 @@
 
 namespace PWWEB\Localisation\Controllers;
 
-use App\Http\Controllers\AppBaseController;
+use App\Http\Controllers\Controller;
 use Flash;
 use Illuminate\Http\Request;
 use PWWEB\Localisation\Repositories\LanguageRepository;
 use PWWEB\Localisation\Requests\CreateLanguageRequest;
 use PWWEB\Localisation\Requests\UpdateLanguageRequest;
-use Response;
 
 /**
  * App\Http\Controllers\Pwweb\Localisation\Models\LanguageController LanguageController.
@@ -22,7 +21,7 @@ use Response;
  * @copyright 2020 pw-websolutions.com
  * @license   http://www.opensource.org/licenses/mit-license.html  MIT License
 */
-class LanguageController extends AppBaseController
+class LanguageController extends Controller
 {
     /**
      * Repository of languages to be used throughout the controller.
@@ -46,7 +45,7 @@ class LanguageController extends AppBaseController
      *
      * @param Request $request
      *
-     * @return Response
+     * @return \Illuminate\View\View
      */
     public function index(Request $request)
     {
@@ -59,7 +58,7 @@ class LanguageController extends AppBaseController
     /**
      * Show the form for creating a new Language.
      *
-     * @return Response
+     * @return \Illuminate\View\View
      */
     public function create()
     {
@@ -71,7 +70,7 @@ class LanguageController extends AppBaseController
      *
      * @param CreateLanguageRequest $request
      *
-     * @return Response
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function store(CreateLanguageRequest $request)
     {
@@ -89,7 +88,7 @@ class LanguageController extends AppBaseController
      *
      * @param int $id
      *
-     * @return Response
+     * @return \Illuminate\View\View|\Illuminate\Http\RedirectResponse
      */
     public function show($id)
     {
@@ -110,7 +109,7 @@ class LanguageController extends AppBaseController
      *
      * @param int $id
      *
-     * @return Response
+     * @return \Illuminate\View\View|\Illuminate\Http\RedirectResponse
      */
     public function edit($id)
     {
@@ -131,7 +130,7 @@ class LanguageController extends AppBaseController
      * @param int $id
      * @param UpdateLanguageRequest $request
      *
-     * @return Response
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function update($id, UpdateLanguageRequest $request)
     {
@@ -157,7 +156,7 @@ class LanguageController extends AppBaseController
      *
      * @throws \Exception
      *
-     * @return Response
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function destroy($id)
     {
