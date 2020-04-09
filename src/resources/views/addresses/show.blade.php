@@ -3,7 +3,7 @@
 @section('content')
      <ol class="breadcrumb">
             <li class="breadcrumb-item">
-                <a href="{{ route('localisation.address.type.index') }}">@lang("pwweb::localisation.Address type")</a>
+                <a href="{{ route('localisation.addresses.index') }}">@lang("pwweb::localisation.Addresses")</a>
             </li>
             <li class="breadcrumb-item active">@lang("pwweb::localisation.detail")</li>
      </ol>
@@ -15,10 +15,10 @@
                          <div class="card">
                              <div class="card-header">
                                  <strong>@lang("pwweb::localisation.details")</strong>
-                                  <a href="{{ route('localisation.address.type.index') }}" class="btn btn-light">@lang("pwweb::localisation.back")</a>
+                                  <a href="{{ route('localisation.addresses.index') }}" class="btn btn-light">@lang("pwweb::localisation.back")</a>
                              </div>
                              <div class="card-body">
-                                 @include('localisation::address.type.show_fields')
+                                 @include('localisation::addresses.show_fields')
                              </div>
                          </div>
                      </div>

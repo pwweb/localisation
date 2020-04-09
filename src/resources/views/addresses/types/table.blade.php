@@ -13,10 +13,10 @@
                 <td>{{ $type->name }}</td>
                 <td>{{ $type->global }}</td>
                 <td>
-                    {!! Form::open(['route' => ['localisation.address.type.destroy', $type->id], 'method' => 'delete']) !!}
+                    {!! Form::open(['route' => ['localisation.address.types.destroy', $type->id], 'method' => 'delete']) !!}
                     <div class='btn-group'>
-                        <a href="{{ route('localisation.address.type.show', $type->id) }}" class='btn btn-ghost-success'><i class="fa fa-eye"></i></a>
-                        <a href="{{ route('localisation.address.type.edit', $type->id) }}" class='btn btn-ghost-info'><i class="fa fa-edit"></i></a>
+                        <a href="{{ route('localisation.address.types.show', $type->id) }}" class='btn btn-ghost-success'><i class="fa fa-eye"></i></a>
+                        <a href="{{ route('localisation.address.types.edit', $type->id) }}" class='btn btn-ghost-info'><i class="fa fa-edit"></i></a>
                         {!! Form::button('<i class="fa fa-trash"></i>', ['type' => 'submit', 'class' => 'btn btn-ghost-danger', 'onclick' => "return confirm('Are you sure?')"]) !!}
                     </div>
                     {!! Form::close() !!}

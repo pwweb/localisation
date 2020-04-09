@@ -29,7 +29,7 @@ class LanguageSeeder extends Seeder
         $languages = [];
 
         // Definition of default languages.
-        $languages[] = ['name' => 'English', 'locale' => 'en-GB', 'abbreviation' => 'EN', 'installed' => '1', 'active' => '1', 'standard' => '0'];
+        $languages[] = ['name' => 'English', 'locale' => 'en-GB', 'abbreviation' => 'EN', 'installed' => '1', 'active' => '1', 'standard' => '1'];
         $languages[] = ['name' => 'German', 'locale' => 'de-DE', 'abbreviation' => 'DE', 'installed' => '1', 'active' => '1', 'standard' => '0'];
 
         foreach ($languages as $id => $language) {

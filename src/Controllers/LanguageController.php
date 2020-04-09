@@ -2,46 +2,177 @@
 
 namespace PWWEB\Localisation\Controllers;
 
-use App\Http\Controllers\Controller;
-use PWWEB\Localisation\Middleware\Locale;
-use PWWEB\Localisation\Models\Language;
+use App\Http\Controllers\AppBaseController;
+use Flash;
+use Illuminate\Http\Request;
+use PWWEB\Localisation\Repositories\LanguageRepository;
+use PWWEB\Localisation\Requests\CreateLanguageRequest;
+use PWWEB\Localisation\Requests\UpdateLanguageRequest;
+use Response;
 
-class LanguageController extends Controller
+/**
+ * App\Http\Controllers\Pwweb\Localisation\Models\LanguageController LanguageController.
+ *
+ * The CRUD controller for Language
+ * Class LanguageController
+ *
+ * @package   pwweb/localisation
+ * @author    Frank Pillukeit <frank.pillukeit@pw-websolutions.com>
+ * @author    Richard Browne <richard.browne@pw-websolutions.com
+ * @copyright 2020 pw-websolutions.com
+ * @license   http://www.opensource.org/licenses/mit-license.html  MIT License
+*/
+class LanguageController extends AppBaseController
 {
     /**
-     * Change the locale.
+     * Repository of languages to be used throughout the controller.
      *
-     * @param string $locale Locale that should be changed to
-     *
-     * @return \Illuminate\Http\RedirectResponse
+     * @var \PWWEB\Localisation\Repositories\LanguageRepository
      */
-    public function change($locale)
-    {
-        $locales = (array) Language::getLocales();
+    private $languageRepository;
 
-        // If a locale does not match any of the ones allowed, go back without doing anything.
-        if (false === in_array($locale, $locales)) {
-            return redirect()->back();
+    /**
+     * Constructor for the language controller.
+     *
+     * @param \PWWEB\Localisation\Repositories\LanguageRepository $languageRepo Repository of languages
+     */
+    public function __construct(LanguageRepository $languageRepo)
+    {
+        $this->languageRepository = $languageRepo;
+    }
+
+    /**
+     * Display a listing of the Language.
+     *
+     * @param Request $request
+     *
+     * @return Response
+     */
+    public function index(Request $request)
+    {
+        $languages = $this->languageRepository->all();
+
+        return view('localisation::languages.index')
+            ->with('languages', $languages);
+    }
+
+    /**
+     * Show the form for creating a new Language.
+     *
+     * @return Response
+     */
+    public function create()
+    {
+        return view('localisation::languages.create');
+    }
+
+    /**
+     * Store a newly created Language in storage.
+     *
+     * @param CreateLanguageRequest $request
+     *
+     * @return Response
+     */
+    public function store(CreateLanguageRequest $request)
+    {
+        $input = $request->all();
+
+        $language = $this->languageRepository->create($input);
+
+        Flash::success('Language saved successfully.');
+
+        return redirect(route('localisation.languages.index'));
+    }
+
+    /**
+     * Display the specified Language.
+     *
+     * @param int $id
+     *
+     * @return Response
+     */
+    public function show($id)
+    {
+        $language = $this->languageRepository->find($id);
+
+        if (empty($language)) {
+            Flash::error('Language not found');
+
+            return redirect(route('localisation.languages.index'));
         }
 
-        // Set the right sessions.
-        session([Locale::SESSION_KEY => $locale]);
-        app()->setLocale($locale);
-        // \LangCountry::setAllSessions($lang_country);
+        return view('localisation::languages.show')
+            ->with('language', $language);
+    }
 
-        // If a user is logged in and it has a lang_country property, set the new lang_country.
-        /*
-         * Todo Set language to user options
-         * if (Auth::user() && array_key_exists('lang_country', Auth::user()->getAttributes())) {
-         *
-            try {
-                \Auth::user()->lang_country = $lang_country;
-                \Auth::user()->save();
-            } catch (\Exception $e) {
-                \Log::error(get_class($this).' at '.__LINE__.': '.$e->getMessage());
-            }
-        }*/
+    /**
+     * Show the form for editing the specified Language.
+     *
+     * @param int $id
+     *
+     * @return Response
+     */
+    public function edit($id)
+    {
+        $language = $this->languageRepository->find($id);
 
-        return redirect()->back();
+        if (empty($language)) {
+            Flash::error('Language not found');
+
+            return redirect(route('localisation.languages.index'));
+        }
+
+        return view('localisation::languages.edit')->with('language', $language);
+    }
+
+    /**
+     * Update the specified Language in storage.
+     *
+     * @param int $id
+     * @param UpdateLanguageRequest $request
+     *
+     * @return Response
+     */
+    public function update($id, UpdateLanguageRequest $request)
+    {
+        $language = $this->languageRepository->find($id);
+
+        if (empty($language)) {
+            Flash::error('Language not found');
+
+            return redirect(route('localisation.languages.index'));
+        }
+
+        $language = $this->languageRepository->update($request->all(), $id);
+
+        Flash::success('Language updated successfully.');
+
+        return redirect(route('localisation.languages.index'));
+    }
+
+    /**
+     * Remove the specified Language from storage.
+     *
+     * @param int $id
+     *
+     * @throws \Exception
+     *
+     * @return Response
+     */
+    public function destroy($id)
+    {
+        $language = $this->languageRepository->find($id);
+
+        if (empty($language)) {
+            Flash::error('Language not found');
+
+            return redirect(route('localisation.languages.index'));
+        }
+
+        $this->languageRepository->delete($id);
+
+        Flash::success('Language deleted successfully.');
+
+        return redirect(route('localisation.languages.index'));
     }
 }

@@ -1,5 +1,7 @@
 <?php
 
+namespace PWWEB\Localisation\Exceptions;
+
 /**
  * PWWEB\Localisation\Exceptions.
  *
@@ -9,8 +11,6 @@
  * @copyright 2020 pw-websolutions.com
  * @license   http://www.opensource.org/licenses/mit-license.html  MIT License
  */
-
-namespace PWWEB\Localisation\Exceptions;
 
 use InvalidArgumentException;
 

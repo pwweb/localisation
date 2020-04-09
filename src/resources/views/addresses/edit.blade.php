@@ -3,9 +3,9 @@
 @section('content')
     <ol class="breadcrumb">
           <li class="breadcrumb-item">
-             <a href="{!! route('localisation.address.index') !!}">Address</a>
+             <a href="{!! route('localisation.addresses.index') !!}">@lang("pwweb::localisation.Addresses")</a>
           </li>
-          <li class="breadcrumb-item active">Edit</li>
+          <li class="breadcrumb-item active">@lang("pwweb::localisation.Edit")</li>
         </ol>
     <div class="container-fluid">
          <div class="animated fadeIn">
@@ -15,12 +15,12 @@
                       <div class="card">
                           <div class="card-header">
                               <i class="fa fa-edit fa-lg"></i>
-                              <strong>Edit Address</strong>
+                              <strong>@lang("pwweb::localisation.Edit address")</strong>
                           </div>
                           <div class="card-body">
-                              {!! Form::model($address, ['route' => ['localisation.address.update', $address->id], 'method' => 'patch']) !!}
+                              {!! Form::model($address, ['route' => ['localisation.addresses.update', $address->id], 'method' => 'patch']) !!}
 
-                              @include('localisation::address.fields')
+                              @include('localisation::addresses.fields')
 
                               {!! Form::close() !!}
                             </div>

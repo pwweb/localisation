@@ -3,7 +3,7 @@
 @section('content')
     <ol class="breadcrumb">
       <li class="breadcrumb-item">
-         <a href="{!! route('localisation.address.index') !!}">@lang("pwweb::localisation.Addresses")</a>
+         <a href="{!! route('localisation.addresses.index') !!}">@lang("pwweb::localisation.Addresses")</a>
       </li>
       <li class="breadcrumb-item active">@lang("pwweb::localisation.create")</li>
     </ol>
@@ -18,9 +18,9 @@
                                 <strong>@lang("pwweb::localisation.Create address")</strong>
                             </div>
                             <div class="card-body">
-                                {!! Form::open(['route' => 'localisation.address.store']) !!}
+                                {!! Form::open(['route' => 'localisation.addresses.store']) !!}
 
-                                   @include('localisation::address.fields')
+                                   @include('localisation::addresses.fields')
 
                                 {!! Form::close() !!}
                             </div>

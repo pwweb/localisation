@@ -46,7 +46,7 @@ class TypeController extends Controller
     {
         $types = $this->typeRepository->all();
 
-        return view('localisation::address.type.index')
+        return view('localisation::addresses.types.index')
             ->with('types', $types);
     }
 
@@ -57,7 +57,7 @@ class TypeController extends Controller
      */
     public function create() : View
     {
-        return view('localisation::address.type.create');
+        return view('localisation::addresses.types.create');
     }
 
     /**
@@ -75,7 +75,7 @@ class TypeController extends Controller
 
         Flash::success('Type saved successfully.');
 
-        return redirect(route('localisation.address.type.index'));
+        return redirect(route('localisation.address.types.index'));
     }
 
     /**
@@ -92,10 +92,10 @@ class TypeController extends Controller
         if (empty($type)) {
             Flash::error('Type not found');
 
-            return redirect(route('localisation.address.type.index'));
+            return redirect(route('localisation.address.types.index'));
         }
 
-        return view('localisation::address.type.show')->with('type', $type);
+        return view('localisation::addresses.types.show')->with('type', $type);
     }
 
     /**
@@ -112,10 +112,10 @@ class TypeController extends Controller
         if (empty($type)) {
             Flash::error('Type not found');
 
-            return redirect(route('localisation.address.type.index'));
+            return redirect(route('localisation.address.types.index'));
         }
 
-        return view('localisation::address.type.edit')->with('type', $type);
+        return view('localisation::addresses.types.edit')->with('type', $type);
     }
 
     /**
@@ -133,14 +133,14 @@ class TypeController extends Controller
         if (empty($type)) {
             Flash::error('Type not found');
 
-            return redirect(route('localisation.address.type.index'));
+            return redirect(route('localisation.address.types.index'));
         }
 
         $type = $this->typeRepository->update($request->all(), $id);
 
         Flash::success('Type updated successfully.');
 
-        return redirect(route('localisation.address.type.index'));
+        return redirect(route('localisation.address.types.index'));
     }
 
     /**
@@ -159,13 +159,13 @@ class TypeController extends Controller
         if (empty($type)) {
             Flash::error('Type not found');
 
-            return redirect(route('localisation.address.type.index'));
+            return redirect(route('localisation.address.types.index'));
         }
 
         $this->typeRepository->delete($id);
 
         Flash::success('Type deleted successfully.');
 
-        return redirect(route('localisation.address.type.index'));
+        return redirect(route('localisation.address.types.index'));
     }
 }

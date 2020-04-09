@@ -11,14 +11,15 @@ Route::namespace('PWWEB\Localisation\Controllers')
     // ->middleware('auth')
     ->group(
         function () {
-            Route::resource('address', AddressController::class);
+            Route::resource('languages', LanguageController::class);
+            Route::resource('addresses', AddressController::class);
             Route::namespace('Address')
                 ->prefix('address')
                 ->name('address.')
                 // ->middleware('auth')
                 ->group(
                     function () {
-                        Route::resource('type', TypeController::class);
+                        Route::resource('types', TypeController::class);
                     }
                 );
         }

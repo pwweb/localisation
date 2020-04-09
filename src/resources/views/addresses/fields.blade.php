@@ -65,5 +65,5 @@
 <!-- Submit Field -->
 <div class="form-group col-sm-12">
     {!! Form::submit(Lang::get('pwweb::localisation.Save address'), ['class' => 'btn btn-primary']) !!}
-    <a href="{{ route('localisation.address.index') }}" class="btn btn-secondary">@lang("pwweb::localisation.cancel")</a>
+    <a href="{{ route('localisation.addresses.index') }}" class="btn btn-secondary">@lang("pwweb::localisation.cancel")</a>
 </div>

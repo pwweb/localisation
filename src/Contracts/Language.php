@@ -32,7 +32,7 @@ interface Language
      *
      * @return Language
      */
-    public static function findByName(string $name): self;
+    // public static function findByName(string $name): self;
 
     /**
      * Find a Language by its id.
@@ -43,7 +43,7 @@ interface Language
      *
      * @return Language
      */
-    public static function findById(int $id): self;
+    // public static function findById(int $id): self;
 
     /**
      * Find a Language by its locale, e.g. en-gb.
@@ -54,5 +54,5 @@ interface Language
      *
      * @return Language
      */
-    public static function findByLocale(string $locale): self;
+    // public static function findByLocale(string $locale): self;
 }

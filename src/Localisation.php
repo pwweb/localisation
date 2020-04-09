@@ -17,6 +17,7 @@ use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Support\Str;
 use PWWEB\Localisation\Contracts\Language as LanguageContract;
 use PWWEB\Localisation\Models\Language;
+use PWWEB\Localisation\Repositories\LanguageRepository;
 
 class Localisation
 {
@@ -42,11 +43,18 @@ class Localisation
     protected $lumen = false;
 
     /**
+     * Repository of languages to be used throughout the controller.
+     *
+     * @var \PWWEB\Localisation\Repositories\LanguageRepository
+     */
+    private $languageRepository;
+
+    /**
      * Constructor.
      *
      * @param \Illuminate\Foundation\Application $app laravel application for further use
      */
-    public function __construct($app = null)
+    public function __construct($app = null, LanguageRepository $languageRepo)
     {
         if (null === $app) {
             $app = app();
@@ -56,6 +64,8 @@ class Localisation
         $this->app = $app;
         $this->version = $app->version();
         $this->lumen = Str::contains($this->version, 'Lumen');
+
+        $this->languageRepository = $languageRepo;
     }
 
     /**
@@ -63,9 +73,9 @@ class Localisation
      *
      * @return \Illuminate\Database\Eloquent\Collection a collection of active languages
      */
-    public static function languages(): Collection
+    public function languages(): Collection
     {
-        return Language::where('active', 1)->get();
+        return $this->languageRepository->getAllActive();
     }
 
     /**
@@ -75,22 +85,22 @@ class Localisation
      *
      * @return \PWWEB\Localisation\Contracts\Language A language object
      */
-    public static function currentLanguage(string $locale = ''): LanguageContract
+    public function currentLanguage(string $locale = ''): LanguageContract
     {
         $fallbackLocale = config('app.fallback_locale');
 
         if ('' === $locale) {
             $locale = app()->getLocale();
-        } else if ($locale === $fallbackLocale) {
+        } elseif ($locale === $fallbackLocale) {
             $locale = 'en-GB';
         } else {
-            $locale = $fallbackLocale . '-' . strtoupper($fallbackLocale);
+            $locale = $fallbackLocale.'-'.strtoupper($fallbackLocale);
         }
 
         try {
-            $current = Language::findByLocale($locale);
+            $current = $this->languageRepository->findByLocale($locale);
         } catch (\InvalidArgumentException $e) {
-            $current = self::currentLanguage($fallbackLocale);
+            $current = $this->currentLanguage($fallbackLocale);
         }
 
         return $current;
@@ -101,10 +111,10 @@ class Localisation
      *
      * @return \Illuminate\Contracts\Support\Renderable language selector / switcher markup
      */
-    public static function languageSelector(): Renderable
+    public function languageSelector(): Renderable
     {
-        $languages = self::languages();
-        $current = self::currentLanguage();
+        $languages = $this->languages();
+        $current = $this->currentLanguage();
 
         return view('localisation::atoms.languageselector', compact('languages', 'current'));
     }

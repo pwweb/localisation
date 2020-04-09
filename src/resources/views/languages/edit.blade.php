@@ -3,7 +3,7 @@
 @section('content')
     <ol class="breadcrumb">
           <li class="breadcrumb-item">
-             <a href="{!! route('localisation.address.type.index') !!}">@lang("pwweb::localisation.Address type")</a>
+             <a href="{!! route('localisation.languages.index') !!}">@lang("pwweb::localisation.Addresses")</a>
           </li>
           <li class="breadcrumb-item active">@lang("pwweb::localisation.edit")</li>
         </ol>
@@ -15,12 +15,12 @@
                       <div class="card">
                           <div class="card-header">
                               <i class="fa fa-edit fa-lg"></i>
-                              <strong>@lang("pwweb::localisation.Edit address type")</strong>
+                              <strong>@lang("pwweb::localisation.Edit language")</strong>
                           </div>
                           <div class="card-body">
-                              {!! Form::model($type, ['route' => ['localisation.address.type.update', $type->id], 'method' => 'patch']) !!}
+                              {!! Form::model($language, ['route' => ['localisation.languages.update', $language->id], 'method' => 'patch']) !!}
 
-                              @include('localisation::.address.type.fields')
+                              @include('localisation::languages.fields')
 
                               {!! Form::close() !!}
                             </div>

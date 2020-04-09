@@ -6,6 +6,8 @@ use Closure;
 use Illuminate\Contracts\Session\Session;
 use Illuminate\Http\Request;
 
+use PWWEB\Localisation\Repositories\LanguageRepository;
+
 class Locale
 {
     /**
@@ -14,6 +16,18 @@ class Locale
      * @const string
      */
     const SESSION_KEY = 'locale';
+
+    /**
+     * Repository of languages to be used throughout the controller.
+     *
+     * @var \PWWEB\Localisation\Repositories\LanguageRepository
+     */
+    private $languageRepository;
+
+    public function __construct(LanguageRepository $languageRepo)
+    {
+        $this->languageRepository = $languageRepo;
+    }
 
     /**
      * Locale middleware handler.
@@ -34,7 +48,7 @@ class Locale
 
             if (true === $request->has('lang')) {
                 $lang = $request->get('lang');
-                $locales = (array) Language::getLocales();
+                $locales = (array) $this->languageRepository->getLocales();
 
                 if (true === in_array($lang, $locales)) {
                     $session->put(self::SESSION_KEY, $lang);

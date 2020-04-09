@@ -1,11 +1,9 @@
 <?php
-
 namespace PWWEB\Localisation\Repositories;
 
 use App\Repositories\BaseRepository;
-use Illuminate\Database\Eloquent\Collection;
-use PWWEB\Localisation\Contracts\LanguageContract;
-use PWWEB\Localisation\LocalisationRegistrar;
+use PWWEB\Localisation\Contracts\Language as LanguageContract;
+use PWWEB\Localisation\Exceptions\LanguageDoesNotExist;
 use PWWEB\Localisation\Models\Language;
 
 /**
@@ -51,7 +49,20 @@ class LanguageRepository extends BaseRepository
     {
         return Language::class;
     }
-
+    //
+    // /**
+    //  * Get the current cached languages.
+    //  *
+    //  * @param array $params additional parameters for the database query
+    //  *
+    //  * @return \Illuminate\Database\Eloquent\Collection collection of languages
+    //  */
+    // protected static function get(array $params = []): Collection
+    // {
+    //     returrn parent::get($params);
+    //     // Cached: return app(LocalisationRegistrar::class)->setLanguageClass(static::class)->getLanguages($params);
+    // }
+    //
     /**
      * Retrieve all active languages.
      *
@@ -61,47 +72,47 @@ class LanguageRepository extends BaseRepository
     {
         return Language::where('active', 1)->get();
     }
-
-    /**
-     * Find a language by its name.
-     *
-     * @param string $name language name to be used to retrieve the language
-     *
-     * @throws \PWWEB\Localisation\Exceptions\LanguageDoesNotExist
-     *
-     * @return \PWWEB\Localisation\Contracts\Language
-     */
-    public static function findByName(string $name): LanguageContract
-    {
-        $language = static::getLanguages(['name' => $name])->first();
-
-        if (null === $language) {
-            throw LanguageDoesNotExist::create($name);
-        }
-
-        return $language;
-    }
-
-    /**
-     * Find a language by its id.
-     *
-     * @param int $id ID to be used to retrieve the language
-     *
-     * @throws \PWWEB\Localisation\Exceptions\LanguageDoesNotExist
-     *
-     * @return \PWWEB\Localisation\Contracts\Language
-     */
-    public static function findById(int $id): LanguageContract
-    {
-        $language = static::getLanguages(['id' => $id])->first();
-
-        if (null === $language) {
-            throw LanguageDoesNotExist::withId($id);
-        }
-
-        return $language;
-    }
-
+    //
+    // /**
+    //  * Find a language by its name.
+    //  *
+    //  * @param string $name language name to be used to retrieve the language
+    //  *
+    //  * @throws \PWWEB\Localisation\Exceptions\LanguageDoesNotExist
+    //  *
+    //  * @return \PWWEB\Localisation\Contracts\Language
+    //  */
+    // public static function findByName(string $name): LanguageContract
+    // {
+    //     $language = static::getLanguages(['name' => $name])->first();
+    //
+    //     if (null === $language) {
+    //         throw LanguageDoesNotExist::create($name);
+    //     }
+    //
+    //     return $language;
+    // }
+    //
+    // /**
+    //  * Find a language by its id.
+    //  *
+    //  * @param int $id ID to be used to retrieve the language
+    //  *
+    //  * @throws \PWWEB\Localisation\Exceptions\LanguageDoesNotExist
+    //  *
+    //  * @return \PWWEB\Localisation\Contracts\Language
+    //  */
+    // public static function findById(int $id): LanguageContract
+    // {
+    //     $language = static::getLanguages(['id' => $id])->first();
+    //
+    //     if (null === $language) {
+    //         throw LanguageDoesNotExist::withId($id);
+    //     }
+    //
+    //     return $language;
+    // }
+    //
     /**
      * Find a language by its locale, e.g. en-gb.
      *
@@ -111,9 +122,9 @@ class LanguageRepository extends BaseRepository
      *
      * @return \PWWEB\Localisation\Contracts\Language
      */
-    public static function findByLocale(string $locale): LanguageContract
+    public function findByLocale(string $locale): LanguageContract
     {
-        $language = static::getLanguages(['locale' => $locale])->first();
+        $language = Language::where(['locale' => $locale])->first();
 
         if (null === $language) {
             throw LanguageDoesNotExist::create($locale);
@@ -121,37 +132,23 @@ class LanguageRepository extends BaseRepository
 
         return $language;
     }
-
-    /**
-     * Get the current cached languages.
-     *
-     * @param array $params additional parameters for the database query
-     *
-     * @return \Illuminate\Database\Eloquent\Collection collection of languages
-     */
-    protected static function getLanguages(array $params = []): Collection
-    {
-        return app(LocalisationRegistrar::class)
-            ->setLanguageClass(static::class)
-            ->getLanguages($params);
-    }
-
-    /**
-     * Obtain the available locales.
-     *
-     * @param array $params Set of additional params for querying.
-     *
-     * @return array
-     */
-    protected static function getLocales(array $params = []): array
-    {
-        $locales = [];
-        $languages = self::getLanguages($params);
-
-        foreach ($languages as $language) {
-            $locales[] = $language->locale;
-        }
-
-        return $locales;
-    }
+    //
+    // /**
+    //  * Obtain the available locales.
+    //  *
+    //  * @param array $params Set of additional params for querying.
+    //  *
+    //  * @return array
+    //  */
+    // protected static function getLocales(array $params = []): array
+    // {
+    //     $locales = [];
+    //     $languages = self::getLanguages($params);
+    //
+    //     foreach ($languages as $language) {
+    //         $locales[] = $language->locale;
+    //     }
+    //
+    //     return $locales;
+    // }
 }

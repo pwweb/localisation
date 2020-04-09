@@ -61,7 +61,7 @@ class AddressController extends Controller
     {
         $addresses = $this->addressRepository->all();
 
-        return view('localisation::address.index')
+        return view('localisation::addresses.index')
             ->with('addresses', $addresses);
     }
 
@@ -74,7 +74,7 @@ class AddressController extends Controller
     {
         $types = $this->typeRepository->all();
 
-        return view('localisation::address.create')
+        return view('localisation::addresses.create')
             ->with('types', $types);
     }
 
@@ -93,7 +93,7 @@ class AddressController extends Controller
 
         Flash::success('Address saved successfully.');
 
-        return redirect(route('localisation.address.index'));
+        return redirect(route('localisation.addresses.index'));
     }
 
     /**
@@ -110,10 +110,10 @@ class AddressController extends Controller
         if (empty($address)) {
             Flash::error('Address not found');
 
-            return redirect(route('localisation.address.index'));
+            return redirect(route('localisation.addresses.index'));
         }
 
-        return view('localisation::address.show')->with('address', $address);
+        return view('localisation::addresses.show')->with('address', $address);
     }
 
     /**
@@ -132,10 +132,10 @@ class AddressController extends Controller
         if (empty($address)) {
             Flash::error('Address not found');
 
-            return redirect(route('localisation.address.index'));
+            return redirect(route('localisation.addresses.index'));
         }
 
-        return view('localisation::address.edit')
+        return view('localisation::addresses.edit')
             ->with('address', $address)
             ->with('types', $types);
     }
@@ -155,14 +155,14 @@ class AddressController extends Controller
         if (empty($address)) {
             Flash::error('Address not found');
 
-            return redirect(route('localisation.address.index'));
+            return redirect(route('localisation.addresses.index'));
         }
 
         $address = $this->addressRepository->update($request->all(), $id);
 
         Flash::success('Address updated successfully.');
 
-        return redirect(route('localisation.address.index'));
+        return redirect(route('localisation.addresses.index'));
     }
 
     /**
@@ -181,13 +181,13 @@ class AddressController extends Controller
         if (empty($address)) {
             Flash::error('Address not found');
 
-            return redirect(route('localisation.address.index'));
+            return redirect(route('localisation.addresses.index'));
         }
 
         $this->addressRepository->delete($id);
 
         Flash::success('Address deleted successfully.');
 
-        return redirect(route('localisation.address.index'));
+        return redirect(route('localisation.addresses.index'));
     }
 }
