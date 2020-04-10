@@ -2,7 +2,7 @@
 
 Route::group(['prefix' => 'localisation', 'namespace' => 'PWWEB\Localisation\Controllers'], function () {
     Route::get('/', 'IndexController@index')->name('localisation.dashboard');
-    Route::get('/change/{locale}', 'LanguageController@switch')->name('localisation.switch');
+    Route::get('/change/{locale}', 'LanguageController@changeLocale')->name('localisation.switch');
     Route::get('/address/store', 'AddressController@store')->name('localisation.address.store');
 });
 

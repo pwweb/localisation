@@ -7,7 +7,7 @@
 
     <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
         @foreach ($languages as $language)
-        <a class="dropdown-item @if ($current->name == $language->name) active @endif" href="/localisation/switch/{{ $language->locale }}">{{ $language->name }}</a>
+        <a class="dropdown-item @if ($current->name == $language->name) active @endif" href="/localisation/change/{{ $language->locale }}">{{ $language->name }}</a>
         @endforeach
     </div>
 </div>
