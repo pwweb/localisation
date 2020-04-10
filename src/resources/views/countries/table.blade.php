@@ -3,8 +3,8 @@
         <thead>
             <tr>
                 <th>@lang("pwweb::localisation.Name")</th>
-                <th>@lang("pwweb::localisation.Iso Code")</th>
-                <th>@lang("pwweb::localisation.Ioc Code")</th>
+                <th>@lang("pwweb::localisation.Iso code")</th>
+                <th>@lang("pwweb::localisation.Ioc code")</th>
                 <th>@lang("pwweb::localisation.Active")</th>
                 <th colspan="3">@lang("pwweb::localisation.Action")</th>
             </tr>

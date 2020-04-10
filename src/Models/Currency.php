@@ -1,22 +1,71 @@
 <?php
 
+namespace PWWEB\Localisation\Models;
+
+use Eloquent as Model;
+use PWWEB\Localisation\Contracts\Currency as CurrencyContract;
+
 /**
- * PWWEB\Localisation\Models\Currency Model.
+ * App\Models\Pwweb\Localisation\Models\Currency Model.
  *
  * Standard Currency Model.
  *
- * @author    Frank Pillukeit <clients@pw-websolutions.com>
+ * @package   pwweb/localisation
+ * @author    Frank Pillukeit <frank.pillukeit@pw-websolutions.com>
+ * @author    Richard Browne <richard.browne@pw-websolutions.com
  * @copyright 2020 pw-websolutions.com
  * @license   http://www.opensource.org/licenses/mit-license.html  MIT License
+ * @property string name
+ * @property string iso
+ * @property integer numeric_code
+ * @property string entity_code
+ * @property boolean active
+ * @property boolean standard
  */
 
-namespace PWWEB\Localisation\Models;
-
-use Illuminate\Database\Eloquent\Model;
-use PWWEB\Localisation\Contracts\Currency as CountryContract;
-
-class Currency extends Model implements CountryContract
+class Currency extends Model implements CurrencyContract
 {
+    const CREATED_AT = 'created_at';
+    const UPDATED_AT = 'updated_at';
+
+    public $fillable = [
+        'name',
+        'iso',
+        'numeric_code',
+        'entity_code',
+        'active',
+        'standard'
+    ];
+
+    /**
+     * The attributes that should be casted to native types.
+     *
+     * @var array
+     */
+    protected $casts = [
+        'id' => 'integer',
+        'name' => 'string',
+        'iso' => 'string',
+        'numeric_code' => 'integer',
+        'entity_code' => 'string',
+        'active' => 'boolean',
+        'standard' => 'boolean'
+    ];
+
+    /**
+     * Validation rules.
+     *
+     * @var array
+     */
+    public static $rules = [
+        'name' => 'required',
+        'iso' => 'required',
+        'numeric_code' => 'required',
+        'entity_code' => 'required',
+        'active' => 'required',
+        'standard' => 'required'
+    ];
+
     /**
      * Constructor.
      *

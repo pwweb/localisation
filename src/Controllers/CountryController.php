@@ -8,7 +8,6 @@ use Illuminate\Http\Request;
 use PWWEB\Localisation\Repositories\CountryRepository;
 use PWWEB\Localisation\Requests\CreateCountryRequest;
 use PWWEB\Localisation\Requests\UpdateCountryRequest;
-use Response;
 
 /**
  * PWWEB\Localisation\Controllers\CountryController CountryController.
@@ -37,7 +36,7 @@ class CountryController extends Controller
      *
      * @param Request $request
      *
-     * @return Response
+     * @return \Illuminate\View\View
      */
     public function index(Request $request)
     {
@@ -50,7 +49,7 @@ class CountryController extends Controller
     /**
      * Show the form for creating a new Country.
      *
-     * @return Response
+     * @return \Illuminate\View\View
      */
     public function create()
     {
@@ -62,7 +61,7 @@ class CountryController extends Controller
      *
      * @param CreateCountryRequest $request
      *
-     * @return Response
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function store(CreateCountryRequest $request)
     {
@@ -80,7 +79,7 @@ class CountryController extends Controller
      *
      * @param int $id
      *
-     * @return Response
+     * @return \Illuminate\View\View|\Illuminate\Http\RedirectResponse
      */
     public function show($id)
     {
@@ -100,7 +99,7 @@ class CountryController extends Controller
      *
      * @param int $id
      *
-     * @return Response
+     * @return \Illuminate\View\View|\Illuminate\Http\RedirectResponse
      */
     public function edit($id)
     {
@@ -121,7 +120,7 @@ class CountryController extends Controller
      * @param int $id
      * @param UpdateCountryRequest $request
      *
-     * @return Response
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function update($id, UpdateCountryRequest $request)
     {
@@ -147,7 +146,7 @@ class CountryController extends Controller
      *
      * @throws \Exception
      *
-     * @return Response
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function destroy($id)
     {

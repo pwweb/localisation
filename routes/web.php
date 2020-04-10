@@ -12,6 +12,7 @@ Route::namespace('PWWEB\Localisation\Controllers')
     ->group(
         function () {
             Route::resource('countries', CountryController::class);
+            Route::resource('currencies', CurrencyController::class);
             Route::resource('languages', LanguageController::class);
             Route::resource('addresses', AddressController::class);
             Route::namespace('Address')
