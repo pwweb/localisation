@@ -16,13 +16,13 @@ use PWWEB\Localisation\Contracts\Language as LanguageContract;
  * @author    Richard Browne <richard.browne@pw-websolutions.com
  * @copyright 2020 pw-websolutions.com
  * @license   http://www.opensource.org/licenses/mit-license.html  MIT License
- * @property \Illuminate\Database\Eloquent\Collection countries
- * @property string name
- * @property string locale
- * @property string abbreviation
- * @property boolean installed
- * @property boolean active
- * @property boolean standard
+ * @property  \Illuminate\Database\Eloquent\Collection countries
+ * @property  string name
+ * @property  string locale
+ * @property  string abbreviation
+ * @property  boolean installed
+ * @property  boolean active
+ * @property  boolean standard
  */
 
 class Language extends Model implements LanguageContract
@@ -30,6 +30,11 @@ class Language extends Model implements LanguageContract
     const CREATED_AT = 'created_at';
     const UPDATED_AT = 'updated_at';
 
+    /**
+     * The attributes that can be filled.
+     *
+     * @var string[]
+     */
     public $fillable = [
         'name',
         'locale',
@@ -83,6 +88,8 @@ class Language extends Model implements LanguageContract
     }
 
     /**
+     * Accessor for linked Country model.
+     *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      **/
     public function countries() : BelongsToMany

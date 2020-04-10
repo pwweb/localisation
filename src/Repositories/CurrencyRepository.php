@@ -16,10 +16,12 @@ use PWWEB\Localisation\Models\Currency;
  * @author    Richard Browne <richard.browne@pw-websolutions.com
  * @copyright 2020 pw-websolutions.com
  * @license   http://www.opensource.org/licenses/mit-license.html  MIT License
-*/
+ */
 class CurrencyRepository extends BaseRepository
 {
     /**
+     * Fields that can be searched by.
+     *
      * @var array
      */
     protected $fieldSearchable = [
@@ -43,6 +45,8 @@ class CurrencyRepository extends BaseRepository
 
     /**
      * Configure the Model.
+     *
+     * @return string
      **/
     public function model()
     {

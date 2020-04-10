@@ -21,6 +21,8 @@ use PWWEB\Localisation\Models\Language;
 class LanguageRepository extends BaseRepository
 {
     /**
+     * Fields that can be searched by.
+     *
      * @var array
      */
     protected $fieldSearchable = [
@@ -44,6 +46,8 @@ class LanguageRepository extends BaseRepository
 
     /**
      * Configure the Model.
+     *
+     * @return string
      **/
     public function model()
     {

@@ -12,7 +12,7 @@ use PWWEB\Localisation\Requests\Address\CreateTypeRequest;
 use PWWEB\Localisation\Requests\Address\UpdateTypeRequest;
 
 /**
- * App\Http\Controllers\Pwweb\Localisation\Models\Address\TypeController TypeController.
+ * PWWEB\Localisation\Controllers\Address\TypeController TypeController.
  *
  * The CRUD controller for Type
  * Class TypeController
@@ -26,19 +26,26 @@ use PWWEB\Localisation\Requests\Address\UpdateTypeRequest;
 class TypeController extends Controller
 {
     /**
+     * Repository of Address types to be used throughout the controller.
+     *
      * @var TypeRepository
      */
     private $typeRepository;
 
+    /**
+     * Constructor for the Address type controller.
+     *
+     * @param \PWWEB\Localisation\Repositories\Address\TypeRepository $typeRepo Repository of Address types
+     */
     public function __construct(TypeRepository $typeRepo)
     {
         $this->typeRepository = $typeRepo;
     }
 
     /**
-     * Display a listing of the Type.
+     * Display a listing of the Address type.
      *
-     * @param Request $request
+     * @param Request $request Request containing the information for filtering.
      *
      * @return \Illuminate\View\View
      */
@@ -51,7 +58,7 @@ class TypeController extends Controller
     }
 
     /**
-     * Show the form for creating a new Type.
+     * Show the form for creating a new Address type.
      *
      * @return \Illuminate\View\View
      */
@@ -61,9 +68,9 @@ class TypeController extends Controller
     }
 
     /**
-     * Store a newly created Type in storage.
+     * Store a newly created Address type in storage.
      *
-     * @param CreateTypeRequest $request
+     * @param CreateTypeRequest $request Request containing the information to be stored.
      *
      * @return \Illuminate\Http\RedirectResponse
      */
@@ -79,17 +86,17 @@ class TypeController extends Controller
     }
 
     /**
-     * Display the specified Type.
+     * Display the specified Address type.
      *
-     * @param int $id
+     * @param int $id ID of the Address type to be displayed. Used for retrieving currently held data.
      *
-     * @return \Illuminate\View\View | \Illuminate\Http\RedirectResponse
+     * @return \Illuminate\View\View|\Illuminate\Http\RedirectResponse
      */
     public function show($id)
     {
         $type = $this->typeRepository->find($id);
 
-        if (empty($type)) {
+        if (true === empty($type)) {
             Flash::error('Type not found');
 
             return redirect(route('localisation.address.types.index'));
@@ -99,17 +106,17 @@ class TypeController extends Controller
     }
 
     /**
-     * Show the form for editing the specified Type.
+     * Show the form for editing the specified Address type.
      *
-     * @param int $id
+     * @param int $id ID of the Address type to be edited. Used for retrieving currently held data.
      *
-     * @return \Illuminate\View\View | \Illuminate\Http\RedirectResponse
+     * @return \Illuminate\View\View|\Illuminate\Http\RedirectResponse
      */
     public function edit($id)
     {
         $type = $this->typeRepository->find($id);
 
-        if (empty($type)) {
+        if (true === empty($type)) {
             Flash::error('Type not found');
 
             return redirect(route('localisation.address.types.index'));
@@ -119,18 +126,18 @@ class TypeController extends Controller
     }
 
     /**
-     * Update the specified Type in storage.
+     * Update the specified Address type in storage.
      *
-     * @param int               $id
-     * @param UpdateTypeRequest $request
+     * @param int               $id      ID of the Address type to be updated.
+     * @param UpdateTypeRequest $request Request containing the information to be updated.
      *
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function update(UpdateTypeRequest $request, $id) : RedirectResponse
+    public function update($id, UpdateTypeRequest $request) : RedirectResponse
     {
         $type = $this->typeRepository->find($id);
 
-        if (empty($type)) {
+        if (true === empty($type)) {
             Flash::error('Type not found');
 
             return redirect(route('localisation.address.types.index'));
@@ -144,9 +151,9 @@ class TypeController extends Controller
     }
 
     /**
-     * Remove the specified Type from storage.
+     * Remove the specified Address type from storage.
      *
-     * @param int $id
+     * @param int $id ID of the Address type to be destroyed.
      *
      * @throws \Exception
      *
@@ -156,7 +163,7 @@ class TypeController extends Controller
     {
         $type = $this->typeRepository->find($id);
 
-        if (empty($type)) {
+        if (true === empty($type)) {
             Flash::error('Type not found');
 
             return redirect(route('localisation.address.types.index'));

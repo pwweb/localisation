@@ -14,12 +14,12 @@ use Eloquent as Model;
  * @author    Richard Browne <richard.browne@pw-websolutions.com
  * @copyright 2020 pw-websolutions.com
  * @license   http://www.opensource.org/licenses/mit-license.html  MIT License
- * @property \Illuminate\Database\Eloquent\Collection addresses
- * @property \Illuminate\Database\Eloquent\Collection languages
- * @property string name
- * @property string iso
- * @property string ioc
- * @property boolean active
+ * @property  \Illuminate\Database\Eloquent\Collection addresses
+ * @property  \Illuminate\Database\Eloquent\Collection languages
+ * @property  string name
+ * @property  string iso
+ * @property  string ioc
+ * @property  boolean active
  */
 
 class Country extends Model
@@ -27,6 +27,11 @@ class Country extends Model
     const CREATED_AT = 'created_at';
     const UPDATED_AT = 'updated_at';
 
+    /**
+     * The attributes that can be filled.
+     *
+     * @var string[]
+     */
     public $fillable = [
         'name',
         'iso',
@@ -73,6 +78,8 @@ class Country extends Model
     }
 
     /**
+     * Accessor for linked Address model.
+     *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      **/
     public function addresses()
@@ -81,6 +88,8 @@ class Country extends Model
     }
 
     /**
+     * Accessor for linked Language model.
+     *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      **/
     public function languages()
@@ -101,6 +110,6 @@ class Country extends Model
             return '';
         }
 
-        return __('pwweb::localisation.'.$value);
+        return __('pwweb::localisation.' . $value);
     }
 }

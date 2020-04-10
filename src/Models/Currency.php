@@ -15,12 +15,12 @@ use PWWEB\Localisation\Contracts\Currency as CurrencyContract;
  * @author    Richard Browne <richard.browne@pw-websolutions.com
  * @copyright 2020 pw-websolutions.com
  * @license   http://www.opensource.org/licenses/mit-license.html  MIT License
- * @property string name
- * @property string iso
- * @property integer numeric_code
- * @property string entity_code
- * @property boolean active
- * @property boolean standard
+ * @property  string name
+ * @property  string iso
+ * @property  integer numeric_code
+ * @property  string entity_code
+ * @property  boolean active
+ * @property  boolean standard
  */
 
 class Currency extends Model implements CurrencyContract
@@ -28,6 +28,11 @@ class Currency extends Model implements CurrencyContract
     const CREATED_AT = 'created_at';
     const UPDATED_AT = 'updated_at';
 
+    /**
+     * The attributes that can be filled.
+     *
+     * @var string[]
+     */
     public $fillable = [
         'name',
         'iso',

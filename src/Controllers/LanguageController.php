@@ -10,7 +10,7 @@ use PWWEB\Localisation\Requests\CreateLanguageRequest;
 use PWWEB\Localisation\Requests\UpdateLanguageRequest;
 
 /**
- * App\Http\Controllers\Pwweb\Localisation\Models\LanguageController LanguageController.
+ * PWWEB\Localisation\Controllers\LanguageController LanguageController.
  *
  * The CRUD controller for Language
  * Class LanguageController
@@ -20,20 +20,20 @@ use PWWEB\Localisation\Requests\UpdateLanguageRequest;
  * @author    Richard Browne <richard.browne@pw-websolutions.com
  * @copyright 2020 pw-websolutions.com
  * @license   http://www.opensource.org/licenses/mit-license.html  MIT License
-*/
+ */
 class LanguageController extends Controller
 {
     /**
-     * Repository of languages to be used throughout the controller.
+     * Repository of Languages to be used throughout the controller.
      *
      * @var \PWWEB\Localisation\Repositories\LanguageRepository
      */
     private $languageRepository;
 
     /**
-     * Constructor for the language controller.
+     * Constructor for the Language controller.
      *
-     * @param \PWWEB\Localisation\Repositories\LanguageRepository $languageRepo Repository of languages
+     * @param \PWWEB\Localisation\Repositories\LanguageRepository $languageRepo Repository of Languages
      */
     public function __construct(LanguageRepository $languageRepo)
     {
@@ -43,7 +43,7 @@ class LanguageController extends Controller
     /**
      * Display a listing of the Language.
      *
-     * @param Request $request
+     * @param Request $request Request containing the information for filtering.
      *
      * @return \Illuminate\View\View
      */
@@ -68,7 +68,7 @@ class LanguageController extends Controller
     /**
      * Store a newly created Language in storage.
      *
-     * @param CreateLanguageRequest $request
+     * @param CreateLanguageRequest $request Request containing the information to be stored.
      *
      * @return \Illuminate\Http\RedirectResponse
      */
@@ -86,7 +86,7 @@ class LanguageController extends Controller
     /**
      * Display the specified Language.
      *
-     * @param int $id
+     * @param int $id ID of the Language to be displayed. Used for retrieving currently held data.
      *
      * @return \Illuminate\View\View|\Illuminate\Http\RedirectResponse
      */
@@ -94,7 +94,7 @@ class LanguageController extends Controller
     {
         $language = $this->languageRepository->find($id);
 
-        if (empty($language)) {
+        if (true === empty($language)) {
             Flash::error('Language not found');
 
             return redirect(route('localisation.languages.index'));
@@ -107,7 +107,7 @@ class LanguageController extends Controller
     /**
      * Show the form for editing the specified Language.
      *
-     * @param int $id
+     * @param int $id ID of the Language to be edited. Used for retrieving currently held data.
      *
      * @return \Illuminate\View\View|\Illuminate\Http\RedirectResponse
      */
@@ -115,7 +115,7 @@ class LanguageController extends Controller
     {
         $language = $this->languageRepository->find($id);
 
-        if (empty($language)) {
+        if (true === empty($language)) {
             Flash::error('Language not found');
 
             return redirect(route('localisation.languages.index'));
@@ -127,8 +127,8 @@ class LanguageController extends Controller
     /**
      * Update the specified Language in storage.
      *
-     * @param int $id
-     * @param UpdateLanguageRequest $request
+     * @param int                   $id      ID of the Language to be updated.
+     * @param UpdateLanguageRequest $request Request containing the information to be updated.
      *
      * @return \Illuminate\Http\RedirectResponse
      */
@@ -136,7 +136,7 @@ class LanguageController extends Controller
     {
         $language = $this->languageRepository->find($id);
 
-        if (empty($language)) {
+        if (true === empty($language)) {
             Flash::error('Language not found');
 
             return redirect(route('localisation.languages.index'));
@@ -152,7 +152,7 @@ class LanguageController extends Controller
     /**
      * Remove the specified Language from storage.
      *
-     * @param int $id
+     * @param int $id ID of the Language to be destroyed.
      *
      * @throws \Exception
      *
@@ -162,7 +162,7 @@ class LanguageController extends Controller
     {
         $language = $this->languageRepository->find($id);
 
-        if (empty($language)) {
+        if (true === empty($language)) {
             Flash::error('Language not found');
 
             return redirect(route('localisation.languages.index'));

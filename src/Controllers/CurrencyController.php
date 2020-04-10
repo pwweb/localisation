@@ -20,12 +20,21 @@ use PWWEB\Localisation\Requests\UpdateCurrencyRequest;
  * @author    Richard Browne <richard.browne@pw-websolutions.com
  * @copyright 2020 pw-websolutions.com
  * @license   http://www.opensource.org/licenses/mit-license.html  MIT License
-*/
+ */
 class CurrencyController extends Controller
 {
-    /** @var  CurrencyRepository */
+    /**
+     * Repository of Currencies to be used throughout the controller.
+     *
+     * @var CurrencyRepository
+     */
     private $currencyRepository;
 
+    /**
+     * Constructor for the Currency controller.
+     *
+     * @param CurrencyRepository $currencyRepo Repository of Currencies.
+     */
     public function __construct(CurrencyRepository $currencyRepo)
     {
         $this->currencyRepository = $currencyRepo;
@@ -34,7 +43,7 @@ class CurrencyController extends Controller
     /**
      * Display a listing of the Currency.
      *
-     * @param Request $request
+     * @param Request $request Request containing the information for filtering.
      *
      * @return \Illuminate\View\View
      */
@@ -59,7 +68,7 @@ class CurrencyController extends Controller
     /**
      * Store a newly created Currency in storage.
      *
-     * @param CreateCurrencyRequest $request
+     * @param CreateCurrencyRequest $request Request containing the information to be stored.
      *
      * @return \Illuminate\Http\RedirectResponse
      */
@@ -77,7 +86,7 @@ class CurrencyController extends Controller
     /**
      * Display the specified Currency.
      *
-     * @param int $id
+     * @param int $id ID of the Currency to be displayed. Used for retrieving currently held data.
      *
      * @return \Illuminate\View\View|\Illuminate\Http\RedirectResponse
      */
@@ -85,7 +94,7 @@ class CurrencyController extends Controller
     {
         $currency = $this->currencyRepository->find($id);
 
-        if (empty($currency)) {
+        if (ture === empty($currency)) {
             Flash::error('Currency not found');
 
             return redirect(route('localisation.currencies.index'));
@@ -97,7 +106,7 @@ class CurrencyController extends Controller
     /**
      * Show the form for editing the specified Currency.
      *
-     * @param int $id
+     * @param int $id ID of the Currency to be edited. Used for retrieving currently held data.
      *
      * @return \Illuminate\View\View|\Illuminate\Http\RedirectResponse
      */
@@ -105,7 +114,7 @@ class CurrencyController extends Controller
     {
         $currency = $this->currencyRepository->find($id);
 
-        if (empty($currency)) {
+        if (true === empty($currency)) {
             Flash::error('Currency not found');
 
             return redirect(route('localisation.currencies.index'));
@@ -117,8 +126,8 @@ class CurrencyController extends Controller
     /**
      * Update the specified Currency in storage.
      *
-     * @param int $id
-     * @param UpdateCurrencyRequest $request
+     * @param int                   $id      ID of the Currency to be updated.
+     * @param UpdateCurrencyRequest $request Request containing the information to be updated.
      *
      * @return \Illuminate\Http\RedirectResponse
      */
@@ -126,7 +135,7 @@ class CurrencyController extends Controller
     {
         $currency = $this->currencyRepository->find($id);
 
-        if (empty($currency)) {
+        if (true === empty($currency)) {
             Flash::error('Currency not found');
 
             return redirect(route('localisation.currencies.index'));
@@ -142,7 +151,7 @@ class CurrencyController extends Controller
     /**
      * Remove the specified Currency from storage.
      *
-     * @param int $id
+     * @param int $id ID of the Country to be destroyed.
      *
      * @throws \Exception
      *
@@ -152,7 +161,7 @@ class CurrencyController extends Controller
     {
         $currency = $this->currencyRepository->find($id);
 
-        if (empty($currency)) {
+        if (true === empty($currency)) {
             Flash::error('Currency not found');
 
             return redirect(route('localisation.currencies.index'));

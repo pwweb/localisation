@@ -20,6 +20,8 @@ use PWWEB\Localisation\Models\Address;
 class AddressRepository extends BaseRepository
 {
     /**
+     * Fields that can be searched by.
+     *
      * @var array
      */
     protected $fieldSearchable = [
@@ -47,6 +49,8 @@ class AddressRepository extends BaseRepository
 
     /**
      * Configure the Model.
+     *
+     * @return string
      **/
     public function model()
     {

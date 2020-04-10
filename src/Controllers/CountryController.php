@@ -20,21 +20,30 @@ use PWWEB\Localisation\Requests\UpdateCountryRequest;
  * @author    Richard Browne <richard.browne@pw-websolutions.com
  * @copyright 2020 pw-websolutions.com
  * @license   http://www.opensource.org/licenses/mit-license.html  MIT License
-*/
+ */
 class CountryController extends Controller
 {
-    /** @var  CountryRepository */
+    /**
+     * Repository of Countries to be used throughout the controller.
+     *
+     * @var CountryRepository
+     */
     private $countryRepository;
 
+    /**
+     * Constructor for the Country controller.
+     *
+     * @param CountryRepository $countryRepo Repository of Countries.
+     */
     public function __construct(CountryRepository $countryRepo)
     {
         $this->countryRepository = $countryRepo;
     }
 
     /**
-     * Display a listing of the Country.
+     * Display a listing of Countries.
      *
-     * @param Request $request
+     * @param Request $request Request containing the information for filtering.
      *
      * @return \Illuminate\View\View
      */
@@ -59,7 +68,7 @@ class CountryController extends Controller
     /**
      * Store a newly created Country in storage.
      *
-     * @param CreateCountryRequest $request
+     * @param CreateCountryRequest $request Request containing the information to be stored.
      *
      * @return \Illuminate\Http\RedirectResponse
      */
@@ -77,7 +86,7 @@ class CountryController extends Controller
     /**
      * Display the specified Country.
      *
-     * @param int $id
+     * @param int $id ID of the Country to be displayed. Used for retrieving currently held data.
      *
      * @return \Illuminate\View\View|\Illuminate\Http\RedirectResponse
      */
@@ -85,7 +94,7 @@ class CountryController extends Controller
     {
         $country = $this->countryRepository->find($id);
 
-        if (empty($country)) {
+        if (true === empty($country)) {
             Flash::error('Country not found');
 
             return redirect(route('localisation.countries.index'));
@@ -97,7 +106,7 @@ class CountryController extends Controller
     /**
      * Show the form for editing the specified Country.
      *
-     * @param int $id
+     * @param int $id ID of the Country to be edited. Used for retrieving currently held data.
      *
      * @return \Illuminate\View\View|\Illuminate\Http\RedirectResponse
      */
@@ -105,7 +114,7 @@ class CountryController extends Controller
     {
         $country = $this->countryRepository->find($id);
 
-        if (empty($country)) {
+        if (true === empty($country)) {
             Flash::error('Country not found');
 
             return redirect(route('localisation.countries.index'));
@@ -117,8 +126,8 @@ class CountryController extends Controller
     /**
      * Update the specified Country in storage.
      *
-     * @param int $id
-     * @param UpdateCountryRequest $request
+     * @param int                  $id      ID of the Country to be updated.
+     * @param UpdateCountryRequest $request Request containing the information to be updated.
      *
      * @return \Illuminate\Http\RedirectResponse
      */
@@ -126,7 +135,7 @@ class CountryController extends Controller
     {
         $country = $this->countryRepository->find($id);
 
-        if (empty($country)) {
+        if (true === empty($country)) {
             Flash::error('Country not found');
 
             return redirect(route('localisation.countries.index'));
@@ -142,7 +151,7 @@ class CountryController extends Controller
     /**
      * Remove the specified Country from storage.
      *
-     * @param int $id
+     * @param int $id ID of the Country to be destroyed.
      *
      * @throws \Exception
      *
@@ -152,7 +161,7 @@ class CountryController extends Controller
     {
         $country = $this->countryRepository->find($id);
 
-        if (empty($country)) {
+        if (true === empty($country)) {
             Flash::error('Country not found');
 
             return redirect(route('localisation.countries.index'));

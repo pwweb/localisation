@@ -24,6 +24,11 @@ class Locale
      */
     private $languageRepository;
 
+    /**
+     * Constructor for the middleware ensuring dependencies are injected.
+     *
+     * @param \PWWEB\Localisation\Repositories\LanguageRepository $languageRepo Repository of Languages
+     */
     public function __construct(LanguageRepository $languageRepo)
     {
         $this->languageRepository = $languageRepo;

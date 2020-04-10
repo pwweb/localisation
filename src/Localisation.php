@@ -52,9 +52,10 @@ class Localisation
     /**
      * Constructor.
      *
-     * @param \Illuminate\Foundation\Application $app laravel application for further use
+     * @param \PWWEB\Localisation\Repositories\LanguageRepository $languageRepo Repository of Languages
+     * @param \Illuminate\Foundation\Application                  $app          laravel application for further use
      */
-    public function __construct($app = null, LanguageRepository $languageRepo)
+    public function __construct(LanguageRepository $languageRepo, $app = null)
     {
         if (null === $app) {
             $app = app();
@@ -91,10 +92,10 @@ class Localisation
 
         if ('' === $locale) {
             $locale = app()->getLocale();
-        } elseif ($locale === $fallbackLocale) {
+        } else if ($locale === $fallbackLocale) {
             $locale = 'en-GB';
         } else {
-            $locale = $fallbackLocale.'-'.strtoupper($fallbackLocale);
+            $locale = $fallbackLocale . '-' . strtoupper($fallbackLocale);
         }
 
         try {

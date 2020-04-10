@@ -39,10 +39,10 @@ class AddressController extends Controller
     private $typeRepository;
 
     /**
-     * Constructor for the address controller.
+     * Constructor for the Address controller.
      *
-     * @param AddressRepository $addressRepo [description]
-     * @param TypeRepository    $typeRepo    [description]
+     * @param AddressRepository $addressRepo Repository of Addresses.
+     * @param TypeRepository    $typeRepo    Repository of Address types.
      */
     public function __construct(AddressRepository $addressRepo, TypeRepository $typeRepo)
     {
@@ -53,7 +53,7 @@ class AddressController extends Controller
     /**
      * Display a listing of the Address.
      *
-     * @param Request $request
+     * @param Request $request Request containing the information for filtering.
      *
      * @return \Illuminate\View\View
      */
@@ -81,7 +81,7 @@ class AddressController extends Controller
     /**
      * Store a newly created Address in storage.
      *
-     * @param CreateAddressRequest $request
+     * @param CreateAddressRequest $request Request containing the information to be stored.
      *
      * @return \Illuminate\Http\RedirectResponse
      */
@@ -99,7 +99,7 @@ class AddressController extends Controller
     /**
      * Display the specified Address.
      *
-     * @param int $id
+     * @param int $id ID of the Address to be displayed. Used for retrieving currently held data.
      *
      * @return \Illuminate\View\View|\Illuminate\Http\RedirectResponse
      */
@@ -107,7 +107,7 @@ class AddressController extends Controller
     {
         $address = $this->addressRepository->find($id);
 
-        if (empty($address)) {
+        if (true === empty($address)) {
             Flash::error('Address not found');
 
             return redirect(route('localisation.addresses.index'));
@@ -119,7 +119,7 @@ class AddressController extends Controller
     /**
      * Show the form for editing the specified Address.
      *
-     * @param int $id
+     * @param int $id ID of the Address to be edited. Used for retrieving currently held data.
      *
      * @return \Illuminate\View\View|\Illuminate\Http\RedirectResponse
      */
@@ -129,7 +129,7 @@ class AddressController extends Controller
         $types = $this->typeRepository->all();
 
 
-        if (empty($address)) {
+        if (true === empty($address)) {
             Flash::error('Address not found');
 
             return redirect(route('localisation.addresses.index'));
@@ -143,8 +143,8 @@ class AddressController extends Controller
     /**
      * Update the specified Address in storage.
      *
-     * @param int                  $id
-     * @param UpdateAddressRequest $request
+     * @param int                  $id      ID of the Address to be updated.
+     * @param UpdateAddressRequest $request Request containing the information to be updated.
      *
      * @return \Illuminate\Http\RedirectResponse
      */
@@ -152,7 +152,7 @@ class AddressController extends Controller
     {
         $address = $this->addressRepository->find($id);
 
-        if (empty($address)) {
+        if (true === empty($address)) {
             Flash::error('Address not found');
 
             return redirect(route('localisation.addresses.index'));
@@ -168,7 +168,7 @@ class AddressController extends Controller
     /**
      * Remove the specified Address from storage.
      *
-     * @param int $id
+     * @param int $id ID of the Address to be destroyed.
      *
      * @throws \Exception
      *
@@ -178,7 +178,7 @@ class AddressController extends Controller
     {
         $address = $this->addressRepository->find($id);
 
-        if (empty($address)) {
+        if (true === empty($address)) {
             Flash::error('Address not found');
 
             return redirect(route('localisation.addresses.index'));
