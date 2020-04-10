@@ -1,23 +1,63 @@
 <?php
 
+namespace PWWEB\Localisation\Models;
+
+use Eloquent as Model;
+
 /**
- * PWWEB\Localisation\Models\Country Model.
+ * App\Models\Pwweb\Localisation\Models\Country Model.
  *
  * Standard Country Model.
  *
- * @author    Frank Pillukeit <clients@pw-websolutions.com>
+ * @package   pwweb/localisation
+ * @author    Frank Pillukeit <frank.pillukeit@pw-websolutions.com>
+ * @author    Richard Browne <richard.browne@pw-websolutions.com
  * @copyright 2020 pw-websolutions.com
  * @license   http://www.opensource.org/licenses/mit-license.html  MIT License
+ * @property \Illuminate\Database\Eloquent\Collection addresses
+ * @property \Illuminate\Database\Eloquent\Collection languages
+ * @property string name
+ * @property string iso
+ * @property string ioc
+ * @property boolean active
  */
 
-namespace PWWEB\Localisation\Models;
-
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\HasMany;
-use PWWEB\Localisation\Contracts\Country as CountryContract;
-
-class Country extends Model implements CountryContract
+class Country extends Model
 {
+    const CREATED_AT = 'created_at';
+    const UPDATED_AT = 'updated_at';
+
+    public $fillable = [
+        'name',
+        'iso',
+        'ioc',
+        'active'
+    ];
+
+    /**
+     * The attributes that should be casted to native types.
+     *
+     * @var array
+     */
+    protected $casts = [
+        'id' => 'integer',
+        'name' => 'string',
+        'iso' => 'string',
+        'ioc' => 'string',
+        'active' => 'boolean'
+    ];
+
+    /**
+     * Validation rules.
+     *
+     * @var array
+     */
+    public static $rules = [
+        'name' => 'required',
+        'iso' => 'required',
+        'active' => 'required'
+    ];
+
     /**
      * Constructor.
      *
@@ -33,18 +73,19 @@ class Country extends Model implements CountryContract
     }
 
     /**
-     * A country can have multiple languages.
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany collection of languages used in the country
-     */
-    public function languages(): HasMany
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     **/
+    public function addresses()
     {
-        return $this->hasMany(
-            config('pwweb.localisation.models.languages'),
-            config('pwweb.localisation.table_names.country_has_language'),
-            'country_id',
-            'language_id'
-        );
+        return $this->hasMany(\PWWEB\Localisation\Models\Address::class, 'country_id');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     **/
+    public function languages()
+    {
+        return $this->belongsToMany(\PWWEB\Localisation\Models\Language::class, 'system_localisation_country_languages');
     }
 
     /**
@@ -60,6 +101,6 @@ class Country extends Model implements CountryContract
             return '';
         }
 
-        return __('pwweb::localization.' . $value);
+        return __('pwweb::localisation.'.$value);
     }
 }

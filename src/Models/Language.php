@@ -16,7 +16,7 @@ use PWWEB\Localisation\Contracts\Language as LanguageContract;
  * @author    Richard Browne <richard.browne@pw-websolutions.com
  * @copyright 2020 pw-websolutions.com
  * @license   http://www.opensource.org/licenses/mit-license.html  MIT License
- * @property \Illuminate\Database\Eloquent\Collection systemLocalisationCountries
+ * @property \Illuminate\Database\Eloquent\Collection countries
  * @property string name
  * @property string locale
  * @property string abbreviation

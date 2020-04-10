@@ -17,7 +17,6 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @license   http://www.opensource.org/licenses/mit-license.html  MIT License
  * @property  \PWWEB\Localisation\Models\SystemLocalisationCountry country
  * @property  \PWWEB\Localisation\Models\SystemAddressType type
- * @property  \PWWEB\Localisation\Models\SystemModelHasAddress systemModelHasAddress
  * @property  integer country_id
  * @property  integer type_id
  * @property  string street

@@ -6,7 +6,7 @@ use Illuminate\Foundation\Http\FormRequest;
 use PWWEB\Localisation\Models\Language;
 
 /**
- * App\Http\Requests\Pwweb\Localisation\Models\CreateLanguageRequest CreateLanguageRequest.
+ * PWWEB\Localisation\Requests\CreateLanguageRequest CreateLanguageRequest.
  *
  * The create request class for the Language
  * Class CreateLanguageRequest

@@ -11,6 +11,7 @@ Route::namespace('PWWEB\Localisation\Controllers')
     // ->middleware('auth')
     ->group(
         function () {
+            Route::resource('countries', CountryController::class);
             Route::resource('languages', LanguageController::class);
             Route::resource('addresses', AddressController::class);
             Route::namespace('Address')

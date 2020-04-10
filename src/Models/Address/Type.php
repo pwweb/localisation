@@ -16,7 +16,7 @@ use PWWEB\Localisation\Contracts\Address\Type as AddressTypeContract;
  * @author    Richard Browne <richard.browne@pw-websolutions.com>
  * @copyright 2020 pw-websolutions.com
  * @license   http://www.opensource.org/licenses/mit-license.html  MIT License
- * @property  \Illuminate\Database\Eloquent\Collection systemAddresses
+ * @property  \Illuminate\Database\Eloquent\Collection addresses
  * @property  string name
  * @property  boolean global
  */
@@ -103,6 +103,6 @@ class Type extends Model implements AddressTypeContract
             return '';
         }
 
-        return __('pwweb::localisation.' . $value);
+        return __('pwweb::localisation.'.$value);
     }
 }

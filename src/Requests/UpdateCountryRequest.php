@@ -3,13 +3,13 @@
 namespace PWWEB\Localisation\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
-use PWWEB\Localisation\Models\Language;
+use PWWEB\Localisation\Models\Country;
 
 /**
- * PWWEB\Localisation\Requests\UpdateLanguageRequest UpdateLanguageRequest.
+ * PWWEB\Localisation\Requests\UpdateCountryRequest UpdateCountryRequest.
  *
- * The update request class for the Language
- * Class UpdateLanguageRequest
+ * The update request class for the Country
+ * Class UpdateCountryRequest
  *
  * @package   pwweb/localisation
  * @author    Frank Pillukeit <frank.pillukeit@pw-websolutions.com>
@@ -17,7 +17,7 @@ use PWWEB\Localisation\Models\Language;
  * @copyright 2020 pw-websolutions.com
  * @license   http://www.opensource.org/licenses/mit-license.html  MIT License
 */
-class UpdateLanguageRequest extends FormRequest
+class UpdateCountryRequest extends FormRequest
 {
 
     /**
@@ -37,6 +37,6 @@ class UpdateLanguageRequest extends FormRequest
      */
     public function rules()
     {
-        return Language::$rules;
+        return Country::$rules;
     }
 }
