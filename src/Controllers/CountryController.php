@@ -15,7 +15,6 @@ use PWWEB\Localisation\Requests\UpdateCountryRequest;
  * The CRUD controller for Country
  * Class CountryController
  *
- * @package   pwweb/localisation
  * @author    Frank Pillukeit <frank.pillukeit@pw-websolutions.com>
  * @author    Richard Browne <richard.browne@pw-websolutions.com
  * @copyright 2020 pw-websolutions.com

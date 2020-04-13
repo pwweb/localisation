@@ -17,7 +17,6 @@ use PWWEB\Localisation\Requests\Address\UpdateTypeRequest;
  * The CRUD controller for Type
  * Class TypeController
  *
- * @package   pwweb/localisation
  * @author    Frank Pillukeit <frank.pillukeit@pw-websolutions.com>
  * @author    Richard Browne <richard.browne@pw-websolutions.com>
  * @copyright 2020 pw-websolutions.com
@@ -49,7 +48,7 @@ class TypeController extends Controller
      *
      * @return \Illuminate\View\View
      */
-    public function index(Request $request) : View
+    public function index(Request $request): View
     {
         $types = $this->typeRepository->all();
 
@@ -62,7 +61,7 @@ class TypeController extends Controller
      *
      * @return \Illuminate\View\View
      */
-    public function create() : View
+    public function create(): View
     {
         return view('localisation::addresses.types.create');
     }
@@ -74,7 +73,7 @@ class TypeController extends Controller
      *
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function store(CreateTypeRequest $request) : RedirectResponse
+    public function store(CreateTypeRequest $request): RedirectResponse
     {
         $input = $request->all();
 
@@ -133,7 +132,7 @@ class TypeController extends Controller
      *
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function update($id, UpdateTypeRequest $request) : RedirectResponse
+    public function update($id, UpdateTypeRequest $request): RedirectResponse
     {
         $type = $this->typeRepository->find($id);
 
@@ -159,7 +158,7 @@ class TypeController extends Controller
      *
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function destroy($id) : RedirectResponse
+    public function destroy($id): RedirectResponse
     {
         $type = $this->typeRepository->find($id);
 

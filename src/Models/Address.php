@@ -11,15 +11,14 @@ use PWWEB\Core\Traits\Migratable;
  *
  * Standard Address Model.
  *
- * @package   pwweb/localisation
  * @author    Frank Pillukeit <frank.pillukeit@pw-websolutions.com>
  * @author    Richard Browne <richard.browne@pw-websolutions.com
  * @copyright 2020 pw-websolutions.com
  * @license   http://www.opensource.org/licenses/mit-license.html  MIT License
  * @property  \PWWEB\Localisation\Models\SystemLocalisationCountry country
  * @property  \PWWEB\Localisation\Models\SystemAddressType type
- * @property  integer country_id
- * @property  integer type_id
+ * @property  int country_id
+ * @property  int type_id
  * @property  string street
  * @property  string street2
  * @property  string city
@@ -27,9 +26,8 @@ use PWWEB\Core\Traits\Migratable;
  * @property  string postcode
  * @property  number lat
  * @property  number lng
- * @property  boolean primary
+ * @property  bool primary
  */
-
 class Address extends Model
 {
     use Migratable;
@@ -44,7 +42,7 @@ class Address extends Model
      * @var string[]
      */
     protected $dates = [
-        'deleted_at'
+        'deleted_at',
     ];
 
     /**
@@ -62,7 +60,7 @@ class Address extends Model
         'postcode',
         'lat',
         'lng',
-        'primary'
+        'primary',
     ];
 
     /**
@@ -81,7 +79,7 @@ class Address extends Model
         'postcode' => 'string',
         'lat' => 'float',
         'lng' => 'float',
-        'primary' => 'boolean'
+        'primary' => 'boolean',
     ];
 
     /**
@@ -92,7 +90,7 @@ class Address extends Model
     public static $rules = [
         'country_id' => 'required',
         'type_id' => 'required',
-        'primary' => 'required'
+        'primary' => 'required',
     ];
 
     /**

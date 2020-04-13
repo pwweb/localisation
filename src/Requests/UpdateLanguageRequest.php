@@ -11,7 +11,6 @@ use PWWEB\Localisation\Models\Language;
  * The update request class for the Language
  * Class UpdateLanguageRequest
  *
- * @package   pwweb/localisation
  * @author    Frank Pillukeit <frank.pillukeit@pw-websolutions.com>
  * @author    Richard Browne <richard.browne@pw-websolutions.com
  * @copyright 2020 pw-websolutions.com
@@ -19,7 +18,6 @@ use PWWEB\Localisation\Models\Language;
  */
 class UpdateLanguageRequest extends FormRequest
 {
-
     /**
      * Determine if the user is authorized to make this request.
      *

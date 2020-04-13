@@ -11,7 +11,6 @@ use PWWEB\Localisation\Models\Currency;
  * The repository for Currency.
  * Class CurrencyRepository
  *
- * @package   pwweb/localisation
  * @author    Frank Pillukeit <frank.pillukeit@pw-websolutions.com>
  * @author    Richard Browne <richard.browne@pw-websolutions.com
  * @copyright 2020 pw-websolutions.com
@@ -30,7 +29,7 @@ class CurrencyRepository extends BaseRepository
         'numeric_code',
         'entity_code',
         'active',
-        'standard'
+        'standard',
     ];
 
     /**

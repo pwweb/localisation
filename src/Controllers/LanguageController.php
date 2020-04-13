@@ -16,7 +16,6 @@ use PWWEB\Localisation\Requests\UpdateLanguageRequest;
  * The CRUD controller for Language
  * Class LanguageController
  *
- * @package   pwweb/localisation
  * @author    Frank Pillukeit <frank.pillukeit@pw-websolutions.com>
  * @author    Richard Browne <richard.browne@pw-websolutions.com
  * @copyright 2020 pw-websolutions.com

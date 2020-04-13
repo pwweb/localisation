@@ -5,7 +5,6 @@ namespace PWWEB\Localisation\Middleware;
 use Closure;
 use Illuminate\Contracts\Session\Session;
 use Illuminate\Http\Request;
-
 use PWWEB\Localisation\Repositories\LanguageRepository;
 
 class Locale

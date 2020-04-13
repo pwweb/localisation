@@ -16,7 +16,6 @@ use PWWEB\Localisation\Requests\UpdateAddressRequest;
  * The CRUD controller for Address
  * Class AddressController
  *
- * @package   pwweb/localisation
  * @author    Frank Pillukeit <frank.pillukeit@pw-websolutions.com>
  * @author    Richard Browne <richard.browne@pw-websolutions.com
  * @copyright 2020 pw-websolutions.com
@@ -127,7 +126,6 @@ class AddressController extends Controller
     {
         $address = $this->addressRepository->find($id);
         $types = $this->typeRepository->all();
-
 
         if (true === empty($address)) {
             Flash::error('Address not found');
