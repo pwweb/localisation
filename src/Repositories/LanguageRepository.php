@@ -1,4 +1,5 @@
 <?php
+
 namespace PWWEB\Localisation\Repositories;
 
 use App\Repositories\BaseRepository;
@@ -12,7 +13,6 @@ use PWWEB\Localisation\Models\Language;
  * The repository for Language.
  * Class LanguageRepository
  *
- * @package   pwweb/localisation
  * @author    Frank Pillukeit <frank.pillukeit@pw-websolutions.com>
  * @author    Richard Browne <richard.browne@pw-websolutions.com
  * @copyright 2020 pw-websolutions.com
@@ -31,7 +31,7 @@ class LanguageRepository extends BaseRepository
         'abbreviation',
         'installed',
         'active',
-        'standard'
+        'standard',
     ];
 
     /**
@@ -53,6 +53,7 @@ class LanguageRepository extends BaseRepository
     {
         return Language::class;
     }
+
     //
     // /**
     //  * Get the current cached languages.
@@ -67,6 +68,7 @@ class LanguageRepository extends BaseRepository
     //     // Cached: return app(LocalisationRegistrar::class)->setLanguageClass(static::class)->getLanguages($params);
     // }
     //
+
     /**
      * Retrieve all active languages.
      *
@@ -76,6 +78,7 @@ class LanguageRepository extends BaseRepository
     {
         return Language::where('active', 1)->get();
     }
+
     //
     // /**
     //  * Find a language by its name.
@@ -117,6 +120,7 @@ class LanguageRepository extends BaseRepository
     //     return $language;
     // }
     //
+
     /**
      * Find a language by its locale, e.g. en-gb.
      *
@@ -136,6 +140,7 @@ class LanguageRepository extends BaseRepository
 
         return $language;
     }
+
     //
     // /**
     //  * Obtain the available locales.

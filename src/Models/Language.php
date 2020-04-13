@@ -12,7 +12,6 @@ use PWWEB\Localisation\Contracts\Language as LanguageContract;
  *
  * Standard Language Model.
  *
- * @package   pwweb/localisation
  * @author    Frank Pillukeit <frank.pillukeit@pw-websolutions.com>
  * @author    Richard Browne <richard.browne@pw-websolutions.com
  * @copyright 2020 pw-websolutions.com
@@ -21,11 +20,10 @@ use PWWEB\Localisation\Contracts\Language as LanguageContract;
  * @property  string name
  * @property  string locale
  * @property  string abbreviation
- * @property  boolean installed
- * @property  boolean active
- * @property  boolean standard
+ * @property  bool installed
+ * @property  bool active
+ * @property  bool standard
  */
-
 class Language extends Model implements LanguageContract
 {
     use Migratable;
@@ -44,7 +42,7 @@ class Language extends Model implements LanguageContract
         'abbreviation',
         'installed',
         'active',
-        'standard'
+        'standard',
     ];
 
     /**
@@ -59,7 +57,7 @@ class Language extends Model implements LanguageContract
         'abbreviation' => 'string',
         'installed' => 'boolean',
         'active' => 'boolean',
-        'standard' => 'boolean'
+        'standard' => 'boolean',
     ];
 
     /**
@@ -73,7 +71,7 @@ class Language extends Model implements LanguageContract
         'abbreviation' => 'required',
         'installed' => 'required',
         'active' => 'required',
-        'standard' => 'required'
+        'standard' => 'required',
     ];
 
     /**
@@ -95,7 +93,7 @@ class Language extends Model implements LanguageContract
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      **/
-    public function countries() : BelongsToMany
+    public function countries(): BelongsToMany
     {
         return $this->belongsToMany(\PWWEB\Localisation\Models\Country::class, 'system_localisation_country_languages');
     }

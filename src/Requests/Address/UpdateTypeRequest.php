@@ -11,7 +11,6 @@ use PWWEB\Localisation\Models\Address\Type;
  * The update request class for the Address Type
  * Class UpdateTypeRequest
  *
- * @package   pwweb/localisation
  * @author    Frank Pillukeit <frank.pillukeit@pw-websolutions.com>
  * @author    Richard Browne <richard.browne@pw-websolutions.com>
  * @copyright 2020 pw-websolutions.com
@@ -19,7 +18,6 @@ use PWWEB\Localisation\Models\Address\Type;
  */
 class UpdateTypeRequest extends FormRequest
 {
-
     /**
      * Determine if the user is authorized to make this request.
      *

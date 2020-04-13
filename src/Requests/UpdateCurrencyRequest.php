@@ -11,7 +11,6 @@ use PWWEB\Localisation\Models\Currency;
  * The update request class for the Currency
  * Class UpdateCurrencyRequest
  *
- * @package   pwweb/localisation
  * @author    Frank Pillukeit <frank.pillukeit@pw-websolutions.com>
  * @author    Richard Browne <richard.browne@pw-websolutions.com
  * @copyright 2020 pw-websolutions.com
@@ -19,7 +18,6 @@ use PWWEB\Localisation\Models\Currency;
  */
 class UpdateCurrencyRequest extends FormRequest
 {
-
     /**
      * Determine if the user is authorized to make this request.
      *

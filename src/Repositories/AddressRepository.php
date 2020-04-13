@@ -11,7 +11,6 @@ use PWWEB\Localisation\Models\Address;
  * The repository for Address.
  * Class AddressRepository
  *
- * @package   pwweb/localisation
  * @author    Frank Pillukeit <frank.pillukeit@pw-websolutions.com>
  * @author    Richard Browne <richard.browne@pw-websolutions.com
  * @copyright 2020 pw-websolutions.com
@@ -34,7 +33,7 @@ class AddressRepository extends BaseRepository
         'postcode',
         'lat',
         'lng',
-        'primary'
+        'primary',
     ];
 
     /**

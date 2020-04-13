@@ -11,7 +11,6 @@ use PWWEB\Localisation\Models\Country;
  * The repository for Country.
  * Class CountryRepository
  *
- * @package   pwweb/localisation
  * @author    Frank Pillukeit <frank.pillukeit@pw-websolutions.com>
  * @author    Richard Browne <richard.browne@pw-websolutions.com
  * @copyright 2020 pw-websolutions.com
@@ -28,7 +27,7 @@ class CountryRepository extends BaseRepository
         'name',
         'iso',
         'ioc',
-        'active'
+        'active',
     ];
 
     /**

@@ -11,19 +11,17 @@ use PWWEB\Localisation\Contracts\Currency as CurrencyContract;
  *
  * Standard Currency Model.
  *
- * @package   pwweb/localisation
  * @author    Frank Pillukeit <frank.pillukeit@pw-websolutions.com>
  * @author    Richard Browne <richard.browne@pw-websolutions.com
  * @copyright 2020 pw-websolutions.com
  * @license   http://www.opensource.org/licenses/mit-license.html  MIT License
  * @property  string name
  * @property  string iso
- * @property  integer numeric_code
+ * @property  int numeric_code
  * @property  string entity_code
- * @property  boolean active
- * @property  boolean standard
+ * @property  bool active
+ * @property  bool standard
  */
-
 class Currency extends Model implements CurrencyContract
 {
     use Migratable;
@@ -42,7 +40,7 @@ class Currency extends Model implements CurrencyContract
         'numeric_code',
         'entity_code',
         'active',
-        'standard'
+        'standard',
     ];
 
     /**
@@ -57,7 +55,7 @@ class Currency extends Model implements CurrencyContract
         'numeric_code' => 'integer',
         'entity_code' => 'string',
         'active' => 'boolean',
-        'standard' => 'boolean'
+        'standard' => 'boolean',
     ];
 
     /**
@@ -71,7 +69,7 @@ class Currency extends Model implements CurrencyContract
         'numeric_code' => 'required',
         'entity_code' => 'required',
         'active' => 'required',
-        'standard' => 'required'
+        'standard' => 'required',
     ];
 
     /**

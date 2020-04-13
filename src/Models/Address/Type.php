@@ -12,16 +12,14 @@ use PWWEB\Localisation\Contracts\Address\Type as AddressTypeContract;
  *
  * Standard Address Type Model.
  *
- * @package   pwweb/localisation
  * @author    Frank Pillukeit <frank.pillukeit@pw-websolutions.com>
  * @author    Richard Browne <richard.browne@pw-websolutions.com>
  * @copyright 2020 pw-websolutions.com
  * @license   http://www.opensource.org/licenses/mit-license.html  MIT License
  * @property  \Illuminate\Database\Eloquent\Collection addresses
  * @property  string name
- * @property  boolean global
+ * @property  bool global
  */
-
 class Type extends Model implements AddressTypeContract
 {
     use Migratable;
@@ -36,7 +34,7 @@ class Type extends Model implements AddressTypeContract
      * @var string[]
      */
     protected $dates = [
-        'deleted_at'
+        'deleted_at',
     ];
 
     /**
@@ -46,7 +44,7 @@ class Type extends Model implements AddressTypeContract
      */
     public $fillable = [
         'name',
-        'global'
+        'global',
     ];
 
     /**
@@ -57,7 +55,7 @@ class Type extends Model implements AddressTypeContract
     protected $casts = [
         'id' => 'integer',
         'name' => 'string',
-        'global' => 'boolean'
+        'global' => 'boolean',
     ];
 
     /**
@@ -67,7 +65,7 @@ class Type extends Model implements AddressTypeContract
      */
     public static $rules = [
         'name' => 'string|required',
-        'global' => 'boolean|required'
+        'global' => 'boolean|required',
     ];
 
     /**
@@ -105,6 +103,6 @@ class Type extends Model implements AddressTypeContract
             return '';
         }
 
-        return __('pwweb::localisation.' . $value);
+        return __('pwweb::localisation.'.$value);
     }
 }

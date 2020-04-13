@@ -10,7 +10,6 @@ use PWWEB\Core\Traits\Migratable;
  *
  * Standard Country Model.
  *
- * @package   pwweb/localisation
  * @author    Frank Pillukeit <frank.pillukeit@pw-websolutions.com>
  * @author    Richard Browne <richard.browne@pw-websolutions.com
  * @copyright 2020 pw-websolutions.com
@@ -20,9 +19,8 @@ use PWWEB\Core\Traits\Migratable;
  * @property  string name
  * @property  string iso
  * @property  string ioc
- * @property  boolean active
+ * @property  bool active
  */
-
 class Country extends Model
 {
     use Migratable;
@@ -39,7 +37,7 @@ class Country extends Model
         'name',
         'iso',
         'ioc',
-        'active'
+        'active',
     ];
 
     /**
@@ -52,7 +50,7 @@ class Country extends Model
         'name' => 'string',
         'iso' => 'string',
         'ioc' => 'string',
-        'active' => 'boolean'
+        'active' => 'boolean',
     ];
 
     /**
@@ -63,7 +61,7 @@ class Country extends Model
     public static $rules = [
         'name' => 'required',
         'iso' => 'required',
-        'active' => 'required'
+        'active' => 'required',
     ];
 
     /**
@@ -113,6 +111,6 @@ class Country extends Model
             return '';
         }
 
-        return __('pwweb::localisation.' . $value);
+        return __('pwweb::localisation.'.$value);
     }
 }
