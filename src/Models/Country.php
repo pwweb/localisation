@@ -3,6 +3,7 @@
 namespace PWWEB\Localisation\Models;
 
 use Eloquent as Model;
+use PWWEB\Core\Traits\Migratable;
 
 /**
  * App\Models\Pwweb\Localisation\Models\Country Model.
@@ -24,6 +25,8 @@ use Eloquent as Model;
 
 class Country extends Model
 {
+    use Migratable;
+
     const CREATED_AT = 'created_at';
     const UPDATED_AT = 'updated_at';
 

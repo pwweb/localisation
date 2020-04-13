@@ -3,6 +3,7 @@
 namespace PWWEB\Localisation\Models;
 
 use Eloquent as Model;
+use PWWEB\Core\Traits\Migratable;
 use PWWEB\Localisation\Contracts\Currency as CurrencyContract;
 
 /**
@@ -25,6 +26,8 @@ use PWWEB\Localisation\Contracts\Currency as CurrencyContract;
 
 class Currency extends Model implements CurrencyContract
 {
+    use Migratable;
+
     const CREATED_AT = 'created_at';
     const UPDATED_AT = 'updated_at';
 

@@ -4,6 +4,7 @@ namespace PWWEB\Localisation\Models;
 
 use Eloquent as Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use PWWEB\Core\Traits\Migratable;
 
 /**
  * PWWEB\Localisation\Models\Address Model.
@@ -31,6 +32,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Address extends Model
 {
+    use Migratable;
     use SoftDeletes;
 
     const CREATED_AT = 'created_at';

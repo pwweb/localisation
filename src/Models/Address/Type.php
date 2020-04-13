@@ -4,6 +4,7 @@ namespace PWWEB\Localisation\Models\Address;
 
 use Eloquent as Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use PWWEB\Core\Traits\Migratable;
 use PWWEB\Localisation\Contracts\Address\Type as AddressTypeContract;
 
 /**
@@ -23,6 +24,7 @@ use PWWEB\Localisation\Contracts\Address\Type as AddressTypeContract;
 
 class Type extends Model implements AddressTypeContract
 {
+    use Migratable;
     use SoftDeletes;
 
     const CREATED_AT = 'created_at';

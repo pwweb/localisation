@@ -4,6 +4,7 @@ namespace PWWEB\Localisation\Models;
 
 use Eloquent as Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use PWWEB\Core\Traits\Migratable;
 use PWWEB\Localisation\Contracts\Language as LanguageContract;
 
 /**
@@ -27,6 +28,8 @@ use PWWEB\Localisation\Contracts\Language as LanguageContract;
 
 class Language extends Model implements LanguageContract
 {
+    use Migratable;
+
     const CREATED_AT = 'created_at';
     const UPDATED_AT = 'updated_at';
 
