@@ -3,6 +3,7 @@
 [![Version](https://poser.pugx.org/pwweb/localisation/v/stable.svg)](https://github.com/pwweb/localisation/releases)
 [![Downloads](https://poser.pugx.org/pwweb/localisation/d/total.svg)](https://github.com/pwweb/localisation)
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/pwweb/localisation/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/pwweb/localisation/?branch=master)
+[![StyleCI](https://github.styleci.io/repos/7548986/shield?style=flat)](https://github.styleci.io/repos/242411012)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 <!-- [![Latest Version on Packagist][ico-version]][link-packagist]
 [![Total Downloads][ico-downloads]][link-downloads]
