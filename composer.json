@@ -8,10 +8,10 @@
         "homepage": "https://www.pw-websolutions.com"
     }],
     "homepage": "https://github.com/pwweb/localisation",
-    "keywords": ["library, laravel, localisation, widget, switcher"],
+    "keywords": ["library", "laravel", "localisation", "widget", "switcher"],
     "require": {
         "php": ">=7.3.7",
-        "laravel/framework": ">=7.0.0",
+        "laravel/framework": "^7.3.0",
         "laracasts/flash": "^3.0",
         "pwweb/laravel-core": "^0.1.0-beta",
         "fzaninotto/faker": "^1.9"
@@ -31,6 +31,8 @@
             "PWWEB\\Localisation\\Tests\\": "tests"
         }
     },
+    "minimum-stability": "dev",
+    "prefer-stable": true,
     "extra": {
         "laravel": {
             "providers": [
