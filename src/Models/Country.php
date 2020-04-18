@@ -3,6 +3,8 @@
 namespace PWWEB\Localisation\Models;
 
 use Eloquent as Model;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use PWWEB\Core\Traits\Migratable;
 
 /**
@@ -83,7 +85,7 @@ class Country extends Model
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      **/
-    public function addresses()
+    public function addresses(): HasMany
     {
         return $this->hasMany(\PWWEB\Localisation\Models\Address::class, 'country_id');
     }
@@ -93,7 +95,7 @@ class Country extends Model
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      **/
-    public function languages()
+    public function languages(): BelongsToMany
     {
         return $this->belongsToMany(\PWWEB\Localisation\Models\Language::class, 'system_localisation_country_languages');
     }

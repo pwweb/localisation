@@ -3,6 +3,7 @@
 namespace PWWEB\Localisation\Models\Address;
 
 use Eloquent as Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use PWWEB\Core\Traits\Migratable;
 use PWWEB\Localisation\Contracts\Address\Type as AddressTypeContract;
@@ -85,7 +86,7 @@ class Type extends Model implements AddressTypeContract
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      **/
-    public function addresses()
+    public function addresses(): HasMany
     {
         return $this->hasMany(\PWWEB\Localisation\Models\Address::class, 'type_id');
     }
