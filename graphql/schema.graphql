@@ -1,4 +1,4 @@
-type LocalisationAddress @node(model: "PWWEB\\Models\\Localisation\\Address") {
+type LocalisationAddress @node(model: "PWWEB\\Localisation\\Models\\Address") {
     id: ID! @globalId
     country: LocalisationCountry! @hasOne
     type: LocalisationAddressType! @hasOne
@@ -14,19 +14,19 @@ type LocalisationAddress @node(model: "PWWEB\\Models\\Localisation\\Address") {
     updated_at: DateTime!
 }
 
-type LocalisationCountry @node(model: "PWWEB\\Models\\Localisation\\Country") {
+type LocalisationCountry @node(model: "PWWEB\\Localisation\\Models\\Country") {
     id: ID! @globalId
     name: String!
     iso: String!
     ioc: String
     active: Int!
     addresses: [LocalisationAddress!]! @hasMany
-    languages: [localisationLanguage!]! @hasMany
+    languages: [LocalisationLanguage!]! @hasMany
     created_at: DateTime!
     updated_at: DateTime!
 }
 
-type LocalisationAddressType @node(model: "PWWEB\\Models\\Localisation\\Address\\Type") {
+type LocalisationAddressType @node(model: "PWWEB\\Localisation\\Models\\Address\\Type") {
     id: ID! @globalId
     name: String!
     global: Int!
@@ -35,7 +35,7 @@ type LocalisationAddressType @node(model: "PWWEB\\Models\\Localisation\\Address\
     updated_at: DateTime!
 }
 
-type LocalisationLanguage @node(model: "PWWEB\\Models\\Localisation\\Language") {
+type LocalisationLanguage @node(model: "PWWEB\\Localisation\\Models\\Language") {
     id: ID! @globalId
     name: String!
     locale: String!
@@ -50,16 +50,16 @@ type LocalisationLanguage @node(model: "PWWEB\\Models\\Localisation\\Language") 
 
 
 extend type Query {
-    localisationAddresses: [LocalisationAddress!]! @paginate(defaultCount: 10 model: "PWWEB\\Models\\Localisation\\Address")
+    localisationAddresses: [LocalisationAddress!]! @paginate(defaultCount: 10 model: "PWWEB\\Localisation\\Models\\Address")
     localisationAddress(id: ID @eq): LocalisationAddress @find
 
-    localisationCountries: [LocalisationCountry!]! @paginate(defaultCount: 10 model: "PWWEB\\Models\\Localisation\\Country")
+    localisationCountries: [LocalisationCountry!]! @paginate(defaultCount: 10 model: "PWWEB\\Localisation\\Models\\Country")
     localisationCountry(id: ID @eq): LocalisationCountry @find
 
-    localisationAddressTypes: [LocalisationAddressType!]! @paginate(defaultCount: 10 model: "PWWEB\\Models\\Localisation\\Address\\Type")
+    localisationAddressTypes: [LocalisationAddressType!]! @paginate(defaultCount: 10 model: "PWWEB\\Localisation\\Models\\Address\\Type")
     localisationAddressType(id: ID @eq): LocalisationAddressType @find
 
-    localisationLanguages: [LocalisationLanguage!]! @paginate(defaultCount: 10 model: "PWWEB\\Models\\Localisation\\Language")
+    localisationLanguages: [LocalisationLanguage!]! @paginate(defaultCount: 10 model: "PWWEB\\Localisation\\Models\\Language")
     localisationLanguage(id: ID @eq): LocalisationLanguage @find
 }
 
@@ -67,51 +67,51 @@ extend type Query {
 extend type Mutation {
     createLocalisationAddress(
         input: CreateLocalisationAddressInput! @spread
-    ): LocalisationAddress @create(model: "PWWEB\\Models\\Localisation\\Address")
+    ): LocalisationAddress @create(model: "PWWEB\\Localisation\\Models\\Address")
 
     updateLocalisationAddress(
         input: UpdateLocalisationAddressInput! @spread
-    ): LocalisationAddress @update(model: "PWWEB\\Models\\Localisation\\Address")
+    ): LocalisationAddress @update(model: "PWWEB\\Localisation\\Models\\Address")
 
     deleteLocalisationAddress(
         id: ID! @rules(apply: ["required"])
-    ): LocalisationAddress @delete(model: "PWWEB\\Models\\Localisation\\Address")
+    ): LocalisationAddress @delete(model: "PWWEB\\Localisation\\Models\\Address")
 
     createLocalisationCountry(
         input: CreateLocalisationCountryInput! @spread
-    ): LocalisationCountry @create(model: "PWWEB\\Models\\Localisation\\Country")
+    ): LocalisationCountry @create(model: "PWWEB\\Localisation\\Models\\Country")
 
     updateLocalisationCountry(
         input: UpdateLocalisationCountryInput! @spread
-    ): LocalisationCountry @update(model: "PWWEB\\Models\\Localisation\\Country")
+    ): LocalisationCountry @update(model: "PWWEB\\Localisation\\Models\\Country")
 
     deleteLocalisationCountry(
         id: ID! @rules(apply: ["required"])
-    ): LocalisationCountry @delete(model: "PWWEB\\Models\\Localisation\\Country")
+    ): LocalisationCountry @delete(model: "PWWEB\\Localisation\\Models\\Country")
 
     createLocalisationAddressType(
         input: CreateLocalisationAddressTypeInput! @spread
-    ): LocalisationAddressType @create(model: "PWWEB\\Models\\Localisation\\Address\\Type")
+    ): LocalisationAddressType @create(model: "PWWEB\\Localisation\\Models\\Address\\Type")
 
     updateLocalisationAddressType(
         input: UpdateLocalisationAddressTypeInput! @spread
-    ): LocalisationAddressType @update(model: "PWWEB\\Models\\Localisation\\Address\\Type")
+    ): LocalisationAddressType @update(model: "PWWEB\\Localisation\\Models\\Address\\Type")
 
     deleteLocalisationAddressType(
         id: ID! @rules(apply: ["required"])
-    ): LocalisationAddressType @delete(model: "PWWEB\\Models\\Localisation\\Address\\Type")
+    ): LocalisationAddressType @delete(model: "PWWEB\\Localisation\\Models\\Address\\Type")
 
     createLocalisationLanguage(
         input: CreateLocalisationLanguageInput! @spread
-    ): LocalisationLanguage @create(model: "PWWEB\\Models\\Localisation\\Language")
+    ): LocalisationLanguage @create(model: "PWWEB\\Localisation\\Models\\Language")
 
     updateLocalisationLanguage(
         input: UpdateLocalisationLanguageInput! @spread
-    ): LocalisationLanguage @update(model: "PWWEB\\Models\\Localisation\\Language")
+    ): LocalisationLanguage @update(model: "PWWEB\\Localisation\\Models\\Language")
 
     deleteLocalisationLanguage(
         id: ID! @rules(apply: ["required"])
-    ): LocalisationLanguage @delete(model: "PWWEB\\Models\\Localisation\\Language")
+    ): LocalisationLanguage @delete(model: "PWWEB\\Localisation\\Models\\Language")
 }
 
 input CreateLocalisationAddressInput {
