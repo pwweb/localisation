@@ -1167,16 +1167,16 @@
         },
         {
             "name": "pwweb/laravel-core",
-            "version": "0.1.1-beta",
+            "version": "0.1.2-beta",
             "source": {
                 "type": "git",
                 "url": "https://github.com/pwweb/laravel-core.git",
-                "reference": "599f30ec68de7eb8c0f95be0b07db0a50eb49c7c"
+                "reference": "4165e92f6498baf045ef4aae5f0c9fbf211fdeb2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/pwweb/laravel-core/zipball/599f30ec68de7eb8c0f95be0b07db0a50eb49c7c",
-                "reference": "599f30ec68de7eb8c0f95be0b07db0a50eb49c7c",
+                "url": "https://api.github.com/repos/pwweb/laravel-core/zipball/4165e92f6498baf045ef4aae5f0c9fbf211fdeb2",
+                "reference": "4165e92f6498baf045ef4aae5f0c9fbf211fdeb2",
                 "shasum": ""
             },
             "require": {
@@ -1224,7 +1224,7 @@
                 "library",
                 "traits"
             ],
-            "time": "2020-04-21T16:12:10+00:00"
+            "time": "2020-04-23T08:21:14+00:00"
         },
         {
             "name": "ramsey/collection",
@@ -3932,16 +3932,16 @@
         },
         {
             "name": "phpunit/phpunit",
-            "version": "8.5.3",
+            "version": "8.5.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/phpunit.git",
-                "reference": "67750516bc02f300e2742fed2f50177f8f37bedf"
+                "reference": "8474e22d7d642f665084ba5ec780626cbd1efd23"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/67750516bc02f300e2742fed2f50177f8f37bedf",
-                "reference": "67750516bc02f300e2742fed2f50177f8f37bedf",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/8474e22d7d642f665084ba5ec780626cbd1efd23",
+                "reference": "8474e22d7d642f665084ba5ec780626cbd1efd23",
                 "shasum": ""
             },
             "require": {
@@ -4011,7 +4011,7 @@
                 "testing",
                 "xunit"
             ],
-            "time": "2020-03-31T08:52:04+00:00"
+            "time": "2020-04-23T04:39:42+00:00"
         },
         {
             "name": "sebastian/code-unit-reverse-lookup",
