@@ -36,6 +36,7 @@ return [
     'Create country'      => 'Create country',
     'Create currency'     => 'Create currency',
     'Create language'     => 'Create language',
+    'Delete address'      => 'Delete address',
     'detail'              => 'Detail',
     'details'             => 'Details',
     'edit'                => 'edit',
