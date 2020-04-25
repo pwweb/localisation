@@ -135,7 +135,7 @@ class LocalisationServiceProvider extends ServiceProvider
      */
     protected function getMigrationFileName(Filesystem $filesystem): string
     {
-        $timestamp = date('Y_m_d_His', mktime(0, 0, 0, 1, 1, 2020));
+        $timestamp = date('Y_m_d_His', mktime(0, 0, 0, 1, 1, 2000));
 
         return Collection::make($this->app->databasePath().DIRECTORY_SEPARATOR.'migrations'.DIRECTORY_SEPARATOR)
             ->flatMap(
