@@ -82,9 +82,11 @@ class AddressController extends Controller
     public function create()
     {
         $types = $this->typeRepository->all();
+        $countries = $this->countryRepository->all();
 
         return view('localisation::addresses.create')
-            ->with('types', $types);
+            ->with('types', $types)
+            ->with('countries', $countries);
     }
 
     /**
