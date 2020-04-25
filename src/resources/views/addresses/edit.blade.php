@@ -5,7 +5,7 @@
           <li class="breadcrumb-item">
              <a href="{!! route('localisation.addresses.index') !!}">@lang("pwweb::localisation.Addresses")</a>
           </li>
-          <li class="breadcrumb-item active">@lang("pwweb::localisation.Edit")</li>
+          <li class="breadcrumb-item active">@lang("pwweb::localisation.edit")</li>
         </ol>
     <div class="container-fluid">
          <div class="animated fadeIn">

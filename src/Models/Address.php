@@ -187,7 +187,6 @@ class Address extends Model implements AddressContract
         $addresses = app(LocalisationRegistrar::class)
             ->setAddressClass(static::class)
             ->getAddresses($params);
-
         return $addresses;
     }
 }
