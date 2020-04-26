@@ -3,6 +3,7 @@
 namespace PWWEB\Localisation\Models;
 
 use Eloquent as Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use PWWEB\Core\Traits\Migratable;
 
@@ -112,7 +113,7 @@ class Address extends Model
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      **/
-    public function country()
+    public function country(): BelongsTo
     {
         return $this->belongsTo(\PWWEB\Localisation\Models\Country::class, 'country_id');
     }
@@ -122,7 +123,7 @@ class Address extends Model
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      **/
-    public function type()
+    public function type(): BelongsTo
     {
         return $this->belongsTo(\PWWEB\Localisation\Models\Address\Type::class, 'type_id');
     }

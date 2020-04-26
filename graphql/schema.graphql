@@ -1,0 +1,381 @@
+type LocalisationAddress @node(model: "PWWEB\\Localisation\\Models\\Address") {
+    id: ID! @globalId
+    country: LocalisationCountry! @hasOne
+    type: LocalisationAddressType! @hasOne
+    street: String!
+    street2: String
+    city: String!
+    state: String
+    postcode: String!
+    lat: Float
+    lng: Float
+    primary: Boolean
+    created_at: DateTime!
+    updated_at: DateTime!
+}
+
+type LocalisationCountry @node(model: "PWWEB\\Localisation\\Models\\Country") {
+    id: ID! @globalId
+    name: String!
+    iso: String!
+    ioc: String
+    active: Int!
+    addresses: [LocalisationAddress!]! @hasMany
+    languages: [LocalisationLanguage!]! @hasMany
+    created_at: DateTime!
+    updated_at: DateTime!
+}
+
+type LocalisationAddressType @node(model: "PWWEB\\Localisation\\Models\\Address\\Type") {
+    id: ID! @globalId
+    name: String!
+    global: Int!
+    addresses: [LocalisationAddress!]! @hasMany
+    created_at: DateTime!
+    updated_at: DateTime!
+}
+
+type LocalisationLanguage @node(model: "PWWEB\\Localisation\\Models\\Language") {
+    id: ID! @globalId
+    name: String!
+    locale: String!
+    abbreviation: String!
+    installed: Boolean!
+    active: Boolean!
+    standard: Boolean!
+    countries: [LocalisationCountry!]! @belongsToMany
+    created_at: DateTime!
+    updated_at: DateTime!
+}
+
+
+extend type Query {
+    localisationAddresses: [LocalisationAddress!]! @paginate(defaultCount: 10 model: "PWWEB\\Localisation\\Models\\Address")
+    localisationAddress(id: ID @eq): LocalisationAddress @find
+
+    localisationCountries: [LocalisationCountry!]! @paginate(defaultCount: 10 model: "PWWEB\\Localisation\\Models\\Country")
+    localisationCountry(id: ID @eq): LocalisationCountry @find
+
+    localisationAddressTypes: [LocalisationAddressType!]! @paginate(defaultCount: 10 model: "PWWEB\\Localisation\\Models\\Address\\Type")
+    localisationAddressType(id: ID @eq): LocalisationAddressType @find
+
+    localisationLanguages: [LocalisationLanguage!]! @paginate(defaultCount: 10 model: "PWWEB\\Localisation\\Models\\Language")
+    localisationLanguage(id: ID @eq): LocalisationLanguage @find
+}
+
+
+extend type Mutation {
+    createLocalisationAddress(
+        input: CreateLocalisationAddressInput! @spread
+    ): LocalisationAddress @create(model: "PWWEB\\Localisation\\Models\\Address")
+
+    updateLocalisationAddress(
+        input: UpdateLocalisationAddressInput! @spread
+    ): LocalisationAddress @update(model: "PWWEB\\Localisation\\Models\\Address")
+
+    deleteLocalisationAddress(
+        id: ID! @rules(apply: ["required"])
+    ): LocalisationAddress @delete(model: "PWWEB\\Localisation\\Models\\Address")
+
+    createLocalisationCountry(
+        input: CreateLocalisationCountryInput! @spread
+    ): LocalisationCountry @create(model: "PWWEB\\Localisation\\Models\\Country")
+
+    updateLocalisationCountry(
+        input: UpdateLocalisationCountryInput! @spread
+    ): LocalisationCountry @update(model: "PWWEB\\Localisation\\Models\\Country")
+
+    deleteLocalisationCountry(
+        id: ID! @rules(apply: ["required"])
+    ): LocalisationCountry @delete(model: "PWWEB\\Localisation\\Models\\Country")
+
+    createLocalisationAddressType(
+        input: CreateLocalisationAddressTypeInput! @spread
+    ): LocalisationAddressType @create(model: "PWWEB\\Localisation\\Models\\Address\\Type")
+
+    updateLocalisationAddressType(
+        input: UpdateLocalisationAddressTypeInput! @spread
+    ): LocalisationAddressType @update(model: "PWWEB\\Localisation\\Models\\Address\\Type")
+
+    deleteLocalisationAddressType(
+        id: ID! @rules(apply: ["required"])
+    ): LocalisationAddressType @delete(model: "PWWEB\\Localisation\\Models\\Address\\Type")
+
+    createLocalisationLanguage(
+        input: CreateLocalisationLanguageInput! @spread
+    ): LocalisationLanguage @create(model: "PWWEB\\Localisation\\Models\\Language")
+
+    updateLocalisationLanguage(
+        input: UpdateLocalisationLanguageInput! @spread
+    ): LocalisationLanguage @update(model: "PWWEB\\Localisation\\Models\\Language")
+
+    deleteLocalisationLanguage(
+        id: ID! @rules(apply: ["required"])
+    ): LocalisationLanguage @delete(model: "PWWEB\\Localisation\\Models\\Language")
+}
+
+input CreateLocalisationAddressInput {
+    country: CreateLocalisationCountryBelongsTo
+    type: CreateLocalisationCountryBelongsTo
+    street: String!
+    street2: String
+    city: String!
+    state: String
+    postcode: String!
+    lat: Float
+    lng: Float
+    primary: Boolean
+}
+
+input UpdateLocalisationAddressInput {
+    id: ID!
+    country: UpdateLocalisationCountryBelongsTo
+    type: UpdateLocalisationCountryBelongsTo
+    street: String
+    street2: String
+    city: String
+    state: String
+    postcode: String
+    lat: Float
+    lng: Float
+    primary: Boolean
+}
+
+input UpsertLocalisationAddressInput {
+    id: ID!
+    country: UpdateLocalisationCountryBelongsTo
+    type: UpdateLocalisationCountryBelongsTo
+    street: String
+    street2: String
+    city: String
+    state: String
+    postcode: String
+    lat: Float
+    lng: Float
+    primary: Boolean
+}
+
+input CreateLocalisationCountryInput {
+    name: String!
+    iso: String!
+    ioc: String
+    active: Int!
+    addresses: CreateLocalisationAddressHasMany
+    lanugages: CreateLocalisationLanguageBelongsToMany
+}
+
+input UpdateLocalisationCountryInput {
+    id: ID!
+    name: String
+    iso: String
+    ioc: String
+    active: Int
+    addresses: UpdateLocalisationAddressHasMany
+    lanugages: UpdateLocalisationLanguageBelongsToMany
+}
+
+input UpsertLocalisationCountryInput {
+    id: ID!
+    name: String
+    iso: String
+    ioc: String
+    active: Int
+    addresses: UpsertLocalisationAddressHasMany
+    lanugages: UpsertLocalisationLanguageBelongsToMany
+}
+
+input CreateLocalisationAddressTypeInput {
+    name: String!
+    global: Int!
+    addresses: CreateLocalisationAddressHasMany
+}
+
+input UpdateLocalisationAddressTypeInput {
+    id: ID!
+    name: String
+    global: Int
+    addresses: UpdateLocalisationAddressHasMany
+}
+
+input UpsertLocalisationAddressTypeInput {
+    id: ID!
+    name: String
+    global: Int
+    addresses: UpsertLocalisationAddressHasMany
+}
+
+input CreateLocalisationLanguageInput {
+    name: String!
+    locale: String!
+    abbreviation: String!
+    installed: Boolean!
+    active: Boolean!
+    standard: Boolean!
+    countries: CreateLocalisationCountryBelongsToMany
+}
+
+input UpdateLocalisationLanguageInput {
+    id: ID!
+    name: String
+    locale: String
+    abbreviation: String
+    installed: Boolean
+    active: Boolean
+    standard: Boolean
+    countries: UpdateLocalisationCountryBelongsToMany
+}
+
+input UpsertLocalisationLanguageInput {
+    id: ID!
+    name: String
+    locale: String
+    abbreviation: String
+    installed: Boolean
+    active: Boolean
+    standard: Boolean
+    countries: UpsertLocalisationCountryBelongsToMany
+}
+
+input CreateLocalisationAddressHasMany {
+    create: [CreateLocalisationAddressInput!]!
+}
+
+input UpdateLocalisationAddressHasMany {
+    create: [CreateLocalisationAddressInput!]
+    update: [UpdateLocalisationAddressInput!]
+    upsert: [UpsertLocalisationAddressInput!]
+    delete: [ID!]
+}
+
+input UpsertLocalisationAddressHasMany {
+    create: [CreateLocalisationAddressInput!]
+    update: [UpdateLocalisationAddressInput!]
+    upsert: [UpsertLocalisationAddressInput!]
+    delete: [ID!]
+}
+
+input CreateLocalisationAddressHasOne {
+    create: CreateLocalisationAddressInput!
+}
+
+input UpdateLocalisationAddressHasOne {
+    create: CreateLocalisationAddressInput!
+    update: UpdateLocalisationAddressInput!
+    upsert: UpsertLocalisationAddressInput!
+    delete: ID!
+}
+
+input UpsertLocalisationAddressHasOne {
+    create: CreateLocalisationAddressInput!
+    update: UpdateLocalisationAddressInput!
+    upsert: UpsertLocalisationAddressInput!
+    delete: ID!
+}
+
+input CreateLocalisationLanguageBelongsToMany {
+    create: [CreateLocalisationLanguageInput!]
+    upsert: [UpsertLocalisationLanguageInput!]
+    connect: [ID!]
+    sync: [ID!]
+}
+
+input UpdateLocalisationLanguageBelongsToMany {
+    create: [CreateLocalisationLanguageInput!]
+    connect: [ID!]
+    update: [UpdateLocalisationLanguageInput!]
+    upsert: [UpsertLocalisationLanguageInput!]
+    sync: [ID!]
+    syncWithoutDetaching: [ID!]
+    delete: [ID!]
+    disconnect: [ID!]
+}
+
+input UpsertLocalisationLanguageBelongsToMany {
+    create: [CreateLocalisationLanguageInput!]
+    connect: [ID!]
+    update: [UpdateLocalisationLanguageInput!]
+    upsert: [UpsertLocalisationLanguageInput!]
+    sync: [ID!]
+    syncWithoutDetaching: [ID!]
+    delete: [ID!]
+    disconnect: [ID!]
+}
+
+input CreateLocalisationCountryBelongsToMany {
+    create: [CreateLocalisationCountryInput!]
+    upsert: [UpsertLocalisationCountryInput!]
+    connect: [ID!]
+    sync: [ID!]
+}
+
+input UpdateLocalisationCountryBelongsToMany {
+    create: [CreateLocalisationCountryInput!]
+    connect: [ID!]
+    update: [UpdateLocalisationCountryInput!]
+    upsert: [UpsertLocalisationCountryInput!]
+    sync: [ID!]
+    syncWithoutDetaching: [ID!]
+    delete: [ID!]
+    disconnect: [ID!]
+}
+
+input UpsertLocalisationCountryBelongsToMany {
+    create: [CreateLocalisationCountryInput!]
+    connect: [ID!]
+    update: [UpdateLocalisationCountryInput!]
+    upsert: [UpsertLocalisationCountryInput!]
+    sync: [ID!]
+    syncWithoutDetaching: [ID!]
+    delete: [ID!]
+    disconnect: [ID!]
+}
+
+input CreateLocalisationCountryBelongsTo {
+    connect: ID
+    create: CreateLocalisationCountryInput
+    update: UpdateLocalisationCountryInput
+    upsert: UpsertLocalisationCountryInput
+}
+
+input UpdateLocalisationCountryBelongsTo {
+    connect: ID
+    create: CreateLocalisationCountryInput
+    update: UpdateLocalisationCountryInput
+    upsert: UpsertLocalisationCountryInput
+    disconnect: Boolean
+    delete: Boolean
+}
+
+input UpsertLocalisationCountryBelongsTo {
+    connect: ID
+    create: CreateLocalisationCountryInput
+    update: UpdateLocalisationCountryInput
+    upsert: UpsertLocalisationCountryInput
+    disconnect: Boolean
+    delete: Boolean
+}
+
+input CreateLocalisationAddressTypeBelongsTo {
+    connect: ID
+    create: CreateLocalisationAddressTypeInput
+    update: UpdateLocalisationAddressTypeInput
+    upsert: UpsertLocalisationAddressTypeInput
+}
+
+input UpdateLocalisationAddressTypeBelongsTo {
+    connect: ID
+    create: CreateLocalisationAddressTypeInput
+    update: UpdateLocalisationAddressTypeInput
+    upsert: UpsertLocalisationAddressTypeInput
+    disconnect: Boolean
+    delete: Boolean
+}
+
+input UpsertLocalisationAddressTypeBelongsTo {
+    connect: ID
+    create: CreateLocalisationAddressTypeInput
+    update: UpdateLocalisationAddressTypeInput
+    upsert: UpsertLocalisationAddressTypeInput
+    disconnect: Boolean
+    delete: Boolean
+}
