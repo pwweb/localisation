@@ -3,8 +3,8 @@
 namespace PWWEB\Localisation\Models;
 
 use Eloquent as Model;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use PWWEB\Core\Traits\Migratable;
 use PWWEB\Localisation\Contracts\Address as AddressContract;

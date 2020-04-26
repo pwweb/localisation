@@ -65,7 +65,7 @@ class LocalisationServiceProvider extends ServiceProvider
 
             $this->publishes(
                 [
-                    __DIR__.'/Database/Migrations/create_localisation_tables.php.stub' => this->app->databasePath()."/migrations/{$timestamp}_create_localisation_tables.php",
+                    __DIR__.'/Database/Migrations/create_localisation_tables.php.stub' => $this->app->databasePath()."/migrations/{$timestamp}_create_localisation_tables.php",
                 ],
                 'pwweb.localisation.migrations'
             );
