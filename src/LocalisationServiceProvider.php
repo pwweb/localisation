@@ -54,6 +54,7 @@ class LocalisationServiceProvider extends ServiceProvider
         include __DIR__.'/../routes/web.php';
 
         if (true === function_exists('config_path')) {
+            $timestamp = date('Y_m_d_His', mktime(0, 0, 0, 1, 1, 2000));
             // function not available and 'publish' not relevant in Lumen
             $this->publishes(
                 [
@@ -64,7 +65,7 @@ class LocalisationServiceProvider extends ServiceProvider
 
             $this->publishes(
                 [
-                    __DIR__.'/Database/Migrations/create_localisation_tables.php.stub' => $this->getMigrationFileName($filesystem),
+                    __DIR__.'/Database/Migrations/create_localisation_tables.php.stub' => this->app->databasePath()."/migrations/{$timestamp}_create_localisation_tables.php",
                 ],
                 'pwweb.localisation.migrations'
             );
