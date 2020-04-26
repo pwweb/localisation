@@ -247,18 +247,29 @@ input UpdateLocalisationAddressHasMany {
     delete: [ID!]
 }
 
-input UpdateLocalisationAddressHasMany {
+input UpsertLocalisationAddressHasMany {
     create: [CreateLocalisationAddressInput!]
     update: [UpdateLocalisationAddressInput!]
     upsert: [UpsertLocalisationAddressInput!]
     delete: [ID!]
 }
 
-input UpsertLocalisationAddressHasMany {
-    create: [CreateLocalisationAddressInput!]
-    update: [UpdateLocalisationAddressInput!]
-    upsert: [UpsertLocalisationAddressInput!]
-    delete: [ID!]
+input CreateLocalisationAddressHasOne {
+    create: CreateLocalisationAddressInput!
+}
+
+input UpdateLocalisationAddressHasOne {
+    create: CreateLocalisationAddressInput!
+    update: UpdateLocalisationAddressInput!
+    upsert: UpsertLocalisationAddressInput!
+    delete: ID!
+}
+
+input UpsertLocalisationAddressHasOne {
+    create: CreateLocalisationAddressInput!
+    update: UpdateLocalisationAddressInput!
+    upsert: UpsertLocalisationAddressInput!
+    delete: ID!
 }
 
 input CreateLocalisationLanguageBelongsToMany {
