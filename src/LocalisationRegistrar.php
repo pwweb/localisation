@@ -228,7 +228,7 @@ class LocalisationRegistrar
                 self::$cacheExpirationTime,
                 function () {
                     return $this->getAddressModel()
-                        //->with('system_address_types')
+                        ->with('type')
                         ->get();
                 }
             );

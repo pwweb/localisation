@@ -36,6 +36,7 @@ return [
     'Create country'      => 'Land anlegen',
     'Create currency'     => 'Währung anlegen',
     'Create language'     => 'Sprache anlegen',
+    'Delete address'      => 'Adresse löschen',
     'detail'              => 'Detail',
     'details'             => 'Details',
     'edit'                => 'bearbeiten',

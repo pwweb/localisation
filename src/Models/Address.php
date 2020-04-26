@@ -4,8 +4,12 @@ namespace PWWEB\Localisation\Models;
 
 use Eloquent as Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use PWWEB\Core\Traits\Migratable;
+use PWWEB\Localisation\Contracts\Address as AddressContract;
+use PWWEB\Localisation\Exceptions\AddressDoesNotExist;
+use PWWEB\Localisation\LocalisationRegistrar;
 
 /**
  * PWWEB\Localisation\Models\Address Model.
@@ -29,7 +33,7 @@ use PWWEB\Core\Traits\Migratable;
  * @property  number lng
  * @property  bool primary
  */
-class Address extends Model
+class Address extends Model implements AddressContract
 {
     use Migratable;
     use SoftDeletes;
@@ -181,8 +185,9 @@ class Address extends Model
      */
     protected static function getAddresses(array $params = []): Collection
     {
-        return app(LocalisationRegistrar::class)
+        $addresses = app(LocalisationRegistrar::class)
             ->setAddressClass(static::class)
             ->getAddresses($params);
+        return $addresses;
     }
 }

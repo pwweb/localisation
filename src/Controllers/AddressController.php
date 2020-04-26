@@ -7,6 +7,7 @@ use Flash;
 use Illuminate\Http\Request;
 use PWWEB\Localisation\Repositories\Address\TypeRepository;
 use PWWEB\Localisation\Repositories\AddressRepository;
+use PWWEB\Localisation\Repositories\CountryRepository;
 use PWWEB\Localisation\Requests\CreateAddressRequest;
 use PWWEB\Localisation\Requests\UpdateAddressRequest;
 
@@ -31,6 +32,13 @@ class AddressController extends Controller
     private $addressRepository;
 
     /**
+     * Repository of addresses to be used throughout the controller.
+     *
+     * @var \PWWEB\Localisation\Repositories\CountryRepository
+     */
+    private $countryRepository;
+
+    /**
      * Repository of address types to be used throughout the controller.
      *
      * @var \PWWEB\Localisation\Repositories\Address\TypeRepository
@@ -41,11 +49,13 @@ class AddressController extends Controller
      * Constructor for the Address controller.
      *
      * @param AddressRepository $addressRepo Repository of Addresses.
+     * @param CountryRepository $countryRepo Repository of Countries.
      * @param TypeRepository    $typeRepo    Repository of Address types.
      */
-    public function __construct(AddressRepository $addressRepo, TypeRepository $typeRepo)
+    public function __construct(AddressRepository $addressRepo, CountryRepository $countryRepo, TypeRepository $typeRepo)
     {
         $this->addressRepository = $addressRepo;
+        $this->countryRepository = $countryRepo;
         $this->typeRepository = $typeRepo;
     }
 
@@ -72,9 +82,11 @@ class AddressController extends Controller
     public function create()
     {
         $types = $this->typeRepository->all();
+        $countries = $this->countryRepository->all();
 
         return view('localisation::addresses.create')
-            ->with('types', $types);
+            ->with('types', $types)
+            ->with('countries', $countries);
     }
 
     /**
@@ -125,6 +137,7 @@ class AddressController extends Controller
     public function edit($id)
     {
         $address = $this->addressRepository->find($id);
+        $countries = $this->countryRepository->all();
         $types = $this->typeRepository->all();
 
         if (true === empty($address)) {
@@ -135,6 +148,7 @@ class AddressController extends Controller
 
         return view('localisation::addresses.edit')
             ->with('address', $address)
+            ->with('countries', $countries)
             ->with('types', $types);
     }
 
