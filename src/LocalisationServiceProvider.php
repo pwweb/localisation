@@ -109,6 +109,10 @@ class LocalisationServiceProvider extends ServiceProvider
             }
         );
 
+        // Bind an instance of the language repository to the container.
+        $languageRepo = new \PWWEB\Localisation\Repositories\LanguageRepository($this->app);
+        $this->app->instance(\PWWEB\Localisation\Repositories\LanguageRepository::class, $languageRepo);
+
         // Register the local middleware with the application.
         $this->app->make(\Illuminate\Contracts\Http\Kernel::class)->pushMiddleware(\PWWEB\Localisation\Middleware\Locale::class);
     }
@@ -122,9 +126,11 @@ class LocalisationServiceProvider extends ServiceProvider
     {
         $config = config('pwweb.localisation.models');
 
+        $this->app->bind(AddressContract::class, $config['address']);
+        $this->app->bind(AddressTypeContract::class, $config['address_type']);
         $this->app->bind(CountryContract::class, $config['country']);
-        $this->app->bind(LanguageContract::class, $config['language']);
         $this->app->bind(CurrencyContract::class, $config['currency']);
+        $this->app->bind(LanguageContract::class, $config['language']);
     }
 
     /**
