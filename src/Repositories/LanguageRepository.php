@@ -2,7 +2,7 @@
 
 namespace PWWEB\Localisation\Repositories;
 
-use App\Repositories\BaseRepository;
+use PWWEB\Core\Repositories\BaseRepository;
 use PWWEB\Localisation\Contracts\Language as LanguageContract;
 use PWWEB\Localisation\Exceptions\LanguageDoesNotExist;
 use PWWEB\Localisation\Models\Language;

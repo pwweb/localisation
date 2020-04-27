@@ -2,7 +2,7 @@
 
 namespace PWWEB\Localisation\Repositories;
 
-use App\Repositories\BaseRepository;
+use PWWEB\Core\Repositories\BaseRepository;
 use PWWEB\Localisation\Models\Address;
 
 /**
