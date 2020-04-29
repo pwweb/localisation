@@ -94,7 +94,7 @@ class LocalisationRegistrar
     /**
      * The cache expiration time.
      *
-     * @var \DateInterval|int
+     * @var \DateInterval|integer
      */
     public static $cacheExpirationTime;
 
