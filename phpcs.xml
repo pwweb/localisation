@@ -16,10 +16,11 @@
         <exclude name="PEAR.Commenting.FileComment"/>
         <exclude name="PEAR.Commenting.ClassComment"/>
         <exclude name="PEAR.WhiteSpace.ScopeIndent.IncorrectExact"/>
+        <exclude name="Squiz.Commenting.VariableComment.IncorrectVarType"/>
+        <exclude name="Squiz.ControlStructures.ElseIfDeclaration.NotAllowed"/>
     </rule>
     <rule ref="PSR1" />
     <rule ref="PSR2" />
-    <rule ref="PSR12" />
 
 
     <rule ref="Squiz.Arrays.ArrayBracketSpacing"/>
