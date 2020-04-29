@@ -38,7 +38,7 @@ class Localisation
     /**
      * True when this is a Lumen application.
      *
-     * @var boolean
+     * @var bool
      */
     protected $lumen = false;
 
@@ -92,7 +92,7 @@ class Localisation
 
         if ('' === $locale) {
             $locale = app()->getLocale();
-        } else if ($locale === $fallbackLocale) {
+        } elseif ($locale === $fallbackLocale) {
             $locale = 'en-GB';
         } else {
             $locale = $fallbackLocale.'-'.strtoupper($fallbackLocale);
