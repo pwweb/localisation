@@ -51,7 +51,7 @@ class LocalisationServiceProvider extends ServiceProvider
      */
     public function boot(LocalisationRegistrar $localisationLoader, Filesystem $filesystem)
     {
-        include __DIR__.'/../routes/web.php';
+        $this->loadRoutesFrom(__DIR__.'/../routes/web.php');
 
         if (true === function_exists('config_path')) {
             $timestamp = date('Y_m_d_His', mktime(0, 0, 0, 1, 1, 2000));
