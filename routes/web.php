@@ -2,7 +2,7 @@
 
 Route::namespace('PWWEB\Localisation\Controllers')
     ->prefix('localisation')
-    ->midleware(['api', 'auth'])
+    // ->midleware(['api', 'auth'])
     ->group(
         function () {
             Route::get('/', 'IndexController@index')->name('localisation.dashboard');
