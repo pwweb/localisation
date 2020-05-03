@@ -5,6 +5,7 @@
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/pwweb/localisation/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/pwweb/localisation/?branch=master)
 [![StyleCI](https://github.styleci.io/repos/7548986/shield?style=flat)](https://github.styleci.io/repos/242411012)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
 <!-- [![Latest Version on Packagist][ico-version]][link-packagist]
 [![Total Downloads][ico-downloads]][link-downloads]
 [![Build Status][ico-travis]][link-travis] -->
@@ -15,7 +16,7 @@
 
 Via Composer run the following:
 
-``` bash
+```bash
 # Install the package.
 $ composer require pwweb/localisation
 
@@ -26,22 +27,26 @@ $ php artisan vendor:publish --provider="PWWEB\Localisation\LocalisationServiceP
 # Run migrations
 $ php artisan migrate
 ```
+
 ## Pre-requisites
+
 The package assumes a standard Laravel installation if the bundled default contollers for the entities are to be used. The bundled controllers extend from  `App\Http\Controllers\Controller`. If other, custom base controllers are used as part of the installation, refer to [Customizing](Customizing).
 
 ## Configuration
 
 ### Customizing
+
 The package provides the following tags for publishing individual components for customizing:
 
-|Tag|Description|
-|---|---|
-|```pwweb.localisation.config```|Publish the configuration files to e.g. adjust database table names.|
-|```pwweb.localisation.migrations```|Publish the migration file(s) to make alterations to the database tables.|
-|```pwweb.localisation.language```|Publish the language files to make adjustments to the translation strings.|
-|```pwweb.localisation.views```|Publish the view files to make adjustments to the overall structure of the views.|
+| Tag                             | Description                                                                       |
+| ------------------------------- | --------------------------------------------------------------------------------- |
+| `pwweb.localisation.config`     | Publish the configuration files to e.g. adjust database table names.              |
+| `pwweb.localisation.migrations` | Publish the migration file(s) to make alterations to the database tables.         |
+| `pwweb.localisation.language`   | Publish the language files to make adjustments to the translation strings.        |
+| `pwweb.localisation.views`      | Publish the view files to make adjustments to the overall structure of the views. |
 
 ### Default and Fallback Language
+
 It is recommended to change your `app.php` to use both the [ISO-639-1 ISO Language Code][link-iso-639] as well as the [ISO-3166 ISO Country Code][link-iso-3166]. This can be achieved by changing the following two variables:
 
 ```php
@@ -58,7 +63,8 @@ return [
 ## Usage
 
 ### Addresses
-The package provides a ```trait HasAddresses``` which can be used to allow models to be associated with addresses.
+
+The package provides a `trait HasAddresses` which can be used to allow models to be associated with addresses.
 
 ```php
 <?php
@@ -72,10 +78,12 @@ class MyModel extends Model
 {
     use HasAddresses;
 }
-
 ```
+
 ### Language Switcher
-The localisation package provides a language switcher that can easily be added to blade templates as follows (note: the ```<div>``` is exemplary):
+
+The localisation package provides a language switcher that can easily be added to blade templates as follows (note: the `<div>` is exemplary):
+
 ```html
 ...
 <div class="anyContainer">
@@ -84,9 +92,20 @@ The localisation package provides a language switcher that can easily be added t
 ...
 ```
 
+### GraphQL
+
+The package provides a `graphql.schema` file for use within your parent project. This can be included in your primary `schema` file as follows:
+
+```graphql
+#import ../vendor/pwweb/localisation/graphql/schema.graphql
+```
+
+**Note:** don't forget to update the vendor path should yours be in a different location, relative to your primary schema file.
+
 ## FAQs
 
 During install via composer you get the following messages:
+
 ```php
  ErrorException  : Trying to access array offset on value of type null
 
@@ -111,6 +130,7 @@ During install via composer you get the following messages:
 
   Please use the argument -v to see more details.
 ```
+
 This is due to the command `php artisan config:cache` has been run. We suggest you delete the cache file `bootstrap/cache/config.php` and then run `composer dump-autoload` to be sure.
 
 ## Change log
@@ -127,12 +147,12 @@ If you discover any security related issues, please use the [issue tracker][link
 
 ## Credits
 
-- [PW*Websolutions][link-author]
-- [All Contributors][link-contributors]
+-   [PW\*Websolutions][link-author]
+-   [All Contributors][link-contributors]
 
 ## License
 
-Copyright &copy; pw-websolutions.com. Please see the [license file][link-licencse] for more information.
+Copyright © pw-websolutions.com. Please see the [license file][link-licencse] for more information.
 
 <!-- [ico-version]: https://img.shields.io/packagist/v/pwweb/artomator.svg?style=flat-square
 [ico-downloads]: https://img.shields.io/packagist/dt/pwweb/artomator.svg?style=flat-square
@@ -142,9 +162,15 @@ Copyright &copy; pw-websolutions.com. Please see the [license file][link-licencs
 [link-downloads]: https://packagist.org/packages/pwweb/artomator
 [link-travis]: https://travis-ci.org/pwweb/artomator
 [link-styleci]: https://styleci.io/repos/12345678 -->
+
 [link-author]: https://github.com/pwweb
+
 [link-contributors]: ../../contributors
+
 [link-issues]: https://github.com/pwweb/localisation/issues
+
 [link-licencse]: https://opensource.org/licenses/MIT
+
 [link-iso-639]: https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes
+
 [link-iso-3166]: https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2
