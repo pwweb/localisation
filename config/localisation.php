@@ -57,6 +57,27 @@ return [
          */
 
         'currency' => PWWEB\Localisation\Models\Currency::class,
+
+        /*
+         * The model you want to use as for the Tax models.
+         */
+
+        'tax' => [
+
+            /*
+             * The model you want to use as a Rate model needs to implement the
+             * `PWWeb\Localisation\Contracts\Tax\Rate` contract.
+             */
+
+            'rate' => PWWEB\Localisation\Models\Tax\Rate::class,
+
+            /*
+             * The model you want to use as a Location model needs to implement the
+             * `PWWeb\Localisation\Contracts\Tax\Location` contract.
+             */
+
+            'location' => PWWEB\Localisation\Models\Tax\Location::class,
+        ],
     ],
 
     'table_names' => [
@@ -115,6 +136,32 @@ return [
          */
 
         'model_has_address' => 'system_model_has_address',
+
+        /*
+         * When using the "HasPermissions" trait from this package, we need to know which
+         * table should be used to retrieve your models permissions. We have chosen a
+         * basic default value but you may easily change it to any table you like.
+         */
+
+        'tax' => [
+
+            /*
+             * When using the "Tax Rates" from this package, we need to know which
+             * table should be used to retrive your rates. We have chosen a basic
+             * default value but you may easily change it to any table  you like.
+             */
+
+            'rates' => 'system_tax_rates',
+
+            /*
+             * When using the "Tax Locations" from this package, we need to know
+             * which table should be used to retrive your rates. We have chosen
+             * a basic default value but you may easily change it to any table
+             * you like.
+             */
+
+            'locations' => 'system_tax_locations',
+        ]
     ],
 
     'column_names' => [
