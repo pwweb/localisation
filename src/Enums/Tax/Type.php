@@ -65,7 +65,7 @@ abstract class Type extends Enum
             // phpcs:ignore
             public function getValue(): string
             {
-                $value = __('standard_rate');
+                $value = __('pwweb::localisation.tax.rates.standard_rate');
 
                 if (true === is_array($value)) {
                     $value = (string) $value[0];
@@ -93,7 +93,7 @@ abstract class Type extends Enum
             // phpcs:ignore
             public function getValue(): string
             {
-                $value = __('reduced_rate');
+                $value = __('pwweb::localisation.tax.rates.reduced_rate');
 
                 if (true === is_array($value)) {
                     $value = (string) $value[0];
@@ -121,7 +121,7 @@ abstract class Type extends Enum
             // phpcs:ignore
             public function getValue(): string
             {
-                $value = __('zero_rate');
+                $value = __('pwweb::localisation.tax.rates.zero_rate');
 
                 if (true === is_array($value)) {
                     $value = (string) $value[0];
