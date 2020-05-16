@@ -29,5 +29,14 @@ Route::namespace('PWWEB\Localisation\Controllers')
                         Route::resource('types', TypeController::class);
                     }
                 );
+            Route::namespace('Tax')
+                ->prefix('tax')
+                ->name('tax.')
+                ->group(
+                    function () {
+                        Route::resource('rates', RateController::class);
+                        Route::resource('locations', LocationController::class);
+                    }
+                );
         }
     );
