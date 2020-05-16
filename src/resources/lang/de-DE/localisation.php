@@ -314,4 +314,42 @@ return [
     'Yemen'                                        => 'Jemen',
     'Zambia'                                       => 'Sambia',
     'Zimbabwe'                                     => 'Simbabwe',
+
+
+
+    // Tax
+    'tax' => [
+        'rates' => [
+            'singular' => 'Steuersatz',
+            'plural' => 'Steuersätze',
+            'name' => 'Steuersatz',
+            'compound' => 'zusammengesetzte Steuer',
+            'shipping' => 'Versandsteuer',
+            'type' => 'Steuertyp',
+            'cancel' => 'Stornierenspeichern',
+            'save' => 'Speichern',
+            'reduced_rate' => 'Reduzierte Steuersatz',
+            'zero_rate' => 'Nullrate',
+            'standard_rate' => 'Normalsatz',
+            'create_rate' => 'Steuersatz erstellen',
+            'edit_rate' => 'Bearbeitungsrate',
+            'saved' => 'Steuersatz erfolgreich gespeichert',
+            'updated' => 'Steuersatz erfolgreich aktualisiert',
+            'deleted' => 'Steuersatz erfolgreich gelöscht',
+            'not_found' => 'Steuersatz nicht gefunden',
+        ],
+        'locations' => [
+            'singular' => 'Standort',
+            'plural' => 'Standorte',
+            'order' => 'Order',
+            'create_location' => 'Standort erstellen',
+            'edit_location' => 'Standort bearbeiten',
+            'cancel' => 'Stornierenspeichern',
+            'save' => 'Speichern',
+            'saved' => 'Speicherort erfolgreich gespeichert',
+            'updated' => 'Standort erfolgreich aktualisiert',
+            'deleted' => 'Speicherort erfolgreich gelöscht',
+            'not_found' => 'Ort nicht gefunden',
+        ],
+    ],
 ];
