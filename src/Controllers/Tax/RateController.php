@@ -43,7 +43,7 @@ class RateController extends Controller
     /**
      * Display a listing of the Rate.
      *
-     * @param Request $request
+     * @param Request $request Index request
      *
      * @return \Illuminate\View\View
      */
@@ -69,7 +69,7 @@ class RateController extends Controller
     /**
      * Store a newly created Rate in storage.
      *
-     * @param CreateRateRequest $request
+     * @param CreateRateRequest $request Create Request
      *
      * @return \Illuminate\View\View
      */
@@ -87,7 +87,7 @@ class RateController extends Controller
     /**
      * Display the specified Rate.
      *
-     * @param int $id
+     * @param int $id ID to show
      *
      * @return \Illuminate\View\View
      */
@@ -96,7 +96,7 @@ class RateController extends Controller
         $rate = $this->rateRepository->find($id);
         $rate->type = Type::make($rate->type);
 
-        if (empty($rate)) {
+        if (true === empty($rate)) {
             Flash::error(__('pwweb::localisation.tax.rates.not_found'));
 
             return redirect(route('localisation.tax.rates.index'));
@@ -108,7 +108,7 @@ class RateController extends Controller
     /**
      * Show the form for editing the specified Rate.
      *
-     * @param int $id
+     * @param int $id ID to edit
      *
      * @return \Illuminate\View\View
      */
@@ -117,7 +117,7 @@ class RateController extends Controller
         $rate = $this->rateRepository->find($id);
         $types = Type::getAll();
 
-        if (empty($rate)) {
+        if (true === empty($rate)) {
             Flash::error(__('pwweb::localisation.tax.rates.not_found'));
 
             return redirect(route('localisation.tax.rates.index'));
@@ -129,8 +129,8 @@ class RateController extends Controller
     /**
      * Update the specified Rate in storage.
      *
-     * @param int $id
-     * @param UpdateRateRequest $request
+     * @param int               $id      ID to update
+     * @param UpdateRateRequest $request Edit Request
      *
      * @return \Illuminate\View\View
      */
@@ -138,7 +138,7 @@ class RateController extends Controller
     {
         $rate = $this->rateRepository->find($id);
 
-        if (empty($rate)) {
+        if (true === empty($rate)) {
             Flash::error(__('pwweb::localisation.tax.rates.not_found'));
 
             return redirect(route('localisation.tax.rates.index'));
@@ -154,7 +154,7 @@ class RateController extends Controller
     /**
      * Remove the specified Rate from storage.
      *
-     * @param int $id
+     * @param int $id ID to destroy
      *
      * @throws \Exception
      *
@@ -164,7 +164,7 @@ class RateController extends Controller
     {
         $rate = $this->rateRepository->find($id);
 
-        if (empty($rate)) {
+        if (true === empty($rate)) {
             Flash::error(__('pwweb::localisation.tax.rates.not_found'));
 
             return redirect(route('localisation.tax.rates.index'));

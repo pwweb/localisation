@@ -50,6 +50,8 @@ class LocationController extends Controller
      * Constructor for the Location controller.
      *
      * @param LocationRepository $locationRepo Repository of Locations.
+     * @param CountryRepository  $countryRepo  Repository of Countries.
+     * @param RateRepository     $rateRepo     Repository of Rates.
      */
     public function __construct(LocationRepository $locationRepo, CountryRepository $countryRepo, RateRepository $rateRepo)
     {
@@ -61,7 +63,7 @@ class LocationController extends Controller
     /**
      * Display a listing of the Location.
      *
-     * @param Request $request
+     * @param Request $request Index Request
      *
      * @return Response
      */
@@ -88,7 +90,7 @@ class LocationController extends Controller
     /**
      * Store a newly created Location in storage.
      *
-     * @param CreateLocationRequest $request
+     * @param CreateLocationRequest $request Create Request
      *
      * @return Response
      */
@@ -106,7 +108,7 @@ class LocationController extends Controller
     /**
      * Display the specified Location.
      *
-     * @param int $id
+     * @param int $id ID to show
      *
      * @return Response
      */
@@ -114,7 +116,7 @@ class LocationController extends Controller
     {
         $location = $this->locationRepository->find($id);
 
-        if (empty($location)) {
+        if (true === empty($location)) {
             Flash::error(__('pwweb::localisation.tax.locations.not_found'));
 
             return redirect(route('localisation.tax.locations.index'));
@@ -126,7 +128,7 @@ class LocationController extends Controller
     /**
      * Show the form for editing the specified Location.
      *
-     * @param int $id
+     * @param int $id ID to edit
      *
      * @return Response
      */
@@ -136,7 +138,7 @@ class LocationController extends Controller
         $countries = $this->countryRepository->all();
         $rates = $this->rateRepository->all();
 
-        if (empty($location)) {
+        if (true === empty($location)) {
             Flash::error(__('pwweb::localisation.tax.locations.not_found'));
 
             return redirect(route('localisation.tax.locations.index'));
@@ -148,8 +150,8 @@ class LocationController extends Controller
     /**
      * Update the specified Location in storage.
      *
-     * @param int $id
-     * @param UpdateLocationRequest $request
+     * @param int                   $id      ID to update
+     * @param UpdateLocationRequest $request Update Request
      *
      * @return Response
      */
@@ -157,7 +159,7 @@ class LocationController extends Controller
     {
         $location = $this->locationRepository->find($id);
 
-        if (empty($location)) {
+        if (true === empty($location)) {
             Flash::error(__('pwweb::localisation.tax.locations.not_found'));
 
             return redirect(route('localisation.tax.locations.index'));
@@ -173,7 +175,7 @@ class LocationController extends Controller
     /**
      * Remove the specified Location from storage.
      *
-     * @param int $id
+     * @param int $id ID to destroy
      *
      * @throws \Exception
      *
@@ -183,7 +185,7 @@ class LocationController extends Controller
     {
         $location = $this->locationRepository->find($id);
 
-        if (empty($location)) {
+        if (true === empty($location)) {
             Flash::error(__('pwweb::localisation.tax.locations.not_found'));
 
             return redirect(route('localisation.tax.locations.index'));

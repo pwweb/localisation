@@ -12,18 +12,18 @@ use PWWEB\Core\Traits\Migratable;
  *
  * Standard Location Model.
  *
- * @author   Frank Pillukeit <frank.pillukeit@pw-websolutions.com>
+ * @author    Frank Pillukeit <frank.pillukeit@pw-websolutions.com>
  * @author    Richard Browne <richard.browne@pw-websolutions.com
  * @copyright 2020 pw-websolutions.com
  * @license   http://www.opensource.org/licenses/mit-license.html  MIT License
  * @property  \PWWEB\Localisation\Models\SystemLocalisationCountry country
- * @property PWWEB\Localisation\Models\Tax\Rate $taxRate
- * @property foreignId $country_id
- * @property foreignId $tax_rate_id
- * @property string $state
- * @property string $city
- * @property string $zip
- * @property unsignedTinyInteger $order
+ * @property  PWWEB\Localisation\Models\Tax\Rate $taxRate
+ * @property  foreignId $country_id
+ * @property  foreignId $tax_rate_id
+ * @property  string $state
+ * @property  string $city
+ * @property  string $zip
+ * @property  unsignedTinyInteger $order
  */
 class Location extends Model
 {
