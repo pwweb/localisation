@@ -31,17 +31,17 @@ class LocationSeeder extends Seeder
         $tableNames = config('pwweb.localisation.table_names');
 
         // Definition of default locations.
-        $locations[] = ['tax_rate_id' => 1, 'country_id' => ['United Kingdom','Croatia','Poland','Lithuania','Romania','Cyprus','Malta']];
-        $locations[] = ['tax_rate_id' => 2, 'country_id' => ['United Kingdom','Hungary','Sweden','Denmark','Poland','Ireland','Netherlands','Latvia','Belgium','Bulgaria','Germany','Malta']];
+        $locations[] = ['tax_rate_id' => 1, 'country_id' => ['United Kingdom', 'Croatia', 'Poland', 'Lithuania', 'Romania', 'Cyprus', 'Malta']];
+        $locations[] = ['tax_rate_id' => 2, 'country_id' => ['United Kingdom', 'Hungary', 'Sweden', 'Denmark', 'Poland', 'Ireland', 'Netherlands', 'Latvia', 'Belgium', 'Bulgaria', 'Germany', 'Malta']];
         $locations[] = ['tax_rate_id' => 3, 'country_id' => ['Luxembourg']];
         $locations[] = ['tax_rate_id' => 4, 'country_id' => ['Malta']];
-        $locations[] = ['tax_rate_id' => 5, 'country_id' => ['Cyprus','Romania','Germany']];
-        $locations[] = ['tax_rate_id' => 6, 'country_id' => ['Austria','Bulgaria','France','Slovakia','Estonia','United Kingdom']];
-        $locations[] = ['tax_rate_id' => 7, 'country_id' => ['Belgium','Czech Republic','Latvia','Lithuania','Netherlands','Spain']];
-        $locations[] = ['tax_rate_id' => 8, 'country_id' => ['Slovenia','Italy']];
-        $locations[] = ['tax_rate_id' => 9, 'country_id' => ['Ireland','Poland','Portugal']];
-        $locations[] = ['tax_rate_id' => 10, 'country_id' => ['Finland','Greece']];
-        $locations[] = ['tax_rate_id' => 11, 'country_id' => ['Croatia','Denmark','Sweden']];
+        $locations[] = ['tax_rate_id' => 5, 'country_id' => ['Cyprus', 'Romania', 'Germany']];
+        $locations[] = ['tax_rate_id' => 6, 'country_id' => ['Austria', 'Bulgaria', 'France', 'Slovakia', 'Estonia', 'United Kingdom']];
+        $locations[] = ['tax_rate_id' => 7, 'country_id' => ['Belgium', 'Czech Republic', 'Latvia', 'Lithuania', 'Netherlands', 'Spain']];
+        $locations[] = ['tax_rate_id' => 8, 'country_id' => ['Slovenia', 'Italy']];
+        $locations[] = ['tax_rate_id' => 9, 'country_id' => ['Ireland', 'Poland', 'Portugal']];
+        $locations[] = ['tax_rate_id' => 10, 'country_id' => ['Finland', 'Greece']];
+        $locations[] = ['tax_rate_id' => 11, 'country_id' => ['Croatia', 'Denmark', 'Sweden']];
         $locations[] = ['tax_rate_id' => 12, 'country_id' => ['Hungary']];
 
         foreach ($locations as &$location) {
