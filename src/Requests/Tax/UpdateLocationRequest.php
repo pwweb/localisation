@@ -18,7 +18,6 @@ use PWWEB\Localisation\Models\Tax\Location;
  */
 class UpdateLocationRequest extends FormRequest
 {
-
     /**
      * Determine if the user is authorized to make this request.
      *

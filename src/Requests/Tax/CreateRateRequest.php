@@ -18,7 +18,6 @@ use PWWEB\Localisation\Models\Tax\Rate;
  */
 class CreateRateRequest extends FormRequest
 {
-
     /**
      * Determine if the user is authorized to make this request.
      *
