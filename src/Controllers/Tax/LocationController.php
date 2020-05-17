@@ -84,6 +84,7 @@ class LocationController extends Controller
     {
         $countries = $this->countryRepository->all();
         $rates = $this->rateRepository->all();
+
         return view('localisation::tax.locations.create', compact('countries', 'rates'));
     }
 

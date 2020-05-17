@@ -161,7 +161,7 @@ return [
              */
 
             'locations' => 'system_tax_locations',
-        ]
+        ],
     ],
 
     'column_names' => [

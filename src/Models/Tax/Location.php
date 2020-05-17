@@ -49,7 +49,7 @@ class Location extends Model
         'state',
         'city',
         'zip',
-        'order'
+        'order',
     ];
 
     /**
@@ -60,7 +60,7 @@ class Location extends Model
     protected $casts = [
         'state' => 'string',
         'city' => 'string',
-        'zip' => 'string'
+        'zip' => 'string',
     ];
 
     /**
@@ -71,7 +71,7 @@ class Location extends Model
     public static $rules = [
         'country_id' => 'required',
         'tax_rate_id' => 'required',
-        'order' => 'required'
+        'order' => 'required',
     ];
 
     /**

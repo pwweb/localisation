@@ -45,7 +45,7 @@ class Rate extends Model
         'name',
         'compound',
         'shipping',
-        'type'
+        'type',
     ];
 
     /**
@@ -57,7 +57,7 @@ class Rate extends Model
         'rate' => 'float',
         'name' => 'string',
         'compound' => 'boolean',
-        'shipping' => 'boolean'
+        'shipping' => 'boolean',
     ];
 
     /**
@@ -68,7 +68,7 @@ class Rate extends Model
     public static $rules = [
         'rate' => 'required',
         'name' => 'required',
-        'type' => 'required'
+        'type' => 'required',
     ];
 
     /**

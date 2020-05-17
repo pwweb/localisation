@@ -29,7 +29,7 @@ class LocationRepository extends BaseRepository
         'state',
         'city',
         'zip',
-        'order'
+        'order',
     ];
 
     /**

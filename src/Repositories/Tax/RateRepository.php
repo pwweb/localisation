@@ -28,7 +28,7 @@ class RateRepository extends BaseRepository
         'name',
         'compound',
         'shipping',
-        'type'
+        'type',
     ];
 
     /**

@@ -63,6 +63,7 @@ class RateController extends Controller
     public function create()
     {
         $types = Type::getAll();
+
         return view('localisation::tax.rates.create', compact('types'));
     }
 
