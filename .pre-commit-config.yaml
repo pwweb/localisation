@@ -5,7 +5,6 @@ repos:
         - id:    php-lint
         - id:    php-cs-fixer
           files: \.(php)$
-          args:  [--config .php_cs.dist]
         - id:    php-cbf
           files: \.(php)$
           args:  [--standard=phpcs.xml -p]
