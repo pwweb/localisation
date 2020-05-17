@@ -37,7 +37,6 @@ class Location extends Model
      */
     protected $dates = ['deleted_at'];
 
-
     /**
      * The attributes that can be filled.
      *
