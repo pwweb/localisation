@@ -114,7 +114,7 @@ class LocalisationServiceProvider extends ServiceProvider
         $this->app->instance(\PWWEB\Localisation\Repositories\LanguageRepository::class, $languageRepo);
 
         // Register the local middleware with the application.
-        $this->app->make(\Illuminate\Contracts\Http\Kernel::class)->pushMiddleware(\PWWEB\Localisation\Middleware\Locale::class);
+        $this->app['router']->pushMiddlewareToGroup('web', \PWWEB\Localisation\Middleware\Locale::class);
     }
 
     /**
