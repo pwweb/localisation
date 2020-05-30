@@ -44,18 +44,17 @@ class Locale
     public function handle(Request $request, Closure $next)
     {
         $session = $request->getSession();
-
         if (null !== $session) {
-            if (true === $session->has(self::SESSION_KEY)) {
-                $session->put(self::SESSION_KEY, $request->getPreferredLanguage(self::LOCALES));
+            if (false === $session->has(self::SESSION_KEY)) {
+                $session->put(self::SESSION_KEY, $request->getPreferredLanguage($this->languageRepository->getAllActive()->pluck('locale')->toArray()));
             }
 
             if (true === $request->has('lang')) {
                 $lang = $request->get('lang');
-                $locales = (array) $this->languageRepository->getLocales();
+                $check = $this->languageRepository->isLangActive($lang);
 
-                if (true === in_array($lang, $locales)) {
-                    $session->put(self::SESSION_KEY, $lang);
+                if (false === is_null($check)) {
+                    $session->put(self::SESSION_KEY, $check->locale);
                 }
             }
 
