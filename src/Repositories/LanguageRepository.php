@@ -102,6 +102,7 @@ class LanguageRepository extends BaseRepository
     {
         return Language::where('active', 1)->where('abbreviation', $lang)->first();
     }
+
     //
     // /**
     //  * Find a language by its name.
