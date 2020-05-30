@@ -5,7 +5,7 @@ namespace PWWEB\Localisation\Controllers;
 use App\Http\Controllers\Controller;
 use Flash;
 use Illuminate\Http\Request;
-use PWWeb\Localisation\Middleware\Locale;
+use PWWEB\Localisation\Middleware\Locale;
 use PWWEB\Localisation\Repositories\LanguageRepository;
 use PWWEB\Localisation\Requests\CreateLanguageRequest;
 use PWWEB\Localisation\Requests\UpdateLanguageRequest;
@@ -178,22 +178,22 @@ class LanguageController extends Controller
     /**
      * Switch the locale.
      *
-     * @param string $locale Locale to change to.
+     * @param Request $request Laravel request instance.
+     * @param string  $locale  Locale to change to.
      *
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function changeLocale($locale)
+    public function changeLocale(Request $request, $locale)
     {
-        $locales = (array) $this->languageRepository->getAllActive();
-
+        $check = $this->languageRepository->isLocaleActive($locale);
         // If a locale does not match any of the ones allowed, go back without doing anything.
-        if (false === in_array($locale, $locales)) {
+        if (true === is_null($check)) {
             return redirect()->back();
         }
 
         // Set the right sessions.
-        session([Locale::SESSION_KEY => $locale]);
-        app()->setLocale($locale);
+        $request->session()->put(Locale::SESSION_KEY, $locale);
+        // app()->setLocale($locale);
         // \LangCountry::setAllSessions($lang_country);
 
         // If a user is logged in and it has a lang_country property, set the new lang_country.
