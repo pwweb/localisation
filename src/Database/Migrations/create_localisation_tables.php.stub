@@ -181,8 +181,12 @@ class CreateLocalisationTables extends Migration
     {
         $tableNames = config('pwweb.localisation.table_names');
 
-        Schema::dropIfExists($tableNames['countries']);
-        Schema::dropIfExists($tableNames['currencies']);
+        Schema::dropIfExists($tableNames['country_has_language']);
+        Schema::dropIfExists($tableNames['model_has_address']);
+        Schema::dropIfExists($tableNames['addresses']);
         Schema::dropIfExists($tableNames['languages']);
+        Schema::dropIfExists($tableNames['currencies']);
+        Schema::dropIfExists($tableNames['address_types']);
+        Schema::dropIfExists($tableNames['countries']);
     }
 }

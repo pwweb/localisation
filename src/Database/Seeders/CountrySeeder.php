@@ -275,6 +275,10 @@ class CountrySeeder extends Seeder
 
         $tableNames = config('pwweb.localisation.table_names');
 
-        DB::table($tableNames['countries'])->insert($countries);
+        $chunks = array_chunk($countries, 20);
+
+        foreach ($chunks as $chunk) {
+            DB::table($tableNames['countries'])->insert($chunk);
+        }
     }
 }
