@@ -33,7 +33,7 @@ trait HasAddresses
     public function getAddressClass(): string
     {
         if (false === isset($this->addressClass)) {
-            $this->addressClass = app(LocalisationRegistrar::class)->getAddressClass();
+            $this->addressClass = app(LocalisationRegistrar::class)->getAddressModel();
         }
 
         return $this->addressClass;
@@ -58,7 +58,7 @@ trait HasAddresses
     /**
      * Assign the given address(es) to the model.
      *
-     * @param array|string|\PWWeb\Localisation\Contracts\Address ...$addresses One or multiple addresses to be added to the user.
+     * @param array|string|\PWWEB\Localisation\Contracts\Address ...$addresses One or multiple addresses to be added to the user.
      *
      * @return mixed
      */

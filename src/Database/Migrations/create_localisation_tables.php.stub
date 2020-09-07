@@ -40,7 +40,7 @@ class CreateLocalisationTables extends Migration
                 $table->string('iso', 2)->unique();
                 $table->string('ioc', 3)->unique()->nullable();
                 $table->tinyInteger('active');
-                $table->timestamps();
+                $table->timestampsTz();
 
                 $table->index(['name', 'iso']);
                 $table->index(['name', 'ioc']);
@@ -62,7 +62,7 @@ class CreateLocalisationTables extends Migration
                 $table->char('entity_code', 5);
                 $table->boolean('active', true);
                 $table->boolean('standard', false);
-                $table->timestamps();
+                $table->timestampsTz();
             }
         );
 
@@ -81,7 +81,7 @@ class CreateLocalisationTables extends Migration
                 $table->boolean('installed', 1);
                 $table->boolean('active', 1);
                 $table->boolean('standard', 0);
-                $table->timestamps();
+                $table->timestampsTz();
             }
         );
 
@@ -116,8 +116,8 @@ class CreateLocalisationTables extends Migration
                 $table->bigIncrements('id');
                 $table->string('name');
                 $table->tinyInteger('global')->default(0);
-                $table->softDeletes();
-                $table->timestamps();
+                $table->softDeletesTz();
+                $table->timestampsTz();
             }
         );
 
@@ -140,8 +140,8 @@ class CreateLocalisationTables extends Migration
                 $table->float('lat', 10, 6)->nullable();
                 $table->float('lng', 10, 6)->nullable();
                 $table->boolean('primary');
-                $table->softDeletes();
-                $table->timestamps();
+                $table->softDeletesTz();
+                $table->timestampsTz();
 
                 // Add foreign keys
                 $table->foreign('country_id')->references('id')->on($tableNames['countries']);
@@ -227,10 +227,14 @@ class CreateLocalisationTables extends Migration
     {
         $tableNames = config('pwweb.localisation.table_names');
 
-        Schema::dropIfExists($tableNames['countries']);
-        Schema::dropIfExists($tableNames['currencies']);
+        Schema::dropIfExists($tableNames['country_has_language']);
+        Schema::dropIfExists($tableNames['model_has_address']);
+        Schema::dropIfExists($tableNames['addresses']);
         Schema::dropIfExists($tableNames['languages']);
         Schema::dropIfExists($tableNames['tax']['rates']);
         Schema::dropIfExists($tableNames['tax']['locations']);
+        Schema::dropIfExists($tableNames['currencies']);
+        Schema::dropIfExists($tableNames['address_types']);
+        Schema::dropIfExists($tableNames['countries']);
     }
 }

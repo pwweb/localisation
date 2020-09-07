@@ -31,6 +31,8 @@ class TypeSeeder extends Seeder
         // Definition of default countries.
         $types[] = ['name' => 'home', 'global' => true];
         $types[] = ['name' => 'work', 'global' => true];
+        $types[] = ['name' => 'billing', 'global' => true];
+        $types[] = ['name' => 'shipping', 'global' => true];
         $types[] = ['name' => 'other', 'global' => true];
 
         foreach ($types as $id => $type) {
