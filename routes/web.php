@@ -2,7 +2,7 @@
 
 Route::namespace('PWWEB\Localisation\Controllers')
     ->prefix('localisation')
-    // ->midleware(['api', 'auth'])
+    ->middleware(['web'])
     ->group(
         function () {
             Route::get('/', 'IndexController@index')->name('localisation.dashboard');
@@ -27,6 +27,15 @@ Route::namespace('PWWEB\Localisation\Controllers')
                 ->group(
                     function () {
                         Route::resource('types', TypeController::class);
+                    }
+                );
+            Route::namespace('Tax')
+                ->prefix('tax')
+                ->name('tax.')
+                ->group(
+                    function () {
+                        Route::resource('rates', RateController::class);
+                        Route::resource('locations', LocationController::class);
                     }
                 );
         }

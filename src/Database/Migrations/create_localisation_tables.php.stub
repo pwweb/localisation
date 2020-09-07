@@ -6,6 +6,7 @@
  * Standard migration for the Localisation Models.
  *
  * @author    Frank Pillukeit <clients@pw-websolutions.com>
+ * @author    Richard Browne <richard.browne@pw-websolutions.com>
  * @copyright 2020 pw-websolutions.com
  * @license   http://www.opensource.org/licenses/mit-license.html  MIT License
  */
@@ -16,6 +17,8 @@ use PWWEB\Localisation\Database\Seeders\Address\TypeSeeder as AddressTypeSeeder;
 use PWWEB\Localisation\Database\Seeders\CountrySeeder;
 use PWWEB\Localisation\Database\Seeders\CurrencySeeder;
 use PWWEB\Localisation\Database\Seeders\LanguageSeeder;
+use PWWEB\Localisation\Database\Seeders\Tax\LocationSeeder;
+use PWWEB\Localisation\Database\Seeders\Tax\RateSeeder;
 
 class CreateLocalisationTables extends Migration
 {
@@ -167,6 +170,49 @@ class CreateLocalisationTables extends Migration
             }
         );
 
+        Schema::create(
+            $tableNames['tax']['rates'],
+            function (Blueprint $table) {
+                $table->id('id');
+                $table->decimal('rate', 8, 4);
+                $table->string('name', 40);
+                $table->boolean('compound')->default(false);
+                $table->boolean('shipping')->default(true);
+                $table->unsignedTinyInteger('type')->default(1);
+                $table->timestamps();
+                $table->softDeletes();
+            }
+        );
+
+        Artisan::call('db:seed', [
+            '--force' => true,
+            '--class' => RateSeeder::class,
+        ]);
+
+        Schema::create(
+            $tableNames['tax']['locations'],
+            function (Blueprint $table) use ($tableNames) {
+                $table->id('id');
+                $table->foreignId('country_id');
+                $table->foreignId('tax_rate_id');
+                $table->string('state')->default('*');
+                $table->string('city')->default('*');
+                $table->string('zip')->default('*');
+                $table->unsignedTinyInteger('order')->default(1);
+                $table->boolean('active')->default(true);
+                $table->timestamps();
+                $table->softDeletes();
+
+                $table->foreign('country_id')->references('id')->on($tableNames['countries']);
+                $table->foreign('tax_rate_id')->references('id')->on($tableNames['tax']['rates']);
+            }
+        );
+
+        Artisan::call('db:seed', [
+            '--force' => true,
+            '--class' => LocationSeeder::class,
+        ]);
+
         app('cache')
             ->store('default' != config('pwweb.localisation.cache.store') ? config('pwweb.localisation.cache.store') : null)
             ->forget(config('pwweb.localisation.cache.key'));
@@ -184,5 +230,7 @@ class CreateLocalisationTables extends Migration
         Schema::dropIfExists($tableNames['countries']);
         Schema::dropIfExists($tableNames['currencies']);
         Schema::dropIfExists($tableNames['languages']);
+        Schema::dropIfExists($tableNames['tax']['rates']);
+        Schema::dropIfExists($tableNames['tax']['locations']);
     }
 }

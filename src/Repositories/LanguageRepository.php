@@ -79,6 +79,30 @@ class LanguageRepository extends BaseRepository
         return Language::where('active', 1)->get();
     }
 
+    /**
+     * Retrieve active language based on locale.
+     *
+     * @param string $locale The locale to check.
+     *
+     * @return \Illuminate\Database\Eloquent\Collection
+     */
+    public function isLocaleActive(string $locale)
+    {
+        return Language::where('active', 1)->where('locale', $locale)->first();
+    }
+
+    /**
+     * Retrieve active language based on lang.
+     *
+     * @param string $lang The language to check.
+     *
+     * @return \Illuminate\Database\Eloquent\Collection
+     */
+    public function isLangActive(string $lang)
+    {
+        return Language::where('active', 1)->where('abbreviation', $lang)->first();
+    }
+
     //
     // /**
     //  * Find a language by its name.
