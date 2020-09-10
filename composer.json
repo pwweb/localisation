@@ -1,6 +1,6 @@
 {
     "name": "pwweb/localisation",
-    "description": "Localisation package for Laravel 6",
+    "description": "Localisation package for Laravel",
     "license": "MIT",
     "authors": [{
         "name": "Frank Pillukeit",
