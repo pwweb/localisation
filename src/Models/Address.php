@@ -141,9 +141,9 @@ class Address extends Model implements AddressContract
      *
      * @throws \PWWEB\Localisation\Exceptions\AddressDoesNotExist
      *
-     * @return \PWWEB\Localisation\Contracts\Address
+     * @return \Illuminate\Database\Eloquent\Model|null
      */
-    public static function findById(int $id): AddressContract
+    public static function findById(int $id)
     {
         $address = static::getAddresses(['id' => $id])->first();
 
@@ -163,9 +163,9 @@ class Address extends Model implements AddressContract
      *
      * @throws \PWWEB\Localisation\Exceptions\AddressDoesNotExist
      *
-     * @return \PWWEB\Localisation\Contracts\Address
+     * @return \Illuminate\Database\Eloquent\Model|null
      */
-    public static function findByType(string $type): AddressContract
+    public static function findByType(string $type)
     {
         $address = static::getAddresses(['type' => $type])->first();
 

@@ -43,7 +43,7 @@ abstract class Type extends Enum
                     $value = (string) $value[0];
                 }
 
-                return $value;
+                return $value ?: '';
             }
         };
     }
@@ -71,7 +71,7 @@ abstract class Type extends Enum
                     $value = (string) $value[0];
                 }
 
-                return $value;
+                return $value ?: '';
             }
         };
     }
@@ -99,7 +99,7 @@ abstract class Type extends Enum
                     $value = (string) $value[0];
                 }
 
-                return $value;
+                return $value ?: '';
             }
         };
     }
@@ -127,7 +127,7 @@ abstract class Type extends Enum
                     $value = (string) $value[0];
                 }
 
-                return $value;
+                return $value ?: '';
             }
         };
     }

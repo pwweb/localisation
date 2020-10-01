@@ -47,15 +47,13 @@ class LocationSeeder extends Seeder
         foreach ($locations as &$location) {
             $flag = true;
             $countries = $location['country_id'];
-            if (true === is_array($countries)) {
-                foreach ($countries as $country) {
-                    $country = DB::table($tableNames['countries'])->where('name', $country)->first();
-                    if (true === $flag) {
-                        $location['country_id'] = $country->id;
-                        $flag = false;
-                    } else {
-                        $locations[] = ['tax_rate_id' => $location['tax_rate_id'], 'country_id' => $country->id];
-                    }
+            foreach ($countries as $country) {
+                $country = DB::table($tableNames['countries'])->where('name', $country)->first();
+                if (true === $flag) {
+                    $location['country_id'] = $country->id;
+                    $flag = false;
+                } else {
+                    $locations[] = ['tax_rate_id' => $location['tax_rate_id'], 'country_id' => $country->id];
                 }
             }
             $location = array_merge($location, ['active' => false, 'created_at' => $createdAt, 'updated_at' => $createdAt]);

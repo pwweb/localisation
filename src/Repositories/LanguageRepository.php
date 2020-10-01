@@ -84,7 +84,7 @@ class LanguageRepository extends BaseRepository
      *
      * @param string $locale The locale to check.
      *
-     * @return \Illuminate\Database\Eloquent\Collection
+     * @return \Illuminate\Database\Eloquent\Model|null
      */
     public function isLocaleActive(string $locale)
     {
@@ -96,7 +96,7 @@ class LanguageRepository extends BaseRepository
      *
      * @param string $lang The language to check.
      *
-     * @return \Illuminate\Database\Eloquent\Collection
+     * @return \Illuminate\Database\Eloquent\Model|null
      */
     public function isLangActive(string $lang)
     {
@@ -152,9 +152,9 @@ class LanguageRepository extends BaseRepository
      *
      * @throws \PWWEB\Localisation\Exceptions\LanguageDoesNotExist
      *
-     * @return \PWWEB\Localisation\Contracts\Language
+     * @return \Illuminate\Database\Eloquent\Model
      */
-    public function findByLocale(string $locale): LanguageContract
+    public function findByLocale(string $locale)
     {
         $language = $this->model->where(['locale' => $locale])->first();
 

@@ -96,7 +96,7 @@ class Type extends Model implements AddressTypeContract
      *
      * @param string $value Original value of the country
      *
-     * @return string|array
+     * @return string|array|null
      */
     public function getNameAttribute($value)
     {

@@ -105,7 +105,7 @@ class Country extends Model
      *
      * @param string $value Original value.
      *
-     * @return string|array Localised country name.
+     * @return string|array|null Localised country name.
      */
     public function getNameAttribute($value)
     {

@@ -49,7 +49,7 @@ class LocalisationServiceProvider extends ServiceProvider
      *
      * @return void
      */
-    public function boot(LocalisationRegistrar $localisationLoader, Filesystem $filesystem)
+    public function boot(LocalisationRegistrar $localisationLoader, Filesystem $filesystem, Router $router)
     {
         $this->loadRoutesFrom(__DIR__.'/../routes/web.php');
 

@@ -36,7 +36,7 @@ class Locale
     /**
      * Locale middleware handler.
      *
-     * @param Illuminate\Http\Request $request current request
+     * @param \Illuminate\Http\Request $request current request
      * @param Closure                 $next    Next
      *
      * @return mixed

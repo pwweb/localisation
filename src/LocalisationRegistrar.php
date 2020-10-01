@@ -279,7 +279,7 @@ class LocalisationRegistrar
      *
      * @return \PWWEB\Localisation\Contracts\Address|null
      */
-    public function getAddressModel(): AddressContract
+    public function getAddressModel(): ?AddressContract
     {
         $addressModel = app($this->addressClass);
 
@@ -295,7 +295,7 @@ class LocalisationRegistrar
      *
      * @return \PWWEB\Localisation\Contracts\Address\Type|null
      */
-    public function getAddressTypeClass(): AddressTypeContract
+    public function getAddressTypeClass(): ?AddressTypeContract
     {
         $addressTypeModel = app($this->addressTypeClass);
 
@@ -311,7 +311,7 @@ class LocalisationRegistrar
      *
      * @return \PWWEB\Localisation\Contracts\Country|null
      */
-    public function getCountryClass(): CountryContract
+    public function getCountryClass(): ?CountryContract
     {
         $countryModel = app($this->countryClass);
 
@@ -327,7 +327,7 @@ class LocalisationRegistrar
      *
      * @return \PWWEB\Localisation\Contracts\Currency|null
      */
-    public function getCurrencyClass(): CurrencyContract
+    public function getCurrencyClass(): ?CurrencyContract
     {
         $currencyModel = app($this->currencyClass);
 
@@ -343,7 +343,7 @@ class LocalisationRegistrar
      *
      * @return \PWWEB\Localisation\Contracts\Language|null
      */
-    public function getLanguageClass(): LanguageContract
+    public function getLanguageClass(): ?LanguageContract
     {
         $languageModel = app($this->languageClass);
 
