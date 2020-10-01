@@ -31,14 +31,14 @@ use PWWEB\Localisation\Models\Currency;
      public function definition()
      {
          return [
-             'name' => $faker->word,
-             'iso' => $faker->word,
-             'numeric_code' => $faker->randomDigitNotNull,
-             'entity_code' => $faker->word,
-             'active' => $faker->word,
-             'standard' => $faker->word,
-             'created_at' => $faker->date('Y-m-d H:i:s'),
-             'updated_at' => $faker->date('Y-m-d H:i:s'),
+             'name' => $this->faker->word,
+             'iso' => $this->faker->word,
+             'numeric_code' => $this->faker->randomDigitNotNull,
+             'entity_code' => $this->faker->word,
+             'active' => $this->faker->word,
+             'standard' => $this->faker->word,
+             'created_at' => $this->faker->date('Y-m-d H:i:s'),
+             'updated_at' => $this->faker->date('Y-m-d H:i:s'),
          ];
      }
  }

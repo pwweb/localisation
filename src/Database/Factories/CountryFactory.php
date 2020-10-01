@@ -31,12 +31,12 @@ use PWWEB\Localisation\Models\Country;
      public function definition()
      {
          return [
-             'name' => $faker->word,
-             'iso' => $faker->word,
-             'ioc' => $faker->word,
-             'active' => $faker->word,
-             'created_at' => $faker->date('Y-m-d H:i:s'),
-             'updated_at' => $faker->date('Y-m-d H:i:s'),
+             'name' => $this->faker->word,
+             'iso' => $this->faker->word,
+             'ioc' => $this->faker->word,
+             'active' => $this->faker->word,
+             'created_at' => $this->faker->date('Y-m-d H:i:s'),
+             'updated_at' => $this->faker->date('Y-m-d H:i:s'),
          ];
      }
  }

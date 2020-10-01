@@ -31,18 +31,18 @@ use PWWEB\Localisation\Models\Address\Type;
      public function definition()
      {
          return [
-             'country_id' => $faker->word,
-             'type_id' => $faker->word,
-             'street' => $faker->word,
-             'street2' => $faker->word,
-             'city' => $faker->word,
-             'state' => $faker->word,
-             'postcode' => $faker->word,
-             'lat' => $faker->randomDigitNotNull,
-             'lng' => $faker->randomDigitNotNull,
-             'primary' => $faker->word,
-             'created_at' => $faker->date('Y-m-d H:i:s'),
-             'updated_at' => $faker->date('Y-m-d H:i:s'),
+             'country_id' => $this->faker->word,
+             'type_id' => $this->faker->word,
+             'street' => $this->faker->word,
+             'street2' => $this->faker->word,
+             'city' => $this->faker->word,
+             'state' => $this->faker->word,
+             'postcode' => $this->faker->word,
+             'lat' => $this->faker->randomDigitNotNull,
+             'lng' => $this->faker->randomDigitNotNull,
+             'primary' => $this->faker->word,
+             'created_at' => $this->faker->date('Y-m-d H:i:s'),
+             'updated_at' => $this->faker->date('Y-m-d H:i:s'),
          ];
      }
  }

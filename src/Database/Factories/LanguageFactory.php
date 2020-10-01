@@ -31,14 +31,14 @@ use PWWEB\Localisation\Models\Language;
      public function definition()
      {
          return [
-             'name' => $faker->word,
-             'locale' => $faker->word,
-             'abbreviation' => $faker->word,
-             'installed' => $faker->word,
-             'active' => $faker->word,
-             'standard' => $faker->word,
-             'created_at' => $faker->date('Y-m-d H:i:s'),
-             'updated_at' => $faker->date('Y-m-d H:i:s'),
+             'name' => $this->faker->word,
+             'locale' => $this->faker->word,
+             'abbreviation' => $this->faker->word,
+             'installed' => $this->faker->word,
+             'active' => $this->faker->word,
+             'standard' => $this->faker->word,
+             'created_at' => $this->faker->date('Y-m-d H:i:s'),
+             'updated_at' => $this->faker->date('Y-m-d H:i:s'),
          ];
      }
  }
