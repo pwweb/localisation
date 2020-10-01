@@ -1,6 +1,7 @@
 <?php
 
-use Faker\Generator as Faker;
+namespace PWWEB\Localisation\Database\Factories\Address;
+
 use PWWEB\Localisation\Models\Address\Type;
 
 /**
@@ -13,22 +14,35 @@ use PWWEB\Localisation\Models\Address\Type;
  * @license   http://www.opensource.org/licenses/mit-license.html  MIT License
  * @var       \Illuminate\Database\Eloquent\Factory $factoryv
  */
-$factory->define(
-    Type::class,
-    function (Faker $faker) {
-        return [
-            'country_id' => $faker->word,
-            'type_id' => $faker->word,
-            'street' => $faker->word,
-            'street2' => $faker->word,
-            'city' => $faker->word,
-            'state' => $faker->word,
-            'postcode' => $faker->word,
-            'lat' => $faker->randomDigitNotNull,
-            'lng' => $faker->randomDigitNotNull,
-            'primary' => $faker->word,
-            'created_at' => $faker->date('Y-m-d H:i:s'),
-            'updated_at' => $faker->date('Y-m-d H:i:s'),
-        ];
-    }
-);
+ class TypeFactory extends Factory
+ {
+     /**
+      * The name of the factory's corresponding model.
+      *
+      * @var string
+      */
+     protected $model = Type::class;
+
+     /**
+      * Define the model's default state.
+      *
+      * @return array
+      */
+     public function definition()
+     {
+         return [
+             'country_id' => $faker->word,
+             'type_id' => $faker->word,
+             'street' => $faker->word,
+             'street2' => $faker->word,
+             'city' => $faker->word,
+             'state' => $faker->word,
+             'postcode' => $faker->word,
+             'lat' => $faker->randomDigitNotNull,
+             'lng' => $faker->randomDigitNotNull,
+             'primary' => $faker->word,
+             'created_at' => $faker->date('Y-m-d H:i:s'),
+             'updated_at' => $faker->date('Y-m-d H:i:s'),
+         ];
+     }
+ }

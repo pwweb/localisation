@@ -1,6 +1,7 @@
 <?php
 
-use Faker\Generator as Faker;
+namespace PWWEB\Localisation\Database\Factories;
+
 use PWWEB\Localisation\Models\Country;
 
 /**
@@ -13,16 +14,29 @@ use PWWEB\Localisation\Models\Country;
  * @license   http://www.opensource.org/licenses/mit-license.html  MIT License
  * @var       \Illuminate\Database\Eloquent\Factory $factory
  */
-$factory->define(
-    Country::class,
-    function (Faker $faker) {
-        return [
-            'name' => $faker->word,
-            'iso' => $faker->word,
-            'ioc' => $faker->word,
-            'active' => $faker->word,
-            'created_at' => $faker->date('Y-m-d H:i:s'),
-            'updated_at' => $faker->date('Y-m-d H:i:s'),
-        ];
-    }
-);
+ class CountryFactory extends Factory
+ {
+     /**
+      * The name of the factory's corresponding model.
+      *
+      * @var string
+      */
+     protected $model = Country::class;
+
+     /**
+      * Define the model's default state.
+      *
+      * @return array
+      */
+     public function definition()
+     {
+         return [
+             'name' => $faker->word,
+             'iso' => $faker->word,
+             'ioc' => $faker->word,
+             'active' => $faker->word,
+             'created_at' => $faker->date('Y-m-d H:i:s'),
+             'updated_at' => $faker->date('Y-m-d H:i:s'),
+         ];
+     }
+ }
