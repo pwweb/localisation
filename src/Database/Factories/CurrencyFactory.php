@@ -4,16 +4,16 @@ namespace PWWEB\Localisation\Database\Factories;
 
 use PWWEB\Localisation\Models\Currency;
 
-/**
- * The database factory for Currency.
- * Class AppBaseController.
- *
- * @author    Frank Pillukeit <frank.pillukeit@pw-websolutions.com>
- * @author    Richard Browne <richard.browne@pw-websolutions.com
- * @copyright 2020 pw-websolutions.com
- * @license   http://www.opensource.org/licenses/mit-license.html  MIT License
- * @var       \Illuminate\Database\Eloquent\Factory $factory
- */
+ /**
+  * The database factory for Currency.
+  * Class AppBaseController.
+  *
+  * @author    Frank Pillukeit <frank.pillukeit@pw-websolutions.com>
+  * @author    Richard Browne <richard.browne@pw-websolutions.com
+  * @copyright 2020 pw-websolutions.com
+  * @license   http://www.opensource.org/licenses/mit-license.html  MIT License
+  * @var       \Illuminate\Database\Eloquent\Factory $factory
+  */
  class CurrencyFactory extends Factory
  {
      /**

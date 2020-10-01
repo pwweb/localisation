@@ -4,16 +4,16 @@ namespace PWWEB\Localisation\Database\Factories\Address;
 
 use PWWEB\Localisation\Models\Address\Type;
 
-/**
- * The database factory for Type.
- * Class AppBaseController.
- *
- * @author    Frank Pillukeit <frank.pillukeit@pw-websolutions.com>
- * @author    Richard Browne <richard.browne@pw-websolutions.com
- * @copyright 2020 pw-websolutions.com
- * @license   http://www.opensource.org/licenses/mit-license.html  MIT License
- * @var       \Illuminate\Database\Eloquent\Factory $factoryv
- */
+ /**
+  * The database factory for Type.
+  * Class AppBaseController.
+  *
+  * @author    Frank Pillukeit <frank.pillukeit@pw-websolutions.com>
+  * @author    Richard Browne <richard.browne@pw-websolutions.com
+  * @copyright 2020 pw-websolutions.com
+  * @license   http://www.opensource.org/licenses/mit-license.html  MIT License
+  * @var       \Illuminate\Database\Eloquent\Factory $factoryv
+  */
  class TypeFactory extends Factory
  {
      /**
