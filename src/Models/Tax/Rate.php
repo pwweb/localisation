@@ -32,7 +32,9 @@ class Rate extends Model
      *
      * @var string[]
      */
-    protected $dates = ['deleted_at'];
+    protected $dates = [
+        'deleted_at',
+    ];
 
     /**
      * The attributes that can be filled.
@@ -91,6 +93,6 @@ class Rate extends Model
      **/
     public function country(): HasMany
     {
-        return $this->hasMany(\PWWEB\Localisation\Models\Tax\Location::class, 'rate_id');
+        return $this->hasMany(config('pwweb.localisation.table_names.tax.location'), 'rate_id');
     }
 }

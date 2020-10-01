@@ -87,7 +87,7 @@ class Country extends Model
      **/
     public function addresses(): HasMany
     {
-        return $this->hasMany(\PWWEB\Localisation\Models\Address::class, 'country_id');
+        return $this->hasMany(config('pwweb.localisation.models.address'), 'country_id');
     }
 
     /**
@@ -97,7 +97,7 @@ class Country extends Model
      **/
     public function languages(): BelongsToMany
     {
-        return $this->belongsToMany(\PWWEB\Localisation\Models\Language::class, 'system_localisation_country_languages');
+        return $this->belongsToMany(config('pwweb.localisation.models.language'), 'system_localisation_country_languages');
     }
 
     /**

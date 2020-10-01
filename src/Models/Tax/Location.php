@@ -35,7 +35,9 @@ class Location extends Model
      *
      * @var string[]
      */
-    protected $dates = ['deleted_at'];
+    protected $dates = [
+        'deleted_at',
+    ];
 
     /**
      * The attributes that can be filled.
@@ -94,7 +96,7 @@ class Location extends Model
      **/
     public function country(): BelongsTo
     {
-        return $this->belongsTo(\PWWEB\Localisation\Models\Country::class, 'country_id');
+        return $this->belongsTo(config('pwweb.localisation.models.country'), 'country_id');
     }
 
     /**
@@ -104,6 +106,6 @@ class Location extends Model
      **/
     public function rate(): BelongsTo
     {
-        return $this->belongsTo(\PWWEB\Localisation\Models\Tax\Rate::class, 'tax_rate_id');
+        return $this->belongsTo(config('pwweb.localisation.models.tax.rate'), 'tax_rate_id');
     }
 }

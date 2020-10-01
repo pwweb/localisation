@@ -95,6 +95,6 @@ class Language extends Model implements LanguageContract
      **/
     public function countries(): BelongsToMany
     {
-        return $this->belongsToMany(\PWWEB\Localisation\Models\Country::class, 'system_localisation_country_languages');
+        return $this->belongsToMany(config('pwweb.localisation.models.country'), 'system_localisation_country_languages');
     }
 }

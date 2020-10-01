@@ -88,7 +88,7 @@ class Type extends Model implements AddressTypeContract
      **/
     public function addresses(): HasMany
     {
-        return $this->hasMany(\PWWEB\Localisation\Models\Address::class, 'type_id');
+        return $this->hasMany(config('pwweb.localisation.models.address'), 'type_id');
     }
 
     /**
