@@ -51,7 +51,7 @@ class LanguageRepository extends BaseRepository
      **/
     public function model()
     {
-        return Language::class;
+        return config('pwweb.localisation.models.language');
     }
 
     //
@@ -76,7 +76,7 @@ class LanguageRepository extends BaseRepository
      */
     public function getAllActive()
     {
-        return Language::where('active', 1)->get();
+        return $this->model->where('active', 1)->get();
     }
 
     /**
@@ -88,7 +88,7 @@ class LanguageRepository extends BaseRepository
      */
     public function isLocaleActive(string $locale)
     {
-        return Language::where('active', 1)->where('locale', $locale)->first();
+        return $this->model->where('active', 1)->where('locale', $locale)->first();
     }
 
     /**
@@ -100,7 +100,7 @@ class LanguageRepository extends BaseRepository
      */
     public function isLangActive(string $lang)
     {
-        return Language::where('active', 1)->where('abbreviation', $lang)->first();
+        return $this->model->where('active', 1)->where('abbreviation', $lang)->first();
     }
 
     //
@@ -156,7 +156,7 @@ class LanguageRepository extends BaseRepository
      */
     public function findByLocale(string $locale): LanguageContract
     {
-        $language = Language::where(['locale' => $locale])->first();
+        $language = $this->model->where(['locale' => $locale])->first();
 
         if (null === $language) {
             throw LanguageDoesNotExist::create($locale);

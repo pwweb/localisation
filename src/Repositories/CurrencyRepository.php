@@ -49,6 +49,6 @@ class CurrencyRepository extends BaseRepository
      **/
     public function model()
     {
-        return Currency::class;
+        return config('pwweb.localisation.models.currency');
     }
 }

@@ -49,6 +49,6 @@ class LocationRepository extends BaseRepository
      **/
     public function model()
     {
-        return Location::class;
+        return config('pwweb.localisation.models.tax.location');
     }
 }

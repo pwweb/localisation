@@ -47,6 +47,6 @@ class CountryRepository extends BaseRepository
      **/
     public function model()
     {
-        return Country::class;
+        return config('pwweb.localisation.models.country');
     }
 }

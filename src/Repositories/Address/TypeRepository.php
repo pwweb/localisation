@@ -45,6 +45,6 @@ class TypeRepository extends BaseRepository
      **/
     public function model()
     {
-        return Type::class;
+        return config('pwweb.localisation.models.address_type');
     }
 }

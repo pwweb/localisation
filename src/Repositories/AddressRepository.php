@@ -53,6 +53,6 @@ class AddressRepository extends BaseRepository
      **/
     public function model()
     {
-        return Address::class;
+        return config('pwweb.localisation.models.address');
     }
 }

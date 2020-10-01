@@ -48,6 +48,6 @@ class RateRepository extends BaseRepository
      **/
     public function model()
     {
-        return Rate::class;
+        return config('pwweb.localisation.models.tax.rate');
     }
 }
