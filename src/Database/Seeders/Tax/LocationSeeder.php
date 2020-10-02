@@ -90,7 +90,6 @@ class LocationSeeder extends Seeder
         $locations[] = ['tax_rate_id' => 12, 'country_id' => 'Hungary'];
 
         foreach ($locations as &$location) {
-            $countries = $location['country_id'];
             $country = DB::table($tableNames['countries'])->where('name', $location['country_id'])->first();
             $location['country_id'] = $country->id;
             $location = array_merge($location, ['active' => false, 'created_at' => $createdAt, 'updated_at' => $createdAt]);
