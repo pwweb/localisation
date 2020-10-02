@@ -127,6 +127,10 @@ class LocalisationServiceProvider extends ServiceProvider
     {
         $config = config('pwweb.localisation.models');
 
+        if (false === $config) {
+            return;
+        }
+
         $this->app->bind(AddressContract::class, $config['address']);
         $this->app->bind(AddressTypeContract::class, $config['address_type']);
         $this->app->bind(CountryContract::class, $config['country']);
