@@ -14,6 +14,7 @@ namespace PWWEB\Localisation;
 
 use Illuminate\Filesystem\Filesystem;
 use Illuminate\Foundation\AliasLoader;
+use Illuminate\Routing\Router;
 use Illuminate\Support\Collection;
 use Illuminate\Support\ServiceProvider;
 use PWWEB\Localisation\Contracts\Country as CountryContract;
