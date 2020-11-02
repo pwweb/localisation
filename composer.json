@@ -9,6 +9,7 @@
     }],
     "homepage": "https://github.com/pwweb/localisation",
     "keywords": ["library", "laravel", "localisation", "widget", "switcher"],
+    "abandoned": "pwweb/laravel-core",
     "require": {
         "php": ">=7.4",
         "laravel/framework": "^8.0",
